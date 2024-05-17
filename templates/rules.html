@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- Обязательные метатеги -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Bootstrap CSS -->
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+            crossorigin="anonymous"
+    />
+
+    <style>
+        body {
+            background-color: #F2F3F9 !important;
+            /* background-color: #e7e7e7!important; */
+        }
+
+        .rules {
+            border-radius: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .navbar-brand.abs {
+                position: absolute;
+                width: auto;
+                left: 50%;
+                transform: translateX(-50%);
+                text-align: center;
+            }
+        }
+
+        /* .navbar-light .navbar-toggler-icon{
+            background-image: url(https://i.stack.imgur.com/mSXoO.png)!important;
+        } */
+    </style>
+
+    <title>Правила проживания гостей</title>
+</head>
+<body>
+{% include "common/header.html" %}
+<br>
+<br>
+<br>
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-2">
+        <div class="col-md-4">
+            <div class="container bg-white rules pb-2 mb-2">
+                <p class="h4 pt-3 text-center">Содержание</p>
+                <hr class="featurette-divider">
+                <p>Основные правила</p>
+                <p>Залог и условия возвращения</p>
+                <p>Дети и животные</p>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <p class="h2">Правила проживания гостей</p>
+            <div class="container bg-white mt-3 rules pt-3">
+                <p class="h4 mb-3">Основные правила</p>
+                <p>
+                    Время заезда с 14:00, время выезда до 12:00 (если заселение после 18:00, то оплата осуществляется в
+                    100% размере)
+                    <br>
+                    <br>
+                    Почасовая оплата — <span class="text-info">250 ₽ </span>час (ранний заезд <span class="text-info">+500 ₽</span>)
+                    <br>
+                    <br>
+                    Время работы администратора и организации — с 9:00 до 22:30</p>
+                <hr class="featurette-divider">
+                <p class="pb-3">Заселение происходит дистанционно, ключи в кейс-боксе.
+                    При этом вам необходимо предоставить фото либо паспорта, либо водительского удостоверения
+                    (достаточно фото) <br>
+                    <br>
+                    Цена на сайте стандартная за 2 гостей, остальные по сезонному тарифу. <br>
+                    <br>
+                    Уважаемый гость, если вы указали неверное количество гостей, вам будет выставлен штраф в размере
+                    страхового депозита.
+                </p>
+                <hr class="featurette-divider">
+
+                <p class="h5"><img src="./assets/img/icon_error.svg" width="24" height="24" alt=""> Категорически
+                    запрещается</p>
+
+                <p>
+                    <span class="badge bg-light text-dark fw-bold fs-6">1</span>
+                    Курить в квартире и на балконе;
+                </p>
+
+                <p>
+                    <span class="badge bg-light text-dark fw-bold fs-6">2</span>
+                    Устраивать шумные мероприятия и вечеринки;
+                </p>
+
+                <p>
+                    <span class="badge bg-light text-dark fw-bold fs-6">3</span>
+                    Препятствовать входу в квартиру (в отношение хозяина, либо администратора);
+                </p>
+
+                <p>
+                    <span class="badge bg-light text-dark fw-bold fs-6">4</span>
+                    Портить, либо ломать любое имущество в квартире, включая мебель и технику;
+                </p>
+
+                <p>
+                    <span class="badge bg-light text-dark fw-bold fs-6">5</span>
+                    Употребление и хранения наркотических веществ;
+                </p>
+
+                <p>
+                    <span class="badge bg-light text-dark fw-bold fs-6">6</span>
+                    Препятствовать уборке, либо проверки квартиры в день выезда;
+                </p>
+
+                <div class="d-flex align-items-top">
+                    <div class=" me-1">
+                        <span class="badge bg-light text-dark fw-bold fs-6">7</span>
+                    </div>
+                    <p class="text-break">
+                        В квартире запрещено использовать все виды пиротехники:
+                        хлопушки, петарды и так далее. Иными словами все то, что может повредить,
+                        либо испортить имущество в квартире;
+                    </p>
+                </div>
+
+                <div class="d-flex align-items-top">
+                    <div class=" me-1">
+                        <span class="badge bg-light text-dark fw-bold fs-6">8</span>
+                    </div>
+                    <p class="text-break">
+                        Запрещено без уведомление администратора пользоваться,
+                        либо регулировать водонагреватели,
+                        бойлеры в квартире (предусмотрен штраф в размере полной суммы страхового депозита).
+                    </p>
+                </div>
+
+                <hr class="featurette-divider">
+                <p class="pb-3">При нарушении выше указанных правил, хозяин квартиры, либо администратор вправе не
+                    возвращать залог в полном объёме,
+                    а так же выселить гостя без возврата средств.</p>
+            </div>
+            <div class="container bg-white mt-3 rules pt-3">
+                <p class="h4 mb-3">Основные правила</p>
+                <p>
+                    Время заезда с 14:00, время выезда до 12:00 (если заселение после 18:00, то оплата осуществляется
+                    в 100% размере)
+                    <br>
+                    <br>
+                    Почасовая оплата — <span class="text-info">250 ₽ </span>час (ранний заезд <span class="text-info">+500 ₽</span>)
+                    <br>
+                    <br>
+                    Время работы администратора и организации — с 9:00 до 22:30</p>
+                <hr class="featurette-divider">
+                <p class="pb-3">Заселение происходит дистанционно, ключи в кейс-боксе.
+                    При этом вам необходимо предоставить фото либо паспорта, либо водительского удостоверения
+                    (достаточно фото) <br>
+                    <br>
+                    Цена на сайте стандартная за 2 гостей, остальные по сезонному тарифу. <br>
+                    <br>
+                    Уважаемый гость, если вы указали неверное количество гостей, вам будет выставлен штраф в размере
+                    страхового депозита.
+                </p>
+                <hr class="featurette-divider">
+
+                <hr class="featurette-divider">
+                <p class="pb-3">При нарушении выше указанных правил, хозяин квартиры, либо администратор вправе не
+                    возвращать залог в полном объёме,
+                    а так же выселить гостя без возврата средств.</p>
+            </div>
+            <div class="container bg-white mt-3 rules pt-3">
+                <p class="h4 mb-3">Основные правила</p>
+                <p>
+                    Время заезда с 14:00, время выезда до 12:00 (если заселение после 18:00, то оплата осуществляется в
+                    100% размере)
+                    <br>
+                    <br>
+                    Почасовая оплата — <span class="text-info">250 ₽ </span>час (ранний заезд <span class="text-info">+500 ₽</span>)
+                    <br>
+                    <br>
+                    Время работы администратора и организации — с 9:00 до 22:30</p>
+                <hr class="featurette-divider">
+                <p class="pb-3">Заселение происходит дистанционно, ключи в кейс-боксе.
+                    При этом вам необходимо предоставить фото либо паспорта, либо водительского удостоверения
+                    (достаточно фото) <br>
+                    <br>
+                    Цена на сайте стандартная за 2 гостей, остальные по сезонному тарифу. <br>
+                    <br>
+                    Уважаемый гость, если вы указали неверное количество гостей, вам будет выставлен штраф в размере
+                    страхового депозита.
+                </p>
+                <hr class="featurette-divider">
+
+
+                <hr class="featurette-divider">
+                <p class="pb-3">При нарушении выше указанных правил, хозяин квартиры, либо администратор вправе не
+                    возвращать залог в полном объёме,
+                    а так же выселить гостя без возврата средств.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+
+
+<!-- Footer -->
+{% include 'common/footer.html' %}
+<!---->
+
+<!-- Необязательный JavaScript; выберите один из двух! -->
+
+<!-- Вариант 1: пакет Bootstrap с Popper -->
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"
+></script>
+
+<!-- Вариант 2: отдельные JS для Popper и Bootstrap -->
+<!--
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+-->
+</body>
+</html>

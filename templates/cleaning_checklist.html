@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- Обязательные метатеги -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Bootstrap CSS -->
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+            crossorigin="anonymous"
+    />
+
+    <style>
+        body {
+            background-color: #F2F3F9 !important;
+            /* background-color: #e7e7e7!important; */
+        }
+
+        .rules {
+            border-radius: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .navbar-brand.abs {
+                position: absolute;
+                width: auto;
+                left: 50%;
+                transform: translateX(-50%);
+                text-align: center;
+            }
+        }
+
+        /* .navbar-light .navbar-toggler-icon{
+            background-image: url(https://i.stack.imgur.com/mSXoO.png)!important;
+        } */
+    </style>
+
+    <title>Чек-лист уборки квартиры</title>
+</head>
+<body>
+
+{% include "common/header.html" %}
+
+<div class="container mt-5">
+    <a href="">Главная</a> > Чек-лист уборки квартиры
+    <h1 class="h1 mt-3 mb-3">Чек-лист уборки квартиры</h1>
+</div>
+
+<div class="container rules">
+    <div class="container bg-white rules">
+        {% for checklist_item in checklist_items %}
+            <p>
+                <span class="badge bg-light text-dark mt-3 fw-bold fs-6">{{ checklist_item.order }}</span>
+                {{ checklist_item.item_text }}
+            </p>
+            {% if not forloop.last %}
+                <hr class="featurette-divider">
+            {% endif %}
+
+        {% endfor %}
+    </div>
+    <br>
+</div>
+
+{% include 'common/footer.html' %}
+
+<!-- Необязательный JavaScript; выберите один из двух! -->
+
+<!-- Вариант 1: пакет Bootstrap с Popper -->
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"
+></script>
+
+<!-- Вариант 2: отдельные JS для Popper и Bootstrap -->
+<!--
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+-->
+</body>
+</html>

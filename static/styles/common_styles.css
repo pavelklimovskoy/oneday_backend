@@ -1,0 +1,256 @@
+@import url(reset.css);
+
+@font-face {
+    font-family: 'Atyp Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Atyp Regular'),
+        url('/assets/fonts/atyp/AtypText-Regular.woff2') format('woff2'),
+        url('/assets/fonts/atyp/AtypText-Regular.woff') format('woff'),
+        url('/assets/fonts/atyp/AtypText-Regular.ttf') format('ttf'),
+        url('/assets/fonts/atyp/AtypText-Regular.eot') format('eot');
+}
+
+@font-face {
+    font-family: 'Vela Sans';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Vela Sans'),
+        url('/assets/fonts/vela_sans/VelaSans-Regular.woff2') format('woff2'),
+        url('/assets/fonts/vela_sans/VelaSans-Regular.woff') format('woff'),
+        url('/assets/fonts/vela_sans/VelaSans-Regular.ttf') format('ttf'),
+        url('/assets/fonts/vela_sans/VelaSans-Regular.otf') format('otf');
+}
+
+
+:root {
+    --primary: rgb(17, 115, 153);
+    --hover: rgb(7, 96, 134);
+    --pressed: rgb(13, 86, 118);
+    --black: rgb(6, 31, 40);
+    --body-text: rgb(50, 71, 80);
+    --red: rgb(199, 45, 45);
+    --dark-grey: rgb(192, 193, 199);
+    --dividers: rgb(232, 233, 239);
+    --cream: rgb(242, 243, 249);
+    --white: rgb(255, 255, 255);
+}
+
+.primary {
+    color: var(--primary);
+}
+
+.hover {
+    color: var(--hover);
+}
+
+.pressed {
+    color: var(--pressed);
+}
+
+.black {
+    color: var(--black)
+}
+
+.body_text {
+    color: var(--body-text);
+}
+
+.red {
+    color: var(--red)
+}
+
+.dark_grey {
+    color: var(--dark-grey);
+}
+
+.dividers {
+    color: var(--dividers);
+}
+
+.cream {
+    color: var(--cream);
+}
+
+.white {
+    color: var(--white);
+}
+
+body {
+    background-color: var(--cream) !important;
+}
+
+h1 {
+    font-size: 60px;
+    line-height: 110%;
+}
+
+h2 {
+    font-size: 32px;
+    line-height: 120%;
+}
+
+a {
+    color: var(--primary);
+}
+
+.available_store {
+    border-radius: 10px;
+    border: 1px solid var(--Gray, #E8E9EF);
+    background-color: var(--white);
+
+    display: flex;
+    width: max-content;
+    padding: 8px 12px;
+    align-items: center;
+
+    cursor: pointer;
+
+    >img {
+        width: 22px;
+        height: 24px;
+        margin-right: 10px;
+    }
+
+    >div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    >div>span,
+    >div>span~span {
+        color: var(--Black, #061F28);
+        font-family: "Vela Sans";
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+
+    >div>span {
+        font-size: 10px;
+    }
+
+    >div>span~span {
+        font-size: 14px;
+    }
+}
+
+.watch_flats {
+    display: flex;
+    align-items: center;
+
+    background-color: var(--primary);
+    width: max-content;
+
+    border-radius: 10px;
+    padding: 12px 24px;
+
+    >img {
+        width: 16px;
+        height: 16px;
+        margin-right: 12px;
+    }
+
+    >span {
+        color: var(--white);
+        font-kerning: none;
+
+        font-family: "Vela Sans";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: bold;
+        line-height: 150%;
+    }
+}
+
+.watch_flats:hover {
+    cursor: pointer;
+    background-color: var(--hover);
+}
+
+.watch_flats:active {
+    cursor: pointer;
+    background-color: var(--pressed);
+}
+
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.seccondary_btn {
+    margin-top: 2px;
+
+    display: flex;
+    align-items: center;
+
+    background-color: var(--white);
+    width: max-content;
+
+    border: 2px solid var(--primary);
+
+    border-radius: 10px;
+    padding: 12px 24px;
+
+    >img {
+        width: 24px;
+        height: 24px;
+        margin-right: 12px;
+    }
+
+    >span {
+        color: var(--primary);
+        font-kerning: none;
+
+        font-family: "Vela Sans";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: bold;
+        line-height: 150%;
+    }
+}
+
+.seccondary_btn:hover {
+    cursor: pointer;
+    background-color: var(--primary);
+
+    >span {
+        color: var(--white);
+    }
+}
+
+.seccondary_btn:active {
+    background-color: var(--pressed);
+}
+
+.home:hover {
+    >img {
+        content: url("/assets/img/home_white.svg");
+    }
+}
+
+.profile:hover {
+    >img {
+        content: url("/assets/img/profile_white.svg");
+    }
+}
+
+.favourites:hover {
+    >img {
+        content: url("/assets/img/heart_white.png");
+    }
+}
+
+.share {
+    padding: 12px 12px;
+
+    >img {
+        margin-right: 0px;
+    }
+}

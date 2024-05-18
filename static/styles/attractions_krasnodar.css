@@ -1,0 +1,349 @@
+body {
+    font-family: 'Vela Sans';
+}
+
+.navigation {
+    font-family: 'Vela Sans';
+    font-size: medium;
+
+    margin-top: 80px;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-family: 'Atyp Regular';
+    font-size: 60px;
+    line-height: 110%;
+    color: #117399;
+    width: 750px;
+
+    margin-top: 20px;
+    margin-bottom: 80px;
+}
+
+.tile {
+    background-color: var(--white);
+    border-radius: 10px;
+
+
+    padding-bottom: 40px;
+    padding-left: 40px;
+}
+
+.final_tile {
+    background-color: var(--white);
+    border-radius: 10px;
+
+    padding-left: 80px;
+
+    margin-bottom: 100px;
+}
+
+.bg_theme {
+    background-image: url('../img/park_krasnodar.png');
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    border-radius: 10px;
+}
+
+.bg_garden {
+    background-image: url('../img/garden.png');
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    border-radius: 10px;
+}
+
+.bg_percent {
+    background-image: url('../img/percent_background.png');
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    border-radius: 10px;
+}
+
+.ask {
+    margin-top: 78.5px;
+
+    >p {
+        color: var(--Primary, #117399);
+        width: 378px;
+
+        /* Title/H2 */
+        font-family: "Atyp Regular";
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 75;
+        line-height: 120%;
+        /* 38.4px */
+
+        margin-bottom: 12px;
+    }
+
+    >span {
+        margin-top: 24px;
+
+        color: var(--Body-text, #324750);
+
+        /* Subtitle/S3-medium */
+        font-family: "Vela Sans";
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 140%;
+        /* 25.2px */
+    }
+}
+
+.img_center {
+    /* display: block; */
+    position: absolute;
+    /* margin-left: auto;
+    margin-right: auto; */
+
+    left: 25%;
+    top: 30px;
+
+    /* width: 50%; */
+
+    /* margin-top: 40px;
+    margin-bottom: 40px; */
+
+    z-index: 3;
+}
+
+@media screen and (650px < width <=990px) {
+
+    .photo_ghost_l,
+    .photo_ghost_r {
+        display: none;
+    }
+
+    .img_center {
+        top: 20%;
+        width: 80%;
+    }
+}
+
+@media screen and (width <=650px) {
+    .title {
+        font-size: 24px;
+        width: 320px;
+
+        margin-bottom: 40px;
+        margin-top: 20px;
+    }
+
+    .tile {
+        padding-left: 20px;
+    }
+
+    .navigation {
+        margin-top: 20px;
+    }
+
+    .bg_theme {
+        height: 240px;
+        margin-bottom: 20px;
+    }
+
+    .bg_garden {
+        height: 240px;
+        margin-bottom: 20px;
+    }
+
+    .ask>p {
+
+        width: 100%;
+
+        text-align: center;
+
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 75;
+        line-height: 120%;
+        /* 28.8px */
+
+        margin-bottom: 12px;
+    }
+
+    .ask>span {
+        display: block;
+        text-align: center;
+        width: 100%;
+
+        font-size: 16px;
+
+        line-height: 150%;
+        /* 24px */
+    }
+
+    .watch_flats {
+        display: block;
+        width: 100%;
+        text-align: center;
+        align-items: center;
+    }
+
+    .watch_flats>img {
+        display: inline;
+        vertical-align: baseline;
+
+    }
+
+    .final_tile {
+        padding-left: 20px;
+    }
+
+    .img_center {
+
+        display: block;
+        position: relative;
+        /* margin-left: auto;
+        margin-right: auto; */
+
+        left: 0;
+        top: 0;
+
+
+        margin-top: 40px;
+        margin-bottom: 40px;
+
+        /* z-index: 4; */
+
+        width: 100%;
+    }
+
+    .photo_ghost_l,
+    .photo_ghost_r,
+    .ellipse,
+    .pillow {
+        display: none;
+    }
+}
+
+.preview {
+    width: 520px;
+}
+
+.time_info {
+    background: var(--white);
+
+    width: 188px;
+
+    border-style: solid;
+    border-color: #E8E9EF;
+    border-width: 2px;
+
+    border-radius: 10px;
+
+    padding-top: 12px;
+    padding-left: 24px;
+    padding-right: 24px;
+
+    line-height: 150%;
+
+    color: #117399;
+    text-align: center;
+    font-family: 'Vela Sans';
+    font-weight: bold;
+}
+
+.clock {
+    margin-right: 8px;
+}
+
+.address {
+    padding-top: 40px;
+}
+
+.address a {
+    color: #000;
+}
+
+.place_name {
+
+    font-family: 'Atyp Regular' !important;
+    font-size: 32px;
+    line-height: 120%;
+
+    color: #117399;
+}
+
+.description {
+    font-size: medium;
+    line-height: 150%;
+    color: #324750;
+
+    margin-bottom: 40px;
+}
+
+.title_tile {
+    background: white;
+    border-radius: 10px;
+
+    padding-left: 40px;
+
+    margin-bottom: 20px;
+}
+
+.content {
+    font-size: medium;
+    line-height: 140%;
+
+    color: #061F28;
+
+    width: 376px;
+}
+
+.watch_flats {
+    margin-top: 24px;
+}
+
+.pillow {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.ellipse {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.el_1 {
+    z-index: 1;
+}
+
+.el_2 {
+    z-index: 0;
+}
+
+.photo_ghost_l {
+    position: absolute;
+    top: 85px;
+    left: 15%;
+
+    z-index: 1;
+}
+
+.photo_ghost_r {
+    position: absolute;
+    top: 85px;
+    left: 50%;
+
+    z-index: 1;
+}
+
+.mb_40 {
+    margin-bottom: 40px;
+}

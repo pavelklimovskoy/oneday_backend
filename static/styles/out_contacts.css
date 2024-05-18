@@ -1,0 +1,55 @@
+@import url(common_styles.css);
+
+.bg_theme {
+    background-image: url('../img/out_contacts_background.png');
+    height: 892px;
+}
+
+.line {
+    margin-top: 40px;
+}
+
+.contact_container {
+    margin-left: 80px;
+    padding-top: 40px;
+    padding-bottom: 80px;
+
+    font-family: 'Atyp Regular';
+}
+
+.inner {
+    background-color: white;
+    margin-top: 80px;
+    border-radius: 10px;
+}
+
+.h1 {
+    font-size: 60px;
+    line-height: 110%;
+    
+}
+
+@media screen and (width <=650px) {
+    .contact_container {
+        margin-left: 20px;
+    }
+
+    .h1 {
+        font-size: 32px;
+    }
+
+    .bg_theme {
+        height: 790px;
+    }
+
+}
+
+
+
+.medium {
+    font-weight: medium;
+}
+
+.logo {
+    margin-right: 10px;
+}

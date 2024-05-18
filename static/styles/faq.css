@@ -1,0 +1,93 @@
+.h2 {
+    font-family: 'Atyp Regular';
+    font-size: 32px;
+    line-height: 120%;
+}
+
+.navigation {
+    margin-top: 80px;
+    margin-bottom: 20px;
+
+    /* font-weight: bold; */
+    font-family: 'Vela Sans';
+}
+
+
+.tile {
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 20px;
+
+    line-height: 120%;
+}
+
+.title_text {
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+
+.pic {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.info_text {
+    font-family: 'Vela Sans';
+}
+
+.rem_outline {
+    outline: none !important;
+    outline-color: none !important;
+}
+
+.accordion-button:focus {
+    box-shadow: none !important;
+    border-color: none !important;
+    background-color: none !important;
+}
+
+.accordion-button:not(.collapsed) {
+    color: none !important;
+}
+
+.num_badge {
+    background-color: #F2F3F9;
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+    line-height: 24px;
+    text-align: center;
+
+    font-weight: bold;
+
+    margin-right: 12px;
+
+    font-family: 'Vela Sans';
+}
+
+.question_header {
+    font-weight: bold;
+    font-family: 'Vela Sans';
+
+    line-height: 125%;
+
+    color: rgb(6, 31, 40);
+    ;
+}
+
+.question_content {
+    font-family: 'Vela Sans';
+
+    /* body_text */
+    color: rgb(50, 71, 80);
+}
+
+.accordion-button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: white;
+    color: black;
+}

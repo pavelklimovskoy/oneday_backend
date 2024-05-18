@@ -1,0 +1,215 @@
+body{
+    background-color: #D9E1E8;;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.booking_form{
+    border-radius: 10px;
+    background: white;
+
+    width: min-content;
+    height: min-content;
+
+    padding-left: 20px;
+    padding-right: 20px;
+
+    margin-top: 64px;
+    padding-bottom: 12px;
+    margin-left: auto;
+    margin-right: auto;
+
+    font-family: Inter;
+}
+
+.list{
+    display: grid;
+}
+
+.info_block
+{
+    display: grid;
+    grid-template-columns: 40% 50%;
+
+    font-size: small
+}
+
+.reservation_block
+{
+    display: grid;
+    grid-template-columns: 50% 50%;
+
+    margin-bottom: 24px;
+    margin-top: 24px;
+}
+
+.reservation_block_item
+{
+    display: grid;
+}
+
+.personal_data_block
+{
+    display: grid;
+    grid-template-columns: 50% 50%;
+
+    select {
+        width: 100%;
+    }
+}
+
+.wish_block
+{
+    display: grid;
+
+    margin-top: 10px;
+}
+
+.control_buttons
+{
+    display: inline;
+}
+
+
+textarea {
+    resize: none;
+}
+
+.additional_info
+{
+    display: grid;
+}
+
+.accept_block
+{
+    font-size: small;
+    
+    a {
+        color: red;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: black;
+    }
+    
+}
+
+.welcome_text
+{
+    text-align: center;
+    font-family: Inter;
+}
+
+.additional_items
+{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    
+}
+
+.children_block
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: grid;
+}
+
+
+.animal_block
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: grid;
+}
+
+.data_label
+{
+    font-size: medium;
+    font-weight: bold;
+    font-family: Inter;
+}
+
+.summary_bloc
+{
+    font-size: small;
+}
+
+.confirm_button {
+  background-color: #13aa52;
+  border: 1px solid #13aa52;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  outline: none;
+  outline: 0;
+  padding: 10px 25px;
+  text-align: center;
+  transform: translateY(0);
+  transition: transform 150ms, box-shadow 150ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.confirm_button:hover {
+  box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+  transform: translateY(-2px);
+}
+
+@media (min-width: 768px) {
+  .confirm_button {
+    padding: 10px 30px;
+  }
+}
+
+.cancel_button {
+    background-color: #aa1313;
+    border: 1px solid #aa1313;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    outline: none;
+    outline: 0;
+    padding: 10px 25px;
+    text-align: center;
+    transform: translateY(0);
+    transition: transform 150ms, box-shadow 150ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+  
+.cancel_button:hover {
+    box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+    transform: translateY(-2px);
+}
+  
+@media (min-width: 768px) {
+    .cancel_button {
+        padding: 10px 30px;
+    }
+}
+
+
+input, select, textarea {
+    border-radius: 4px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid;
+    font-family: Inter;
+}

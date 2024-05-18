@@ -1,0 +1,135 @@
+.tile {
+    background-color: var(--white);
+    border: 1px solid var(--dividers);
+    border-radius: 10px;
+
+    /* padding: 40px 20px; */
+}
+
+
+.promo_row {
+    padding-top: 120px;
+    padding-bottom: 100px;
+
+    /* display: flex;
+    flex-direction: row;
+    align-items: center */
+}
+
+.promo_icon {
+    width: 40px;
+    height: 40px;
+
+    display: block;
+
+    /* position: absolute; */
+    transform: translateY(-50%);
+
+    margin: 0 auto;
+
+}
+
+.promo_title {
+    color: var(--Primary, #117399);
+    text-align: center;
+    /* font-feature-settings: 'ss06' on; */
+
+
+    /* Subtitle/S1 */
+    font-family: "Atyp Regular";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 75;
+    line-height: 120%;
+    /* 28.8px */
+}
+
+.promo_content {
+    color: var(--Black, #061F28);
+    text-align: center;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-feature-settings: 'case' on;
+
+    /* Body/B1-medium */
+    font-family: "Vela Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+    /* 24px */
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    /* font-size: 30px; */
+    /* color: green; */
+    /* border: 4px dashed green; */
+    /* padding: px; */
+    /* width: 400px; */
+
+    margin-bottom: 60px;
+
+
+    >.available_store {
+        margin-right: 10px;
+        /* width: 150px !important; */
+        height: 43px;
+    }
+}
+
+.app_download_text {
+    color: var(--Primary, #117399);
+
+    width: 471px;
+
+    /* Title/H2 */
+    font-family: "Atyp Regular";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 75;
+    line-height: 120%;
+    /* 38.4px */
+
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+
+.download_tile {
+    background-color: var(--white);
+    border-radius: 10px;
+
+}
+
+.right_pad {
+    padding-left: 40px;
+}
+
+.iphone_pic {
+    position: absolute;
+    top: -41px;
+    left: -200px;
+    
+}
+
+.no_rpadding {
+    padding-right: 0px !important;
+}
+
+.qr_section {
+    background-color: var(--primary);
+    border-radius: 10px;
+}
+
+.qr_pic {
+    position: absolute;
+    /* top: -41px;
+    left: -200px; */
+
+    top: 30%;
+    left: 50%
+}
+
+.diff_1 {
+    margin-top: 160px;
+}

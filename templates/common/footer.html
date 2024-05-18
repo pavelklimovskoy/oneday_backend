@@ -1,3 +1,4 @@
+{% load static %}
 <footer>
     <div class="container-fluid bg-white">
         <div class="container pt-5">
@@ -47,15 +48,15 @@
 
                     <div class="form-inline">
                         <a class="text-decoration-none" href="https://vk.com/" target="_blank">
-                            <img width="48" height="48" src="assets/img/btn.svg">
+                            <img width="48" height="48" src="{% static 'img/btn.svg' %}">
                         </a>
 
                         <a class="text-decoration-none" href="https://web.telegram.org/a/" target="_blank">
-                            <img width="48" height="48" src="assets/img/telegram_btn.svg">
+                            <img width="48" height="48" src="{% static 'img/telegram_btn.svg' %}">
                         </a>
 
                         <a class="text-decoration-none" href="https://youtube.com" target="_blank">
-                            <img width="48" height="48" src="assets/img/youtube_btn.svg">
+                            <img width="48" height="48" src="{% static 'img/youtube_btn.svg' %}">
                         </a>
                     </div>
                 </div>
@@ -103,25 +104,25 @@
                     <div class="float-md-end">
                         <div class="row">
                             <a class="text-decoration-none" href="">
-                                <img class="mb-1" src="./assets/img/GooglePlay_btn.svg" width="137px" alt="">
+                                <img class="mb-1" src="{% static 'img/GooglePlay_btn.svg' %}" width="137px" alt="">
                             </a>
                         </div>
 
                         <div class="row">
                             <a class="text-decoration-none" href="">
-                                <img class="mb-1" src="./assets/img/AppGallery_btn.svg" width="137px" alt="">
+                                <img class="mb-1" src="{% static 'img/AppGallery_btn.svg' %}" width="137px">
                             </a>
                         </div>
 
                         <div class="row">
                             <a class="text-decoration-none" href="">
-                                <img class="mb-1" src="./assets/img/RuMarket_btn.svg" width="137px" alt="">
+                                <img class="mb-1" src="{% static 'img/RuMarket_btn.svg' %}" width="137px">
                             </a>
                         </div>
 
                         <div class="row">
                             <a class="text-decoration-none" href="">
-                                <img class="mb-1" src="./assets/img/Rustore_btn.svg" width="137px" alt="">
+                                <img class="mb-1" src="{% static 'img/Rustore_btn.svg' %}" width="137px">
                             </a>
                         </div>
                     </div>
@@ -130,7 +131,7 @@
 
                 <div class="col">
                     <div class="float-md-end">
-                        <img src="assets/img/qr.png" width="128px" height="128px" alt="">
+                        <img src="{% static 'img/qr.png' %}" width="128px" height="128px">
                         <p class="text-dark">
                             Сканируйте QR-код
                         </p>

@@ -21,6 +21,16 @@
 
             background-color: var(--dark-gray);
         }
+
+        @media (min-width: 768px) {
+            .navbar-brand.abs {
+                position: absolute;
+                width: auto;
+                left: 50%;
+                transform: translateX(-50%);
+                text-align: center;
+            }
+        }
     </style>
 
     <title>Посуточная аренда квартир</title>
@@ -47,9 +57,9 @@
                 <div class="row row-cols-1">
                     <div class="col col-md-3" style="position: relative;">
                         <div class="container tile">
-                            <img class="promo_icon" src="/assets/img/ic_outline-shield.svg" alt="">
+                            <img class="promo_icon" src="{% static 'img/ic_outline-shield.svg' %}" alt="">
                             <p class="promo_title">
-                                Работаем с гарантией
+                                Работаем с гарантией
                             </p>
                             <p class="promo_content">
                                 Полное соответствие всех условий проживания заявленным требованиям
@@ -59,7 +69,7 @@
 
                     <div class="col col-md-3" style="position: relative;">
                         <div class="container tile">
-                            <img class="promo_icon" src="/assets/img/correct_promo.svg" alt="">
+                            <img class="promo_icon" src="{% static 'img/correct_promo.svg' %}" alt="">
                             <p class="promo_title">
                                 Максимальное оснащение
                             </p>

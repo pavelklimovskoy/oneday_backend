@@ -1,8 +1,10 @@
+{% load static %}
 <header>
     <nav class="navbar navbar-light navbar-expand-md bg-white">
         <div class="container">
             <a class="navbar-brand abs" href="#">
-                <img src="assets/img/logo.png" class="rounded float-left" alt="..."/>
+{#                <img src="assets/img/logo.png" class="rounded float-left" alt="..."/>#}
+                <img src="{% static 'img/logo.png' %}" class="rounded float-left"/>
             </a>
             <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
                     data-bs-target="#collapseNavbar">
@@ -54,7 +56,7 @@
                     </li>
                     <li>
                         <div class="seccondary_btn home noselect">
-                            <img src="/assets/img/home_primary.svg" alt="">
+                            <img src="{% static 'img/home_primary.svg' %}" alt="">
                             <span>Войти</span>
                         </div>
                     </li>

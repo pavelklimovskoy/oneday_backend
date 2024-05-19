@@ -7,6 +7,15 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
+    <!-- DateRangePicker -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+    <!-- TwoGIS -->
+    <script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'styles/bootstrap.min.css' %}">
 
@@ -43,8 +52,44 @@
 <main>
     <div class="row">
         <div class="container">
+            <input type="text" name="datefilter" value="Date" />
+
+            <script type="text/javascript">
+                    $(function() {
+
+                        $('input[name="datefilter"]').daterangepicker({
+                            autoUpdateInput: false,
+                            locale: {
+                                cancelLabel: 'Clear'
+                            }
+                        });
+
+                        $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+                            $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+                        });
+
+                        $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
+                            $(this).val('Date');
+                        });
+                    });
+            </script>
+
             <br>
             <br>
+
+            <div id="map" style="width:500px; height:400px"></div>
+
+            <script type="text/javascript">
+                var map;
+
+                DG.then(function () {
+                    map = DG.map('map', {
+                        center: [54.98, 82.89],
+                        zoom: 13,
+                    });
+                });
+            </script>
+
             <br>
             <br>
             <br>

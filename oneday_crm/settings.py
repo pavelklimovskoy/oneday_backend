@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-rgb+juzg^_e7a@$!l+5&9ljyepd+8pq1p=6_2)!(9+tasbdb2-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'infrastructure.apps.InfrastructureConfig',
     'manual_pages.apps.ManualPagesConfig',
+    'analytics.apps.AnalyticsConfig',
 ]
 
 MIDDLEWARE = [

@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import CharField, IntegerField
 
 
 class BookingAnalytics(models.Model):
@@ -17,8 +18,8 @@ class BookingAnalytics(models.Model):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-    phone = models.CharField(max_length=50, null=True, blank=True)
-    amount = models.IntegerField(null=True, blank=True)
+    phone: CharField = models.CharField(max_length=50, null=True, blank=True)
+    amount: IntegerField = models.IntegerField(null=True, blank=True)
     fullname = models.CharField(max_length=50, null=True, blank=True)
     email = models.CharField(max_length=50, null=True, blank=True)
     begin_date = models.DateField(null=True, blank=True)

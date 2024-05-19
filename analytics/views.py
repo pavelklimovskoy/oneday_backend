@@ -47,7 +47,7 @@ class BookingAnalyticsView(APIView):
         return extracted_data
 
     def __create_booking_analytics(self, request: Request) -> None:
-        new_record: BookingAnalytics = self.__extract_request_data(request)
+        new_record: BookingAnalytics = BookingAnalytics(**self.__extract_request_data(request))
         new_record.save()
 
     def __delete_booking_analytics(self, request: Request) -> None:

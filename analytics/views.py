@@ -1,5 +1,6 @@
 from typing import Final
 
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
@@ -17,7 +18,7 @@ class BookingAnalyticsView(APIView):
         extracted_data = {}
 
         request_data: dict = request.data['data']['booking']
-        extract_keys: Final[tuple[str, ...]] = ('amount', 'begin_date', 'end_date', 'realty_id')
+        extract_keys: Final[tuple[str, ...]] = ('amount', 'begin_date', 'end_date', 'realty_id', 'id')
         for extract_key in extract_keys:
             if extract_key in request_data:
                 extracted_data[extract_key] = request_data[extract_key]
@@ -42,6 +43,9 @@ class BookingAnalyticsView(APIView):
         extracted_data['apartment_id'] = extracted_data['realty_id']
         del extracted_data['realty_id']
 
+        extracted_data['event_id'] = extracted_data['id']
+        del extracted_data['id']
+
         extracted_data['json_data'] = str(request.data).replace('\'', '"')
 
         return extracted_data
@@ -51,10 +55,14 @@ class BookingAnalyticsView(APIView):
         new_record.save()
 
     def __delete_booking_analytics(self, request: Request) -> None:
-        pass
+        event_id = request.data['data']['booking']['id']
+        record: BookingAnalytics = BookingAnalytics.objects.get(event_id=event_id)
+        record.amount = 0
+        record.save()
 
     def __update_booking_analytics(self, request: Request) -> None:
-        pass
+        event_id = request.data['data']['booking']['id']
+        BookingAnalytics.objects.filter(event_id=event_id).update(**self.__extract_request_data(request))
 
     def post(self, request):
         match request.data['action']:

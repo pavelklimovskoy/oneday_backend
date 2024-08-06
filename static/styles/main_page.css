@@ -121,14 +121,45 @@
     border-radius: 10px;
 }
 
-.qr_pic {
+.qr_pic_div {
     position: absolute;
     /* top: -41px;
     left: -200px; */
 
     top: 30%;
-    left: 50%
+    left: 50%;
+    
+    
+    align-items: center;
 }
+
+.qr_pic_text {
+    /* position: absolute; */
+    /* top: -41px;
+    left: -200px; */
+
+    /* margin: ;
+
+    top: 80%;
+    left: 40%; */
+
+    text-align: center;
+
+    margin-top: 10px !important;
+
+    margin: 0 auto;
+
+    color: white;
+
+    font-size: 16px;
+
+    line-height: 150%;
+    font-weight: bold;
+
+    width: 96px;
+}
+
+
 
 .diff_1 {
     margin-top: 160px;

@@ -86,3 +86,43 @@ class Rules(models.Model):
         ordering = ("order",)
         verbose_name = 'Правило проживания'
         verbose_name_plural = 'Правила проживания'
+
+
+class Faq(models.Model):
+    faq_name: CharField = models.CharField(
+        max_length=120,
+        null=False,
+        blank=False,
+        default='Название по умолчанию',
+        verbose_name='Название вопроса'
+    )
+    faq_text: TextField = models.TextField(
+        max_length=1000,
+        null=False,
+        blank=False,
+        default='Текст часто задаваемого вопроса',
+        verbose_name='Текст вопроса'
+    )
+    is_visible: BooleanField = models.BooleanField(
+        null=False,
+        blank=False,
+        default=True,
+        verbose_name='Отображать в списке'
+    )
+    order: PositiveIntegerField = models.PositiveIntegerField(
+        verbose_name="order",
+        editable=True,
+        db_index=True,
+        default=0
+    )
+
+    def __str__(self) -> str:
+        visible_verdict: str = "Отображается"
+        if not self.is_visible:
+            visible_verdict: str = "Скрыт"
+        return f'Правило проживания №{self.order} {self.faq_name} {visible_verdict}'
+
+    class Meta:
+        ordering = ("order",)
+        verbose_name = 'Часто задаваемый вопрос'
+        verbose_name_plural = 'Часто задаваемые вопросы'

@@ -16,8 +16,8 @@ class BookingAnalytics(models.Model):
         'json_data',
     )
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
 
     phone: CharField = models.CharField(max_length=50, null=True, blank=True)
     amount: IntegerField = models.IntegerField(null=True, blank=True)

@@ -1,5 +1,6 @@
 from django.db import models
-from django.forms import CharField, IntegerField
+from django.db.models.fields import TextField
+from django.forms import CharField, IntegerField, DateField, DateTimeField
 
 
 class BookingAnalytics(models.Model):
@@ -15,17 +16,15 @@ class BookingAnalytics(models.Model):
         'json_data',
     )
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
     phone: CharField = models.CharField(max_length=50, null=True, blank=True)
     amount: IntegerField = models.IntegerField(null=True, blank=True)
-    fullname = models.CharField(max_length=50, null=True, blank=True)
-    email = models.CharField(max_length=50, null=True, blank=True)
-    begin_date = models.DateField(null=True, blank=True)
-    end_date = models.DateField(null=True, blank=True)
-    apartment_id = models.IntegerField(null=True, blank=True, default=None)
-    event_id = models.IntegerField(null=True, blank=True, default=None)
-    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-
-    json_data = models.TextField(null=True, blank=True, default=None)
+    fullname: CharField = models.CharField(max_length=50, null=True, blank=True)
+    email: CharField = models.CharField(max_length=50, null=True, blank=True)
+    begin_date: DateField = models.DateField(null=True, blank=True)
+    end_date: DateField = models.DateField(null=True, blank=True)
+    apartment_id: IntegerField = models.IntegerField(null=True, blank=True, default=None)
+    created_at: DateTimeField = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    json_data: TextField = models.TextField(null=True, blank=True, default=None)

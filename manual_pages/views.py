@@ -1,6 +1,7 @@
+from django.core.mail import send_mail
 from django.views.generic import TemplateView
 
-from manual_pages.models import Rules, CleaningChecklistItem, Faq
+from manual_pages.models import Rules, CleaningChecklistItem
 
 
 class CleaningChecklistView(TemplateView):
@@ -25,6 +26,13 @@ class MainPageView(TemplateView):
     template_name = "main_page.html"
 
     def get_context_data(self, **kwargs):
+
+        subject = 'welcome to GFG world'
+        message = f'Hi, thank you for registering in geeksforgeeks.'
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = ['klimovskoy@sfedu.ru', ]
+        send_mail(subject, message, email_from, recipient_list)
+
         context = super().get_context_data(**kwargs)
         return context
 

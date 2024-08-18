@@ -24,6 +24,13 @@
             }
         }
 
+        @media (max-width: 768px) {
+            .edit_tile {
+                margin-top: 20px;
+            }
+        }
+
+
         body {
             font-family: 'Vela Sans' !important;
             font-size: medium;
@@ -36,9 +43,6 @@
         .profile_tile {
             background-color: var(--white);
             border-radius: 10px;
-
-            /* width: 310px; */
-
             padding: 20px 20px 20px 20px;
 
             height: max-content;
@@ -144,8 +148,6 @@
             font-weight: 600;
             line-height: 135%;
             /* 24.3px */
-
-
         }
 
         .container2 {
@@ -181,6 +183,10 @@
             font-weight: 75;
             line-height: 120%;
             /* 28.8px */
+        }
+
+        .watch_flats {
+            margin-top: 20px;
         }
 
         input[type="text"],
@@ -254,31 +260,31 @@
                 </div>
 
                 <div class="nav_block">
-                        <div class="row">
-                            <a href="{% url 'edit_profile' %}">
-                                <div class="section_select">
-                                    <span>Редактировать профиль</span>
-                                </div>
-                            </a>
-                        </div>
+                    <div class="row">
+                        <a href="{% url 'edit_profile' %}">
+                            <div class="section_select">
+                                <span>Редактировать профиль</span>
+                            </div>
+                        </a>
+                    </div>
 
 
-                        <div class="row">
-                            <a href="{% url 'history' %}">
-                                <div class="section_select">
-                                    <span>История поездок</span>
-                                </div>
-                            </a>
-                        </div>
+                    <div class="row">
+                        <a href="{% url 'history' %}">
+                            <div class="section_select">
+                                <span>История поездок</span>
+                            </div>
+                        </a>
+                    </div>
 
 
-                        <div class="row">
-                            <a href="{% url 'favorites' %}">
-                                <div class="section_select">
-                                    <span>Избранное</span>
-                                </div>
-                            </a>
-                        </div>
+                    <div class="row">
+                        <a href="{% url 'favorites' %}">
+                            <div class="section_select">
+                                <span>Избранное</span>
+                            </div>
+                        </a>
+                    </div>
 
                     <div class="row">
                         <div class="noselect seccondary_btn exit_btn">

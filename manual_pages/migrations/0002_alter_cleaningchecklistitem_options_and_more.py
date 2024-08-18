@@ -43,5 +43,4 @@ class Migration(migrations.Migration):
             name='order',
             field=models.PositiveIntegerField(db_index=True, default=0, verbose_name='order'),
         ),
-        migrations.RenameField('')
     ]

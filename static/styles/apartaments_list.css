@@ -1,0 +1,514 @@
+@media (min-width: 768px) {
+    .navbar-brand.abs {
+        position: absolute;
+        width: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+    }
+}
+
+body {
+    font-family: 'Vela Sans' !important;
+    font-size: medium;
+
+    background-color: var(--dark-gray);
+}
+
+.profile_tile {
+    background-color: var(--white);
+    border-radius: 10px;
+
+    padding: 20px 20px 20px 20px;
+
+    height: max-content;
+}
+
+.profile_header {
+    overflow: hidden;
+    color: var(--Black, #061F28);
+    text-align: center;
+    font-feature-settings: 'ss06' on;
+    text-overflow: ellipsis;
+    font-family: "Atyp Regular";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 75;
+    line-height: 120%;
+}
+
+.avatar_icon {
+    width: 80px;
+    height: 80px;
+    display: inline !important;
+}
+
+.exit_btn {
+    display: block !important;
+    width: 100% !important;
+    align-items: center !important;
+    text-align: center !important;
+
+    margin-top: 28px;
+
+    >span {
+        text-align: center !important;
+        align-items: center !important;
+
+    }
+}
+
+.section_select {
+    padding: 8px 8px 8px 8px;
+    width: 100%;
+
+    background-color: var(--white);
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    >span {
+        overflow: hidden;
+        color: var(--Black, #061F28);
+        font-variant-numeric: lining-nums proportional-nums;
+        font-feature-settings: 'case' on;
+        text-overflow: ellipsis;
+        /* Body/B1-medium */
+        font-family: "Vela Sans";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 150%;
+        /* 24px */
+    }
+}
+
+.section_select:hover {
+    background-color: var(--cream);
+}
+
+.nav_block {
+    margin-top: 20px;
+}
+
+.badged_present {
+    background-color: var(--cream);
+    padding: 4px 8px 4px 8px;
+    border-radius: 10px;
+
+    width: fit-content;
+
+    vertical-align: baseline;
+
+    >span {
+        color: var(--Primary, #117399);
+        font-family: "Vela Sans";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 120%;
+    }
+}
+
+.profile_name {
+    color: var(--Black, #061F28);
+    font-family: "Vela Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 135%;
+}
+
+.container2 {
+    display: flex;
+}
+
+.text-container {
+    margin-left: 12px;
+}
+
+.edit_tile {
+    background-color: var(--white);
+    border-radius: 10px;
+
+    padding: 40px 40px 40px 40px;
+}
+
+.edit_photo {
+    margin-top: 0px !important;
+}
+
+.edit_header {
+    color: var(--Black, #061F28);
+    font-feature-settings: 'ss06' on;
+    font-family: "Atyp Regular";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 75;
+    line-height: 120%;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="tel"],
+select {
+    background: var(--white);
+    border-radius: 10px;
+    border: 2px solid var(--dark-grey);
+
+    padding: 12px 12px 12px 12px;
+
+    width: 100%;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus {
+    border: 2px solid var(--primary);
+}
+
+p {
+    font-family: "Vela Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+}
+
+.line {
+    margin-top: 12px;
+}
+
+.booking_form {
+    margin-top: 40px;
+
+    input,
+    select {
+        border: none;
+        padding-left: 0px;
+    }
+
+    .booking_control {
+        display: block;
+        width: 100%;
+    }
+
+    select {
+        padding: 0px;
+        margin: 0px;
+    }
+}
+
+.appartment__item {
+    border-radius: 10px;
+    background: var(--White, #FFF);
+    padding: 10px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr 3fr;
+    align-items: center;
+}
+@media (max-width: 768px) {
+    .appartment__item {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.appartment__title {
+    color: var(--Black, #061F28);
+    font-family: "Vela Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 135%;
+    margin: 0;
+}
+
+.my-slider {
+    position: relative;
+}
+
+.favorite {
+    cursor: pointer;
+    position: absolute;
+    z-index: 3;
+    background: white;
+    bottom: 12px;
+    right: 12px;
+    border-radius: 10px;
+    background: var(--White, #EEE);
+    padding: 5px;
+    box-shadow: 0px 4px 42px 0px rgba(192, 193, 199, 0.40);
+}
+
+.appartment__tags {
+    flex-wrap: wrap;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    gap: 5px;
+}
+
+.price {
+    color: var(--Primary, #117399);
+    font-family: "Vela Sans";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+}
+
+.price__time {
+    color: var(--Dark-Gray, #C0C1C7);
+    font-family: "Vela Sans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
+    margin: 0;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+}
+
+.img-car {
+    object-fit: cover;
+}
+
+.appratment_tags {
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+.appratment_tag {
+    border-radius: 10px;
+    background: var(--Cream, #F2F3F9);
+    padding: 8px;
+    color: var(--Black, #061F28);
+    text-align: right;
+    font-family: "Vela Sans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
+}
+
+.appartment__price {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: end;
+}
+
+.watch_flats {
+    display: flex;
+    align-items: center;
+
+    background-color: var(--primary);
+    width: max-content;
+
+    border-radius: 10px;
+    padding: 12px 24px;
+
+    >img {
+        width: 16px;
+        height: 16px;
+        margin-right: 12px;
+    }
+
+    >span {
+        color: var(--white);
+        font-kerning: none;
+
+        font-family: "Vela Sans";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: bold;
+        line-height: 150%;
+    }
+}
+
+.watch_flats:hover {
+    cursor: pointer;
+    background-color: var(--hover);
+}
+
+.watch_flats:active {
+    cursor: pointer;
+    background-color: var(--pressed);
+}
+
+.option__price {
+    display: flex;
+    align-items: center;
+}
+
+.option__input {
+    border-radius: 10px;
+    flex: 1;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 40%;
+    border: 2px solid var(--Diviners, #E8E9EF);
+}
+
+
+/* .form_col {
+    background-color: white;
+    margin-right: 2px;
+    margin-bottom: 4px;
+
+    padding: 20px 20px;
+
+
+    >div {
+        display: block;
+
+        color: var(--Dark-Gray, #C0C1C7);
+        font-family: "Vela Sans";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 120%;
+    }
+} */
+
+.first_col {
+    border-radius: 10px 0px 0px 10px;
+
+}
+
+.last_col {
+    background-color: white;
+    margin-right: 2px;
+    margin-bottom: 4px;
+
+    padding-right: 0px !important;
+
+    >div {
+        display: block;
+
+        color: var(--Dark-Gray, #C0C1C7);
+        font-family: "Vela Sans";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 120%;
+    }
+}
+
+.option {
+    display: flex;
+    padding: 20px 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    border-radius: 10px;
+    background: var(--White, #FFF);
+    padding: 10px 20px;
+}
+
+.option__title {
+    color: var(--Black, #061F28);
+    font-family: "Vela Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    margin: 0;
+}
+
+.carousel-inner {
+    border-radius: 5px;
+    height: 208px;
+    width: 280px;
+}
+
+.carousel-item, .img-car {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slide-button {
+    width: 6px!important;
+    height: 6px!important;
+    padding: 0!important;
+    border: 0!important;
+    border-radius: 50px!important;
+    margin: 2px !important;
+
+    &.active {
+        width: 12px!important;
+    }
+}
+
+.carousel-control-prev-icon-new {
+    content: url('../img/chevron-left.svg') !important;
+    padding-right: 2px;
+    width: 24px;
+    height: 24px;
+    background: var(--White, #EEE);    border-radius: 50px;
+    
+}
+
+.carousel-control-next-icon-new {
+    content: url('../img/chevron-right.svg') !important;
+    background: var(--White, #EEE);    border-radius: 50px;
+    padding-left: 2px;
+    width: 24px;
+    height: 24px;
+}
+
+.appartment__text {
+    display: flex;
+    flex-direction: column;
+}
+
+.appartment__block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.appartaments {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.option__icon {
+    content: url('../img/arrow-right.svg');
+    height: 16px;
+}
+
+/* фильтр цены */
+
+.noUi-connect {
+    background: #117399 !important;
+}
+
+.noUi-horizontal {
+    height: 8px !important;
+}
+
+.noUi-handle {
+    height: 18px !important;
+    width: 18px !important;
+    border: 2px solid var(--Primary, #117399) !important;
+    border-radius: 50px !important;
+    right: -8px !important;
+}
+
+.noUi-handle:after, .noUi-handle:before {
+    content: none !important;
+}   

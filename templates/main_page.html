@@ -1,25 +1,25 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="ru">
 
 <head>
-    {% load static %}
-
     <!-- Обязательные метатеги -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous" />
+    <link href="{% static 'styles/bootstrap/bootstrap.min.css' %}" rel="stylesheet" crossorigin="anonymous"/>
 
     <!-- DateRangePicker -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <script type="text/javascript" src="{% static 'scripts/jquery.min.js'%}"></script>
+    <script type="text/javascript" src="{% static 'scripts/moment.min.js'%}"></script>
+    <script type="text/javascript" src="{% static 'scripts/daterangepicker.min.js'%}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/daterangepicker.css'%}"/>
 
-    <link rel="stylesheet" href="{% static 'styles/common_styles.css' %}">
-    <link rel="stylesheet" href="{% static 'styles/main_page.css' %}">
+
+    <link rel="stylesheet" href="{% static 'styles/common_styles.css'%}">
+    <link rel="stylesheet" href="{% static 'styles/main_page.css'%}">
 
     <style>
         body {
@@ -62,13 +62,13 @@
 
         .form_col {
             background-color: white;
-            margin-right: 2px;
-            margin-bottom: 4px;
 
-            padding: 20px 20px;
+            padding: 0;
 
+            align-content: center;
+            height: 88px;
 
-            >div {
+            > div {
                 display: block;
 
                 color: var(--Dark-Gray, #C0C1C7);
@@ -77,41 +77,14 @@
                 font-size: 14px;
                 font-style: normal;
                 font-weight: 500;
-                line-height: 120%;
+                line-height: 17px;
                 /* 16.8px */
             }
         }
 
-        .first_col {
-            border-radius: 10px 0px 0px 10px;
-
+        .form_col:last-child {
+            padding: 20px;
         }
-
-        .last_col {
-            background-color: white;
-            margin-right: 2px;
-            margin-bottom: 4px;
-
-            padding-right: 0px !important;
-
-            /* padding: 20px 20px; */
-
-
-            >div {
-                display: block;
-
-                color: var(--Dark-Gray, #C0C1C7);
-                /* Small/Small-medium */
-                font-family: "Vela Sans";
-                font-size: 14px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: 120%;
-                /* 16.8px */
-            }
-        }
-
-
 
         .search_button {
             float: right;
@@ -125,7 +98,7 @@
             cursor: pointer;
             user-select: none;
 
-            >span {
+            > span {
                 color: var(--White, #FFF);
                 font-kerning: none;
                 font-family: "Vela Sans";
@@ -135,7 +108,7 @@
                 line-height: 150%;
             }
 
-            >img {
+            > img {
                 width: 24px;
                 height: 24px;
                 margin-right: 8px;
@@ -147,6 +120,82 @@
 
             :active {
                 background-color: #0D5676;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .search_button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        .search-placeholder {
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 600;
+            font-family: "Vela Sans";
+        }
+
+        .city-dropdown-toggle {
+            color: black;
+            cursor: pointer;
+        }
+
+        .guests-dropdown-toggle {
+            color: black;
+            cursor: pointer;
+        }
+
+        .city-dropdown-item {
+            font-size: 16px;
+            line-height: 24px;
+            padding: 8px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .city-dropdown-menu {
+            padding: 12px;
+            border-radius: 10px;
+        }
+
+        .col-content {
+            padding: 0 20px;
+        }
+
+        .form_col .dropdown-menu {
+            top: 30px !important;
+            min-width: 16.6666666%;
+            left: -20px !important;
+        }
+
+        @media (min-width: 768px) {
+            .row-cols-md-5 .form_col .dropdown-menu {
+                min-width: 16.6666666%;;
+            }
+
+
+            .form_col:first-child {
+                border-radius: 10px 0 0 10px;
+            }
+
+            .form_col:last-child {
+                border-radius: 0 10px 10px 0;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .form_col .dropdown-menu {
+                width: 90%;
+            }
+
+            .form_col:first-child {
+                border-radius: 10px 10px 0 0;
+            }
+
+            .form_col:last-child {
+                border-radius: 0 0 10px 10px;
             }
         }
 
@@ -176,22 +225,18 @@
         }
 
         .select__list {
-            position: absolute;
             background: #fff;
             box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
             border-radius: 10px;
-
-            max-height: 205px;
             overflow-x: hidden;
             overflow-y: auto;
             z-index: 100;
             margin: 0;
-            padding: 0;
+            padding: 10px;
             font-size: 14px;
             color: #424348;
             scrollbar-color: dark;
             scrollbar-width: thin;
-            overscroll-behavior: contain;
 
             width: 280px;
 
@@ -211,8 +256,6 @@
         }
 
         .select__list .select__item {
-            position: relative;
-
             overflow-x: hidden !important;
             overflow-y: auto !important;
             z-index: 90 !important;
@@ -236,7 +279,7 @@
 
             margin-top: 100px;
 
-            >p {
+            > p {
                 font-size: 60px;
                 line-height: 66px;
 
@@ -244,12 +287,18 @@
                 color: var(--primary);
             }
 
-            >p~p {
+            > p ~ p {
                 margin-top: 20px;
                 font-size: 18px;
                 line-height: 25.2px;
                 font-family: 'Vela Sans';
                 color: var(--black);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .head_div {
+                width: 100%;
             }
         }
 
@@ -261,13 +310,13 @@
 
             padding-bottom: 40px;
 
-            >img {
+            > img {
                 border-radius: 10px;
                 width: 100%;
                 height: 240px;
             }
 
-            >.card_title {
+            > .card_title {
                 color: var(--primary);
                 line-height: 120%;
 
@@ -277,7 +326,7 @@
                 margin-left: 20px;
             }
 
-            >.card_text {
+            > .card_text {
                 color: var(--black);
 
 
@@ -286,17 +335,197 @@
             }
         }
 
+        @media (max-width: 768px) {
+            .attraction_card {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+
 
         .sofa_container {
             margin-top: 66px;
 
-            background-image: url("assets/img/sofa.png");
+            background-image: url("{% static 'img/sofa.png'%}");
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center center;
 
 
             height: 400px;
+        }
+
+        .select___item {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .select__item__title {
+            flex: 1;
+        }
+
+        .select__title_main {
+            overflow: hidden;
+            color: var(--Black, #061F28);
+            font-variant-numeric: lining-nums proportional-nums;
+            font-feature-settings: 'case' on;
+            text-overflow: ellipsis;
+            /* Body/B1-medium */
+            font-family: "Vela Sans";
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .select__title_hint {
+            overflow: hidden;
+            color: var(--Dark-Gray, #C0C1C7);
+            text-overflow: ellipsis;
+            /* Small/Small-medium */
+            font-family: "Vela Sans";
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .select__item__count {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .select__count__btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 100%;
+            background: #117399;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .select__count {
+            margin: 0;
+            -webkit-appearance: none;
+            -moz-appearance: textfield;
+            width: 3rem;
+
+            text-align: center;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .divider_own {
+            margin: 0;
+        }
+
+        .toggle {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        /* Hide the checkbox input */
+        .toggle input {
+            display: none;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: white;
+            transition: .4s;
+            border-radius: 34px;
+            border-style: solid;
+            border-color: #E8E9EF;
+            border-width: 2px;
+
+        }
+
+        /* Describe the white ball's location
+            and appearance in the slider. */
+        .slider:before {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: #E8E9EF;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        /* Modify the slider's background color to
+            green once the checkbox has been selected. */
+        input:checked + .slider {
+            background-color: #117399;
+        }
+
+        /* When the checkbox is checked, shift the
+            white ball towards the right within the slider. */
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+
+        .watch_flats {
+            text-align: center;
+            display: flex;
+            align-items: center;
+
+            background-color: var(--primary);
+            width: 100%;
+
+            border-radius: 10px;
+            padding: 12px 24px;
+
+            > img {
+                width: 16px;
+                height: 16px;
+                margin-right: 12px;
+            }
+
+            > span {
+                width: 100%;
+                color: var(--white);
+                font-kerning: none;
+
+                font-family: "Vela Sans";
+                font-size: 16px;
+                font-style: normal;
+                font-weight: bold;
+                line-height: 150%;
+            }
+        }
+
+        .watch_flats:hover {
+            cursor: pointer;
+            background-color: var(--hover);
+        }
+
+        .watch_flats:active {
+            cursor: pointer;
+            background-color: var(--pressed);
         }
 
 
@@ -310,349 +539,365 @@
 </head>
 
 <body>
-    {% include "common/header.html" %}
 
-    <main>
-        <div class="row">
+{% include "common/header.html" %}
+
+<main>
+    <div class="row">
+        <div class="container">
+            <div class="head_div">
+                <p>Аренда квартир посуточно на юге России</p>
+                <p>
+                    Проведите свой отпуск или выходные с теплотой и уютом,
+                    которые напомнят вам о домашнем комфорте
+                </p>
+            </div>
+
+            <div class="container booking_form">
+                <form class="row row-cols-1 row-cols-md-5 align-items-center search-row">
+                    <div class="col form_col">
+                        <div class="col-content">
+                            <div>Город</div>
+                            <div class="city-dropdown-toggle" id="citiesDropdown" data-bs-toggle="dropdown"
+                                 aria-expanded="false">Выберите город
+                            </div>
+                            <div class="dropdown-menu city-dropdown-menu" id="city-dropdown-menu"
+                                 aria-labelledby="citiesDropdown">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col form_col">
+                        <div class="col-content">
+                            <div>Заезд</div>
+                            <input type="text" name="arrival_date" value="Дата заезда"/>
+                        </div>
+                    </div>
+
+                    <div class="col form_col">
+                        <div class="col-content">
+                            <div>Выезд</div>
+                            <input type="text" name="deportation_date" value="Дата выезда"/>
+                        </div>
+                    </div>
+
+                    <div class="col form_col">
+                        <div class="col-content">
+                            <div>Гости</div>
+                            <div class="select dropdown">
+                                <div class="guests-dropdown-toggle" id="guests-dropdown" data-bs-toggle="dropdown"
+                                     aria-expanded="false" data-bs-auto-close="outside">Укажите гостей
+                                </div>
+                                <div class="dropdown-menu guests-dropdown-menu select__list" id="guests-dropdown-menu"
+                                     aria-labelledby="guests-dropdown">
+                                    <div class="select___item">
+                                        <div class="select__item__title">
+                                            <p class="select__title_main">Гости</p>
+                                            <p class="select__title_hint">До 4-х человек</p>
+                                        </div>
+                                        <div class="select__item__count">
+                                            <div class="select__count__btn" id="dec-adult-guests">-</div>
+                                            <input class="select__count" type="number" name="adult-guests"
+                                                   id="adult-guests" value="1" min="1" max="10">
+                                            <div class="select__count__btn" id="inc-adult-guests">+</div>
+                                        </div>
+                                    </div>
+                                    <hr class="divider_own"/>
+                                    <div class="select___item">
+                                        <div class="select__item__title">
+                                            <p class="select__title_main">Дети</p>
+                                            <p class="select__title_hint">До 1 года</p>
+                                        </div>
+                                        <div class="select__item__count">
+                                            <div class="select__count__btn" id="dec-children">-</div>
+                                            <input class="select__count" type="number" name="children" id="children"
+                                                   value="0" min="0" max="10">
+                                            <div class="select__count__btn" id="inc-children">+</div>
+                                        </div>
+                                    </div>
+                                    <hr class="divider_own"/>
+                                    <div class="select___item">
+                                        <div class="select__item__title">
+                                            <p class="select__title_main">Питомцы</p>
+                                            <p class="select__title_hint">Только собаки, за доп.плату</p>
+                                        </div>
+                                        <div class="info_row_r">
+                                            <label class="toggle">
+                                                <input type="checkbox" name="pets" id="pets">
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="watch_flats noselect" id="guests-submit">
+                                        <span>Подтвердить</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col form_col">
+                        <div class="search_button">
+                            <img src="{% static 'img/icon-search.svg' %}">
+                            <span>Найти</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="sofa_container">
+        </div>
+    </div>
+
+    <div class="row bg-white promo_row d-flex">
+        <div class="col">
             <div class="container">
-                <div class="head_div">
-                    <p>Аренда квартир посуточно на юге России</p>
-                    <p>
-                        Проведите свой отпуск или выходные с теплотой и уютом,
-                        которые напомнят вам о домашнем комфорте
-                    </p>
-                </div>
-
-                <div class="container booking_form">
-                    <form class="row row-cols-1 row-cols-md-6 align-items-center">
-                        <div class="col form_col first_col">
-                            <div>
-                                <div>Город</div>
-                                <div class="select">
-                                    <div class="select__head" id="select__head">Выберите город</div>
-                                    <ul class="select__list" id="select__list" hidden>
-                                        <li class="select__item">Краснодар</li>
-                                        <li class="select__item">Сочи</li>
-                                        <li class="select__item">Ростов-на-Дону</li>
-                                        <li class="select__item">Таганрог</li>
-                                    </ul>
-                                </div>
-                            </div>
-
+                <div class="row row-cols-1">
+                    <div class="col col-md-3" style="position: relative;">
+                        <div class="container tile">
+                            <img class="promo_icon" src="{% static 'img/ic_outline-shield.svg' %}" alt="">
+                            <p class="promo_title">
+                                Работаем с гарантией
+                            </p>
+                            <p class="promo_content">
+                                Полное соответствие всех условий проживания заявленным требованиям
+                            </p>
                         </div>
+                    </div>
 
-                        <div class="col form_col">
-                            <div>
-                                <div>Заезд</div>
-                                <input type="text" name="arrival_date" value="Дата заезда" />
-                            </div>
+                    <div class="col col-md-3" style="position: relative;">
+                        <div class="container tile">
+                            <img class="promo_icon" src="{% static 'img/correct_promo.svg' %}" alt="">
+                            <p class="promo_title">
+                                Максимальное оснащение
+                            </p>
+                            <p class="promo_content">
+                                Квартиры оборудованы всем необходимым для комфортного проживания
+                            </p>
                         </div>
+                    </div>
 
-                        <div class="col form_col">
-                            <div>
-                                <div>Выезд</div>
-                                <input type="text" name="deportation_date" value="Дата выезда" />
-                            </div>
+                    <div class="col col-md-3" style="position: relative;">
+                        <div class="container tile">
+                            <img class="promo_icon" src="{% static 'img/payments_logo.svg' %}" alt="">
+                            <p class="promo_title">
+                                Удобные способы оплаты
+                            </p>
+                            <p class="promo_content">
+                                Принимаем оплату как переводом, так и наличными, по QR-коду или по расчетному счету
+                            </p>
                         </div>
+                    </div>
 
-                        <div class="col form_col">
-                            <div>
-                                <div>Гости</div>
-                                <div class="select">
-                                    <div class="select__head" id="select__guests">Укажите гостей</div>
-                                    <div class="select__list" id="select__guests_form">
-                                        <p>Дети</p>
-                                        <input type="text">
-
-                                        
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="col col-md-3" style="position: relative;">
+                        <div class="container tile">
+                            <img class="promo_icon" src="{% static 'img/24h_promo.svg' %}" alt="">
+                            <p class="promo_title">
+                                Круглосуточно
+                            </p>
+                            <p class="promo_content">
+                                Бесконтактное заселение в любое время суток в течение 5 минут после бронирования
+                            </p>
                         </div>
-
-                        <div class="col-8 last_col">
-                            <div class="search_button">
-                                <img src="{% static 'img/icon-search.svg' %}">
-                                <span>Найти</span>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
+    <div class="container">
         <div class="row">
-            <div class="sofa_container">
+            <div class="head_div">
+                <p>Куда сходить рядом?</p>
+                <p>
+                    Местные достопримечательности, рестораны, знаковые и интересные места
+                </p>
             </div>
         </div>
 
-        <div class="row bg-white promo_row d-flex">
+        <div class="row row-cols-1 row-cols-md-4">
             <div class="col">
-                <div class="container">
-                    <div class="row row-cols-1">
-                        <div class="col col-md-3" style="position: relative;">
-                            <div class="container tile">
-                                <img class="promo_icon" src="{% static 'img/ic_outline-shield.svg' %}" alt="">
-                                <p class="promo_title">
-                                    Работаем с гарантией
-                                </p>
-                                <p class="promo_content">
-                                    Полное соответствие всех условий проживания заявленным требованиям
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="col col-md-3" style="position: relative;">
-                            <div class="container tile">
-                                <img class="promo_icon" src="{% static 'img/correct_promo.svg' %}" alt="">
-                                <p class="promo_title">
-                                    Максимальное оснащение
-                                </p>
-                                <p class="promo_content">
-                                    Квартиры оборудованы всем необходимым для комфортного проживания
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="col col-md-3" style="position: relative;">
-                            <div class="container tile">
-                                <img class="promo_icon" src="{% static 'img/payments_logo.svg' %}" alt="">
-                                <p class="promo_title">
-                                    Удобные способы оплаты
-                                </p>
-                                <p class="promo_content">
-                                    Принимаем оплату как переводом, так и наличными, по QR-коду или по расчетному счету
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="col col-md-3" style="position: relative;">
-                            <div class="container tile">
-                                <img class="promo_icon" src="{% static 'img/24h_promo.svg' %}" alt="">
-                                <p class="promo_title">
-                                    Круглосуточно
-                                </p>
-                                <p class="promo_content">
-                                    Бесконтактное заселение в любое время суток в течение 5 минут после бронирования
-                                </p>
-                            </div>
-                        </div>
+                <a href="/attractions/krasnodar/">
+                    <div class="attraction_card">
+                        <img src="{% static 'img/atraction_krasnodar_logo.jpg' %}" alt="">
+                        <p class="card_title">Краснодар</p>
+                        <p class="card_text">
+                            Здесь тёплый климат, красивые парки и скверы, множество исторических
+                            и культурных мест</p>
                     </div>
-                </div>
+                </a>
             </div>
+
+
+            <div class="col">
+                <a href="/attractions/sochi/">
+                    <div class="attraction_card">
+                        <img src="{% static 'img/attraction_sochi_logo.jpg' %}" alt="">
+                        <p class="card_title">Сочи</p>
+                        <p class="card_text">
+                            Город известнен своими горнолыжными курортами, парками и пляжами
+                        </p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col">
+                <a href="/attractions/rostov/">
+                    <div class="attraction_card">
+                        <img src="{% static 'img/attraction_rostov_logo.jpg' %}" alt="">
+                        <p class="card_title">Ростов-на-Дону</p>
+                        <p class="card_text">
+                            Важный культурный центр страны, с множеством музеев, театров и галерей
+                        </p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col">
+                <a href="/attractions/taganrog/">
+                    <div class="attraction_card">
+                        <img src="{% static 'img/attraction_taganrog_logo.jpg' %}" alt="">
+                        <p class="card_title">Таганрог</p>
+                        <p class="card_text">
+                            Один из старейших городов России, здесь множество исторических и культурных мест
+                        </p>
+                    </div>
+                </a>
+            </div>
+
         </div>
+    </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="head_div">
-                    <p>Куда сходить рядом?</p>
-                    <p>
-                        Местные достопримечательности, рестораны, знаковые и интересные места
-                    </p>
-                </div>
-            </div>
+    <div class="container diff_1">
+        <div class="row">
+            <div class="col">
+                <div class="container download_tile no_rpadding">
+                    <div class="row ">
+                        <div class="col-8 right_pad">
+                            <p class="app_download_text">Выбирайте квартиры в нашем мобильном приложении!</p>
 
-            <div class="row row-cols-1 row-cols-md-4">
-                <a href="{% url 'krasnodar' %}">
-                    <div class="col">
-                        <div class="attraction_card">
-                            <img src="{% static 'img/atraction_krasnodar_logo.jpg' %}" alt="">
-                            <p class="card_title">Краснодар</p>
-                            <p class="card_text">Здесь тёплый климат, красивые парки и скверы, множество исторических
-                                и культурных мест</p>
-                        </div>
-                    </div>
-                </a>
-                
-                <a href="{% url 'sochi' %}">
-                    <div class="col">
-                        <div class="attraction_card">
-                            <img src="{% static 'img/attraction_sochi_logo.jpg' %}" alt="">
-                            <p class="card_title">Сочи</p>
-                            <p class="card_text">
-                                Город известнен своими горнолыжными курортами, парками и пляжами
-                            </p>
-                        </div>
-                    </div>
-                </a>
-                
-                <a href="{% url 'rostov' %}">
-                    <div class="col">
-                        <div class="attraction_card">
-                            <img src="{% static 'img/attraction_rostov_logo.jpg' %}" alt="">
-                            <p class="card_title">Ростов-на-Дону</p>
-                            <p class="card_text">
-                                Важный культурный центр страны, с множеством музеев, театров и галерей
-                            </p>
-                        </div>
-                    </div>
-                </a>
-                
-                <a href="{% url 'taganrog' %}">
-                    <div class="col">
-                        <div class="attraction_card">
-                            <img src="{% static 'img/attraction_taganrog_logo.jpg' %}" alt="">
-                            <p class="card_title">Таганрог</p>
-                            <p class="card_text">
-                                Один из старейших городов России, здесь множество исторических и культурных мест
-                            </p>
-                        </div>
-                    </div>
-                </a>
-                
+                            <div class="buttons noselect">
+                                        <span class="available_store inline">
+                                            <img src="{% static 'img/google_play.svg' %}">
+                                            <div>
+                                                <span>Доступно в</span>
+                                                <span>GooglePlay</span>
+                                            </div>
+                                        </span>
 
-            </div>
-        </div>
+                                <span class="available_store inline">
+                                            <img src="{% static 'img/appgallery.svg' %}">
+                                            <div>
+                                                <span>Доступно в</span>
+                                                <span>AppGallery</span>
+                                            </div>
+                                        </span>
 
-        <div class="container diff_1">
-            <div class="row">
-                <div class="col">
-                    <div class="container download_tile no_rpadding">
-                        <div class="row ">
-                            <div class="col-8 right_pad">
-                                <p class="app_download_text">Выбирайте квартиры в нашем мобильном приложении!</p>
-
-                                <div class="buttons noselect">
-                                    <span class="available_store inline">
-                                        <img src="{% static 'img/google_play.svg' %}">
-                                        <div>
-                                            <span>Доступно в</span>
-                                            <span>GooglePlay</span>
-                                        </div>
-                                    </span>
-
-                                    <span class="available_store inline">
-                                        <img src="{% static 'img/appgallery.svg' %}">
-                                        <div>
-                                            <span>Доступно в</span>
-                                            <span>AppGallery</span>
-                                        </div>
-                                    </span>
-
-                                    <div class="available_store">
-                                        <img src="{% static 'img/rumarket.svg' %}">
-                                        <div>
-                                            <span>Доступно в</span>
-                                            <span>RuMarket</span>
-                                        </div>
+                                <div class="available_store">
+                                    <img src="{% static 'img/rumarket.svg' %}">
+                                    <div>
+                                        <span>Доступно в</span>
+                                        <span>RuMarket</span>
                                     </div>
+                                </div>
 
-                                    <div class="available_store">
-                                        <img src="{% static 'img/rustore.svg' %}">
-                                        <div>
-                                            <span>Доступно в</span>
-                                            <span>Rustore</span>
-                                        </div>
+                                <div class="available_store">
+                                    <img src="{% static 'img/rustore.svg' %}">
+                                    <div>
+                                        <span>Доступно в</span>
+                                        <span>Rustore</span>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="col-4 qr_section" style="position: relative;">
-                                <img class="iphone_pic" src="{% static 'img/iphone.png' %}" alt="">
+                        <div class="col-4 qr_section" style="position: relative;">
+                            <img class="iphone_pic" src="{% static 'img/iphone.png' %}" alt="">
 
-                                <div class="qr_pic_div">
-                                    <img class="" src="{% static 'img/bi_qr-code.svg' %}" alt="">
-                                    <p class="qr_pic_text">Сканируйте QR-код</p>
-                                </div>
-
-
+                            <div class="qr_pic_div">
+                                <img class="" src="{% static 'img/bi_qr-code.svg' %}" alt="">
+                                <p class="qr_pic_text">Сканируйте QR-код</p>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="container">
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-        </div>
-    </main>
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+</main>
 
-   {% include 'common/footer.html' %}
+{% include "common/footer.html" %}
 
+<!-- Вариант 1: пакет Bootstrap с Popper -->
+<script src="{% static 'scripts/bootstrap_pooper/bootstrap.bundle.min.js'%}" crossorigin="anonymous">
+</script>
 
-    <!-- Вариант 1: пакет Bootstrap с Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
-        </script>
+<script src="{% static 'scripts/main.js'%}" crossorigin="anonymous">
+</script>
 
-    <script type="text/javascript">
-        let select_city_field = document.getElementById("select__head");
-
-        select_city_field.addEventListener("click", function (e) {
-            let city_list = document.getElementById("select__list");
-            let visible_status = city_list.hidden;
-            city_list.hidden = !visible_status;
-
-        }, false);
-
-        let select_items = document.getElementsByClassName("select__item");
-
-        var list_elements = document.getElementsByClassName("select__item");
-        Array.prototype.forEach.call(list_elements, function (element) {
-            element.setAttribute("onclick", `select_city_name('${element.innerHTML}')`);
+<script type="text/javascript">
+    $(function () {
+        $('input[name="arrival_date"]').daterangepicker({
+            autoUpdateInput: false,
+            locale: {
+                applyLabel: "Сохранить",
+                cancelLabel: 'Очистить',
+                "daysOfWeek": [
+                    "Вс",
+                    "Пн",
+                    "Вт",
+                    "Ср",
+                    "Чт",
+                    "Пт",
+                    "Сб"
+                ],
+                "monthNames": [
+                    "Январь",
+                    "Февраль",
+                    "Март",
+                    "Апрель",
+                    "Май",
+                    "Июнь",
+                    "Июль",
+                    "Август",
+                    "Сентябрь",
+                    "Октябрь",
+                    "Ноябрь",
+                    "Декабрь"
+                ],
+                firstDay: 1
+            },
+            opens: 'right' // Открытие календаря слева от поля ввода
         });
 
-
-        function select_city_name(name) {
-            document.getElementById("select__head").innerHTML = name;
-
-            let city_list = document.getElementById("select__list");
-            let visible_status = city_list.hidden;
-            city_list.hidden = true;
-        }
-
-        $(function () {
-            $('input[name="arrival_date"]').daterangepicker({
-                autoUpdateInput: false,
-                locale: {
-                    applyLabel: "Сохранить",
-                    cancelLabel: 'Очистить',
-                    "daysOfWeek": [
-                        "Вс",
-                        "Пн",
-                        "Вт",
-                        "Ср",
-                        "Чт",
-                        "Пт",
-                        "Сб"
-                    ],
-                    "monthNames": [
-                        "Январь",
-                        "Февраль",
-                        "Март",
-                        "Апрель",
-                        "Май",
-                        "Июнь",
-                        "Июль",
-                        "Август",
-                        "Сентябрь",
-                        "Октябрь",
-                        "Ноябрь",
-                        "Декабрь"
-                    ],
-                    firstDay: 1
-                },
-
-            });
-
-            $('input[name="arrival_date"]').on('apply.daterangepicker', function (ev, picker) {
-                $(this).val(picker.startDate.format('DD.MM.YYYY'));
-                $('input[name="deportation_date"]').val(picker.endDate.format('DD.MM.YYYY'));
-            });
-            // $('input[name="deportation_date"]').on('apply.daterangepicker', function (ev, picker) {
-            //     $(this).val(picker.endDate.format('DD.MM.YYYY'));
-            // });
-
-            // $('input[name="arrival_date"]').on('cancel.daterangepicker', function (ev, picker) {
-            //     $(this).val('Date');
-            // });
+        $('input[name="arrival_date"]').on('apply.daterangepicker', function (ev, picker) {
+            $(this).val(picker.startDate.format('DD.MM.YYYY'));
+            $('input[name="deportation_date"]').val(picker.endDate.format('DD.MM.YYYY'));
         });
-    </script>
+
+        $('input[name="arrival_date"]').on('click', function () {
+            $(this).data('daterangepicker').show();
+        });
+
+        $('input[name="deportation_date"]').on('click', function () {
+            $('input[name="arrival_date"]').data('daterangepicker').show();
+        });
+    });
+</script>
 
 </body>
 

@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'infrastructure.apps.InfrastructureConfig',
     'manual_pages.apps.ManualPagesConfig',
     'analytics.apps.AnalyticsConfig',
+    'user_profile.apps.UserProfileConfig',
+    'vacancies.apps.VacanciesConfig',
+    'apartments.apps.ApartmentsConfig',
 ]
 
 MIDDLEWARE = [

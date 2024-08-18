@@ -1,4 +1,4 @@
-@import url(common_styles.css);
+@import url(./common_styles.css);
 
 .bg_theme {
     background-image: url('../img/out_contacts_background.png');

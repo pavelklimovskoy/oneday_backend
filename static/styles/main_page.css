@@ -94,6 +94,11 @@
     margin-top: 60px;
     margin-bottom: 40px;
 }
+@media (max-width: 768px) {
+    .app_download_text {
+        width: 100%;
+    }
+}
 
 .download_tile {
     background-color: var(--white);
@@ -109,7 +114,11 @@
     position: absolute;
     top: -41px;
     left: -200px;
-    
+}
+@media (max-width: 768px) {
+    .iphone_pic {
+        visibility: hidden;
+    }
 }
 
 .no_rpadding {
@@ -119,6 +128,14 @@
 .qr_section {
     background-color: var(--primary);
     border-radius: 10px;
+}
+@media (max-width: 768px) {
+    .qr_section {
+        visibility: hidden;
+    }
+    .buttons{
+        visibility: hidden;
+    }
 }
 
 .qr_pic_div {
@@ -131,6 +148,11 @@
     
     
     align-items: center;
+}
+@media (max-width: 768px) {
+    .qr_pic_div {
+        visibility: hidden;
+    }
 }
 
 .qr_pic_text {

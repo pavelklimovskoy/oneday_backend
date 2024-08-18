@@ -1,0 +1,687 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <!-- Обязательные метатеги -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link href="{% static 'styles/bootstrap/bootstrap.min.css' %}" rel="stylesheet" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="{% static 'styles/common_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/attractions_krasnodar.css' %}">
+
+    <style>
+        @media (min-width: 768px) {
+            .navbar-brand.abs {
+                position: absolute;
+                width: auto;
+                left: 50%;
+                transform: translateX(-50%);
+                text-align: center;
+            }
+        }
+
+        body {
+            font-family: 'Vela Sans' !important;
+            font-size: medium;
+        }
+
+        footer {
+            margin-top: 60px;
+        }
+
+        .job_tile {
+            background-color: var(--white);
+            border-radius: 10px;
+
+            padding-left: 40px;
+            padding-bottom: 40px;
+            margin-bottom: 20px;
+
+            height: fit-content;
+        }
+
+        .job_title {
+            color: var(--primary);
+
+            /* Title/H2 */
+            font-family: "Atyp Regular";
+            font-size: 32px;
+            font-style: normal;
+            font-weight: 75;
+            line-height: 120%;
+            /* 38.4px */
+        }
+
+        .address_line {
+            padding-top: 40px;
+            margin-bottom: 12x;
+
+            color: var(--Dark-Gray, #C0C1C7);
+            font-variant-numeric: lining-nums proportional-nums;
+            font-feature-settings: 'case' on;
+
+            /* Body/B1-medium */
+            font-family: "Vela Sans";
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 150%;
+            /* 24px */
+        }
+
+        .job_salary {
+            color: var(--Black, #061F28);
+            font-feature-settings: 'ss06' on;
+
+            /* Subtitle/S1 */
+            font-family: "Atyp Regular";
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 75;
+            line-height: 120%;
+            /* 28.8px */
+
+            margin-bottom: 20px;
+        }
+
+        .descroption_header {
+            color: var(--black);
+
+            /* Subtitle/S3-semibold */
+            font-family: "Vela Sans";
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 135%;
+            /* 24.3px */
+        }
+
+        .description_contnent {
+            margin-top: 12px;
+
+            color: var(--Body-text, #324750);
+            font-variant-numeric: lining-nums proportional-nums;
+            font-feature-settings: 'case' on;
+
+            /* Body/B1-medium */
+            font-family: "Vela Sans";
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 150%;
+            /* 24px */
+        }
+
+        .job_duties_header {
+            margin-top: 24px;
+            color: var(--black);
+
+            /* Subtitle/S3-semibold */
+            font-family: "Vela Sans";
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 135%;
+            /* 24.3px */
+        }
+
+        .job_duties_content {
+            color: var(--Body-text, #324750);
+            font-variant-numeric: lining-nums proportional-nums;
+            font-feature-settings: 'case' on;
+
+            /* Body/B1-medium */
+            font-family: "Vela Sans";
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 150%;
+            /* 24px */
+        }
+
+        .additional_line {
+            margin-top: 24px;
+        }
+
+        .additional_block_header {
+            color: var(--Black, #061F28);
+
+            /* Subtitle/S3-semibold */
+            font-family: "Vela Sans";
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 135%;
+            /* 24.3px */
+        }
+
+        .additional_block_content {
+            >p {
+                margin-top: 12px;
+            }
+        }
+
+        .menu_tile {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .menu_title {
+            color: var(--Black, #061F28);
+            text-align: center;
+            font-feature-settings: 'ss06' on;
+            text-overflow: ellipsis;
+
+            /* Subtitle/S1 */
+            font-family: "Atyp Regular";
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 75;
+            line-height: 120%;
+            /* 28.8px */
+
+            padding-top: 20px;
+
+            margin-bottom: 20px;
+        }
+
+        .upload_btn {
+            margin-top: 2px;
+
+            /* display: flex; */
+            text-align: center;
+
+            background-color: var(--white);
+            width: 100%;
+
+            border: 2px solid var(--primary);
+
+            border-radius: 10px;
+            padding: 12px 24px;
+
+            >img {
+                width: 24px;
+                height: 24px;
+                margin-right: 12px;
+            }
+
+            >span {
+                color: var(--primary);
+                font-kerning: none;
+
+                font-family: "Vela Sans";
+                font-size: 16px;
+                font-style: normal;
+                font-weight: bold;
+                line-height: 150%;
+            }
+        }
+
+        .upload_btn:hover {
+            cursor: pointer;
+            background-color: var(--primary);
+
+            >span {
+                color: var(--white);
+            }
+
+            >img {
+                content: url("{% static 'img/upload_white.svg' %}");
+            }
+        }
+
+        .upload_btn:active {
+            background-color: var(--pressed);
+        }
+
+        .upload_cv {
+            margin-top: 12px;
+
+            background-color: var(--primary);
+            width: 100%;
+
+            border-radius: 10px;
+            padding: 12px 24px;
+
+            text-align: center;
+            color: var(--white);
+
+            /* Button/Bold */
+            font-family: "Vela Sans";
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 150%;
+            /* 24px */
+
+            cursor: pointer;
+        }
+
+        .upload_cv:hover {
+            background-color: var(--hover);
+        }
+
+        .upload_cv:active {
+            background-color: var(--pressed);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
+            background: var(--white);
+            border-radius: 10px;
+            border: 2px solid var(--dark-grey);
+
+            padding: 12px 12px 12px 12px;
+
+            width: 100%;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus {
+            border: 2px solid var(--primary);
+        }
+
+        select {
+            background: var(--white);
+            border-radius: 10px;
+            border: 2px solid var(--dark-grey);
+
+            padding: 12px 12px 12px 12px;
+
+            width: 100%;
+        }
+
+        select:focus {
+            border: 2px solid var(--primary);
+        }
+
+        .contact_block {
+            /* Body/B1-medium */
+            font-family: "Vela Sans";
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 150%;
+            /* 24px */
+        }
+
+        .contact_section {
+            margin-top: 12px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-upload {
+            margin-top: 2px;
+
+            /* display: flex; */
+            text-align: center;
+
+            background-color: var(--white);
+            width: 100%;
+
+            border: 2px solid var(--primary);
+
+            border-radius: 10px;
+            padding: 12px 24px;
+
+            >img {
+                width: 24px;
+                height: 24px;
+                margin-right: 12px;
+            }
+
+            >span {
+                color: var(--primary);
+                font-kerning: none;
+
+                font-family: "Vela Sans";
+                font-size: 16px;
+                font-style: normal;
+                font-weight: bold;
+                line-height: 150%;
+            }
+        }
+
+        .custom-file-upload:hover {
+            cursor: pointer;
+            background-color: var(--primary);
+
+            >span {
+                color: var(--white);
+            }
+
+            >img {
+                content: url("{% static 'img/upload_white.svg' %}");
+            }
+        }
+
+        .custom-file-upload:active {
+            background-color: var(--pressed);
+        }
+
+        input[type="checkbox"] {
+            display: inline !important
+        }
+
+        .approval_block {
+            margin-top: 20px;
+
+            >span>input[type="checkbox"] {
+                margin-right: 8px;
+            }
+        }
+    </style>
+
+    <title>Вакансии</title>
+</head>
+
+<body>
+    {% include "common/header.html" %}
+
+    <main>
+        <div class="container navigation black">
+            <a href="#" сlass="primary">Главная</a> > Вакансии
+        </div>
+
+        <div class="container">
+            <div class="row row-cols-1 row-cols-md-2">
+                <div class="col col-md-8">
+
+                    <div class="container job_tile">
+
+                        <div class="address_line">
+                            <span>Краснодарский край, Краснодар, р-н Прикубанский, ул. имени Жлобы, 139</span>
+                        </div>
+
+                        <div class="job_title">
+                            <span>Менеджер по набору недвижимости</span>
+                        </div>
+
+                        <div class="job_salary">
+                            <span>от 40 000 ₽</span>
+                        </div>
+
+                        <hr>
+
+                        <div class="descroption_header">
+                            <span>Описание:</span>
+                        </div>
+
+                        <div class="description_contnent">
+                            <span>В наш кoллeктив «Рosutоchnо Оnеdаy» тpебуeтся специaлиcт пo нaбору oбъeктoв!</span>
+                        </div>
+
+                        <div class="job_duties_header">
+                            <span>Обязанности:</span>
+                        </div>
+
+                        <div class="job_duties_content">
+                            <li>Заключeниe дoговоpов на cубapенду</li>
+                            <li>Работa c ПK (авитo, циан)</li>
+                        </div>
+
+                        <div class="row row-cols-1 row-cols-md-2 additional_line">
+                            <div class="col">
+                                <div class="additional_block_header">
+                                    Условия:
+                                </div>
+
+                                <div class="job_req_content">
+                                    <p>
+                                        <span class="badge bg-light text-dark fw-bold fs-6">1</span>
+                                        Свободный график
+                                    </p>
+
+                                    <p>
+                                        <span class="badge bg-light text-dark fw-bold fs-6">2</span>
+                                        Частота выплат дважды в месяц + премии
+                                    </p>
+
+                                    <p>
+                                        <span class="badge bg-light text-dark fw-bold fs-6">3</span>
+                                        Трудоустройство по ТК РФ
+                                    </p>
+
+                                    <p>
+                                        <span class="badge bg-light text-dark fw-bold fs-6">4</span>
+                                        Оплачиваемая мобильная связь, дорога
+                                    </p>
+
+                                    <p>
+                                        <span class="badge bg-light text-dark fw-bold fs-6">5</span>
+                                        Бонусы и скидки в компании
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="additional_block_header">
+                                    Требования:
+                                </div>
+
+                                <div class="job_req_content">
+                                    <p>
+                                        <span class="badge bg-light text-dark fw-bold fs-6">1</span>
+                                        Опыт работы более 1 года
+                                    </p>
+
+                                    <p>
+                                        <span class="badge bg-light text-dark fw-bold fs-6">2</span>
+                                        Пунктуальность, грамотное общение
+                                    </p>
+
+                                    <p>
+                                        <span class="badge bg-light text-dark fw-bold fs-6">3</span>
+                                        Умение вести переговоры
+                                    </p>
+
+                                    <p>
+                                        <span class="badge bg-light text-dark fw-bold fs-6">4</span>
+                                        Мобильность
+                                    </p>
+
+                                    <p>
+                                        <span class="badge bg-light text-dark fw-bold fs-6">5</span>
+                                        Наличие мобильного телефона
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+<!--
+                    <div class="container job_tile">
+
+                        <div class="address_line">
+                            <span>Краснодарский край, Краснодар, р-н Прикубанский, ул. имени Жлобы, 139</span>
+                        </div>
+
+                        <div class="job_title">
+                            <span>Менеджер по набору недвижимости</span>
+                        </div>
+
+                        <div class="job_salary">
+                            <span>от 40 000 ₽</span>
+                        </div>
+
+                        <hr>
+
+                        <div class="descroption_header">
+                            <span>Описание:</span>
+                        </div>
+
+                        <div class="description_contnent">
+                            <span>В наш кoллeктив «Рosutоchnо Оnеdаy» тpебуeтся специaлиcт пo нaбору oбъeктoв!</span>
+                        </div>
+
+                        <div class="job_duties_header">
+                            <span>Обязанности:</span>
+                        </div>
+
+                        <div class="job_duties_content">
+                            <li>Заключeниe дoговоpов на cубapенду</li>
+                            <li>Работa c ПK (авитo, циан)</li>
+                        </div>
+
+                        <div class="row row-cols-1 row-cols-md-2 additional_line">
+                            <div class="col">
+                                <div class="additional_block_header">
+                                    Условия:
+                                </div>
+
+                                <div class="job_req_content">
+                                    <p>
+                                        <span class="badge bg-light text-dark fw-bold fs-6">1</span>
+                                        Свободный график
+                                    </p>
+
+                                    <p>
+                                        <span class="badge bg-light text-dark fw-bold fs-6">2</span>
+                                        Частота выплат дважды в месяц + премии
+                                    </p>
+
+                                    <p>
+                                        <span class="badge bg-light text-dark fw-bold fs-6">3</span>
+                                        Трудоустройство по ТК РФ
+                                    </p>
+
+                                    <p>
+                                        <span class="badge bg-light text-dark fw-bold fs-6">4</span>
+                                        Оплачиваемая мобильная связь, дорога
+                                    </p>
+
+                                    <p>
+                                        <span class="badge bg-light text-dark fw-bold fs-6">5</span>
+                                        Бонусы и скидки в компании
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="additional_block_header">
+                                    Требования:
+                                </div>
+
+                                <div class="job_req_content">
+                                    <p>
+                                        <span class="badge bg-light text-dark fw-bold fs-6">1</span>
+                                        Опыт работы более 1 года
+                                    </p>
+
+                                    <p>
+                                        <span class="badge bg-light text-dark fw-bold fs-6">2</span>
+                                        Пунктуальность, грамотное общение
+                                    </p>
+
+                                    <p>
+                                        <span class="badge bg-light text-dark fw-bold fs-6">3</span>
+                                        Умение вести переговоры
+                                    </p>
+
+                                    <p>
+                                        <span class="badge bg-light text-dark fw-bold fs-6">4</span>
+                                        Мобильность
+                                    </p>
+
+                                    <p>
+                                        <span class="badge bg-light text-dark fw-bold fs-6">5</span>
+                                        Наличие мобильного телефона
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+
+                <div class="col col-md-4 order-md-last order-first">
+                    <div class="container menu_tile">
+                        <form action="">
+                            <div class="menu_title">
+                                <span>Оставить заявку</span>
+                            </div>
+
+                            <div class="row row-cols-2">
+                                <div class="col">
+                                    <div class="contact_block">
+                                        <p>Имя *</p>
+                                        <input type="text" placeholder="Имя" required>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="contact_block">
+                                        <p>Телефон *</p>
+                                        <input type="tel" placeholder="+7" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="container contact_section">
+                                    <p>Электронная почта</p>
+                                    <input type="email" id="email" placeholder="name@gmail.com" required>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="container contact_section">
+                                    <p>Желаемая вакансия</p>
+                                    <select name="jobs" id="job-select" required>
+                                        <option value="" disabled selected>Не указано</option>
+                                        <option value="1">Менеджер</option>
+                                        <option value="2">Администратор</option>
+                                        <option value="3">Уборщица</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="noselect contact_section">
+                                <label for="file-upload" class="custom-file-upload">
+                                    <img src="{% static 'img/upload.svg' %}" alt="">
+                                    <span>Загрузить свое резюме</span>
+                                </label>
+                                <input id="file-upload" type="file" accept=".doc,.docx,.pdf"/>
+                            </div>
+
+                            <input class="upload_cv noselect" type="submit" value="Откликнуться" />
+
+                            <hr>
+
+                            <div class="row approval_block">
+                                <span><input type="checkbox" name="checkbox" required>
+                                    <span class="text_muted">Я согласен(-а) с условиями </span>
+                                    <a href="#">пользовательского соглашения</a>
+                                </span>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    {% include "common/footer.html" %}
+
+    <!-- Необязательный JavaScript; выберите один из двух! -->
+
+    <!-- Вариант 1: пакет Bootstrap с Popper -->
+    <script src="{% static 'scripts/bootstrap_pooper/bootstrap.bundle.min.js' %}"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

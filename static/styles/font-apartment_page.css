@@ -1,0 +1,39 @@
+@font-face {
+  font-family: "VelaSans-Bold";
+  src: url(../fonts/vela_sans/VelaSans-Bold.woff);
+}
+
+@font-face {
+  font-family: "VelaSans-ExtraBold";
+  src: url(../fonts/vela_sans/VelaSans-ExtraBold.woff);
+}
+
+@font-face {
+  font-family: "VelaSans-ExtraLight";
+  src: url(../fonts/vela_sans/VelaSans-ExtraLight.woff);
+}
+
+@font-face {
+  font-family: "VelaSans-Light";
+  src: url(../fonts/vela_sans/VelaSans-Light.woff);
+}
+
+@font-face {
+  font-family: "VelaSans-Medium";
+  src: url(../fonts/vela_sans/VelaSans-Medium.woff);
+}
+
+@font-face {
+  font-family: "VelaSans-Regular";
+  src: url(../fonts/vela_sans/VelaSans-Regular.woff);
+}
+
+@font-face {
+  font-family: "VelaSans-SemiBold";
+  src: url(../fonts/vela_sans/VelaSans-SemiBold.woff);
+}
+
+@font-face {
+  font-family: "Atyp-Regular-Variable";
+  src: url(../fonts/atyp/AtypRegularVariable.woff);
+}

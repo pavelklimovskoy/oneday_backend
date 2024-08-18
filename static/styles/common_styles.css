@@ -1,26 +1,32 @@
+{% load static %}
+
 @import url(reset.css);
 
 @font-face {
     font-family: 'Atyp Regular';
     font-style: normal;
     font-weight: normal;
+    src: url('../fonts/atyp/AtypText-Regular.eot'); /* IE9 Compat Modes */
     src: local('Atyp Regular'),
-        url('/assets/fonts/atyp/AtypText-Regular.woff2') format('woff2'),
-        url('/assets/fonts/atyp/AtypText-Regular.woff') format('woff'),
-        url('/assets/fonts/atyp/AtypText-Regular.ttf') format('ttf'),
-        url('/assets/fonts/atyp/AtypText-Regular.eot') format('eot');
+         url('../fonts/atyp/AtypText-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/atyp/AtypText-Regular.woff2') format('woff2'), /* Super modern browsers */
+         url('../fonts/atyp/AtypText-Regular.woff') format('woff'), /* Modern browsers */
+         url('../fonts/atyp/AtypText-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
 }
 
 @font-face {
     font-family: 'Vela Sans';
     font-style: normal;
     font-weight: normal;
+    src: url('../fonts/vela_sans/VelaSans-Regular.eot'); /* IE9 Compat Modes */
     src: local('Vela Sans'),
-        url('/assets/fonts/vela_sans/VelaSans-Regular.woff2') format('woff2'),
-        url('/assets/fonts/vela_sans/VelaSans-Regular.woff') format('woff'),
-        url('/assets/fonts/vela_sans/VelaSans-Regular.ttf') format('ttf'),
-        url('/assets/fonts/vela_sans/VelaSans-Regular.otf') format('otf');
+         url('../fonts/vela_sans/VelaSans-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('/fonts/vela_sans/VelaSans-Regular.woff2') format('woff2'), /* Super modern browsers */
+         url('/assets/fonts/vela_sans/VelaSans-Regular.woff') format('woff'), /* Modern browsers */
+         url('/assets/fonts/vela_sans/VelaSans-Regular.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('/assets/fonts/vela_sans/VelaSans-Regular.otf') format('opentype'); /* Older browsers */
 }
+
 
 
 :root {
@@ -91,6 +97,26 @@ h2 {
 }
 
 a {
+    color: var(--primary);
+}
+
+a:link {
+    color: var(--primary);
+}
+
+a:visited {
+    color: var(--primary);
+}
+
+a:focus {
+    color: var(--primary);
+}
+
+a:hover {
+    color: var(--primary);
+}
+
+a:active {
     color: var(--primary);
 }
 
@@ -253,4 +279,29 @@ a {
     >img {
         margin-right: 0px;
     }
+}
+
+.upload:hover {
+    >img {
+        /* content: url("/assets/img/heart_white.png");
+         */
+        color: red;
+    }
+
+    color: red;
+}
+
+.text_muted {
+    color: var(--dark-grey);
+}
+body::-webkit-scrollbar {
+    width: 12px;
+}
+body::-webkit-scrollbar-track {
+    background: var(--dividers);
+}
+body::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border-radius: 20px;
+    border: 3px solid var(--primary);
 }

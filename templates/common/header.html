@@ -3,8 +3,7 @@
     <nav class="navbar navbar-light navbar-expand-md bg-white">
         <div class="container">
             <a class="navbar-brand abs" href="{% url 'main_page' %}">
-{#                <img src="assets/img/logo.png" class="rounded float-left" alt="..."/>#}
-                <img src="{% static 'img/logo.png' %}" class="rounded float-left"/>
+                <img src="{% static 'img/logotip 1.png' %}" width="69px" height="48px" class="rounded float-left"/>
             </a>
             <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
                     data-bs-target="#collapseNavbar">
@@ -19,7 +18,7 @@
                     </li>
 
                     <li class="nav-item me-4">
-                        <a href="#" class="nav-link text-dark">
+                        <a href="{% url 'contacts' %}" class="nav-link text-dark">
                             Контакты
                         </a>
                     </li>
@@ -55,10 +54,12 @@
                         </div>
                     </li>
                     <li>
-                        <div class="seccondary_btn home noselect">
-                            <img src="{% static 'img/home_primary.svg' %}" alt="">
-                            <span>Войти</span>
-                        </div>
+                        <a href="{% url 'edit_profile' %}">
+                            <div class="seccondary_btn home noselect">
+                                <img src="{% static 'img/home_primary.svg' %}" alt="">
+                                <span>Войти</span>
+                            </div>
+                        </a>
                     </li>
                 </ul>
             </div>

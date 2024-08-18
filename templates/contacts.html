@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <!-- Обязательные метатеги -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"/>
+
+    <link rel="stylesheet" href="{% static 'styles/common_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/out_contacts.css' %}">
+
+    <style>
+        body {
+            font-family: 'Vela Sans' !important;
+            font-size: medium;
+        }
+
+        @media (min-width: 768px) {
+            .navbar-brand.abs {
+                position: absolute;
+                width: auto;
+                left: 50%;
+                transform: translateX(-50%);
+                text-align: center;
+            }
+        }
+    </style>
+
+    <title>Наши контакты</title>
+</head>
+
+<body>
+
+{% include "common/header.html" %}
+
+
+<main>
+    <div class="bg-image bg_theme">
+    <div class="container">
+        <div class="row">
+            <div class="col col-md-6 inner">
+                <div class="contact_container">
+                    <div class="line">
+                        <p class="h1 primary">Наши контакты</p>
+                    </div>
+
+                    <div class="line">
+                        <b>+7 938 296-64-62</b>
+                        <br>
+                        <p class="body_text medium">
+                            Ежедневно с 9:00 до 22:30
+                        </p>
+                    </div>
+
+                    <div class="line">
+                        <b>posutochno_onedays@mail.ru</b>
+                        <p>Для вопросов и предложений</p>
+                    </div>
+
+                    <div class="line">
+                        <b>Где мы находимся?</b>
+
+                        <br>
+                        Краснодар — ул. Жлобы 139
+                        <br>
+                        Сочи — проспект Курортный 56а
+                        <br>
+                        Ростов — ул. Пушкинская 77
+                        <br>
+                        Таганрог — пер 5-й Артиллерийский 71
+                    </div>
+
+                    <div class="line">
+                        <a href="">
+                            <img class="logo" src="{% static 'img/vk_logo.svg' %}" alt="">
+                        </a>
+
+                        <a href="">
+                            <img class="logo" src="{% static 'img/th_logo.svg' %}" alt="">
+                        </a>
+
+                        <a href="">
+                            <img class="logo" src="{% static 'img/youtube_logo.svg' %}" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</main>
+
+
+{% include "common/footer.html" %}
+
+<!-- Необязательный JavaScript; выберите один из двух! -->
+
+<!-- Вариант 1: пакет Bootstrap с Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

@@ -4,11 +4,11 @@
 
 <head>
     <!-- Обязательные метатеги -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <!-- Bootstrap CSS -->
-    <link href="{% static 'styles/bootstrap/bootstrap.min.css' %}" rel="stylesheet" crossorigin="anonymous" />
+    <link href="{% static 'styles/bootstrap/bootstrap.min.css' %}" rel="stylesheet" crossorigin="anonymous"/>
 
     <link rel="stylesheet" href="{% static 'styles/common_styles.css' %}">
     <link rel="stylesheet" href="{% static 'styles/attractions_krasnodar.css' %}">
@@ -160,7 +160,7 @@
         }
 
         .additional_block_content {
-            >p {
+            > p {
                 margin-top: 12px;
             }
         }
@@ -205,13 +205,13 @@
             border-radius: 10px;
             padding: 12px 24px;
 
-            >img {
+            > img {
                 width: 24px;
                 height: 24px;
                 margin-right: 12px;
             }
 
-            >span {
+            > span {
                 color: var(--primary);
                 font-kerning: none;
 
@@ -227,11 +227,11 @@
             cursor: pointer;
             background-color: var(--primary);
 
-            >span {
+            > span {
                 color: var(--white);
             }
 
-            >img {
+            > img {
                 content: url("{% static 'img/upload_white.svg' %}");
             }
         }
@@ -335,13 +335,13 @@
             border-radius: 10px;
             padding: 12px 24px;
 
-            >img {
+            > img {
                 width: 24px;
                 height: 24px;
                 margin-right: 12px;
             }
 
-            >span {
+            > span {
                 color: var(--primary);
                 font-kerning: none;
 
@@ -357,11 +357,11 @@
             cursor: pointer;
             background-color: var(--primary);
 
-            >span {
+            > span {
                 color: var(--white);
             }
 
-            >img {
+            > img {
                 content: url("{% static 'img/upload_white.svg' %}");
             }
         }
@@ -377,7 +377,7 @@
         .approval_block {
             margin-top: 20px;
 
-            >span>input[type="checkbox"] {
+            > span > input[type="checkbox"] {
                 margin-right: 8px;
             }
         }
@@ -387,29 +387,30 @@
 </head>
 
 <body>
-    {% include "common/header.html" %}
+{% include "common/header.html" %}
 
-    <main>
-        <div class="container navigation black">
-            <a href="#" сlass="primary">Главная</a> > Вакансии
-        </div>
+<main>
+    <div class="container navigation black">
+        <a href="/" сlass="primary">Главная</a> > Вакансии
+    </div>
 
-        <div class="container">
-            <div class="row row-cols-1 row-cols-md-2">
-                <div class="col col-md-8">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2">
+            <div class="col col-md-8">
 
+                {% for vac in vacancies %}
                     <div class="container job_tile">
 
                         <div class="address_line">
-                            <span>Краснодарский край, Краснодар, р-н Прикубанский, ул. имени Жлобы, 139</span>
+                            <span>{{ vac.address }}</span>
                         </div>
 
                         <div class="job_title">
-                            <span>Менеджер по набору недвижимости</span>
+                            <span>{{ vac.title }}</span>
                         </div>
 
                         <div class="job_salary">
-                            <span>от 40 000 ₽</span>
+                            <span>от {{ vac.salary }}  ₽</span>
                         </div>
 
                         <hr>
@@ -419,7 +420,7 @@
                         </div>
 
                         <div class="description_contnent">
-                            <span>В наш кoллeктив «Рosutоchnо Оnеdаy» тpебуeтся специaлиcт пo нaбору oбъeктoв!</span>
+                            <span> {{ vac.description }}</span>
                         </div>
 
                         <div class="job_duties_header">
@@ -427,8 +428,9 @@
                         </div>
 
                         <div class="job_duties_content">
-                            <li>Заключeниe дoговоpов на cубapенду</li>
-                            <li>Работa c ПK (авитo, циан)</li>
+                            {% for res in vac.responsibilities.all %}
+                                <li>{{ res.title }}</li>
+                            {% endfor %}
                         </div>
 
                         <div class="row row-cols-1 row-cols-md-2 additional_line">
@@ -438,30 +440,13 @@
                                 </div>
 
                                 <div class="job_req_content">
-                                    <p>
-                                        <span class="badge bg-light text-dark fw-bold fs-6">1</span>
-                                        Свободный график
-                                    </p>
 
-                                    <p>
-                                        <span class="badge bg-light text-dark fw-bold fs-6">2</span>
-                                        Частота выплат дважды в месяц + премии
-                                    </p>
-
-                                    <p>
-                                        <span class="badge bg-light text-dark fw-bold fs-6">3</span>
-                                        Трудоустройство по ТК РФ
-                                    </p>
-
-                                    <p>
-                                        <span class="badge bg-light text-dark fw-bold fs-6">4</span>
-                                        Оплачиваемая мобильная связь, дорога
-                                    </p>
-
-                                    <p>
-                                        <span class="badge bg-light text-dark fw-bold fs-6">5</span>
-                                        Бонусы и скидки в компании
-                                    </p>
+                                    {% for cond in vac.conditions.all %}
+                                        <p>
+                                            <span class="badge bg-light text-dark fw-bold fs-6">{{ forloop.counter }}</span>
+                                            {{ cond.title }}
+                                        </p>
+                                    {% endfor %}
                                 </div>
                             </div>
 
@@ -471,217 +456,96 @@
                                 </div>
 
                                 <div class="job_req_content">
-                                    <p>
-                                        <span class="badge bg-light text-dark fw-bold fs-6">1</span>
-                                        Опыт работы более 1 года
-                                    </p>
-
-                                    <p>
-                                        <span class="badge bg-light text-dark fw-bold fs-6">2</span>
-                                        Пунктуальность, грамотное общение
-                                    </p>
-
-                                    <p>
-                                        <span class="badge bg-light text-dark fw-bold fs-6">3</span>
-                                        Умение вести переговоры
-                                    </p>
-
-                                    <p>
-                                        <span class="badge bg-light text-dark fw-bold fs-6">4</span>
-                                        Мобильность
-                                    </p>
-
-                                    <p>
-                                        <span class="badge bg-light text-dark fw-bold fs-6">5</span>
-                                        Наличие мобильного телефона
-                                    </p>
+                                    {% for req in vac.requirements.all %}
+                                        <p>
+                                            <span class="badge bg-light text-dark fw-bold fs-6">{{ forloop.counter }}</span>
+                                            {{ req.title }}
+                                        </p>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
                     </div>
-<!--
-                    <div class="container job_tile">
+                {% endfor %}
+            </div>
 
-                        <div class="address_line">
-                            <span>Краснодарский край, Краснодар, р-н Прикубанский, ул. имени Жлобы, 139</span>
+            <div class="col col-md-4 order-md-last order-first">
+                <div class="container menu_tile">
+                    <form action="/vacancies/" method="post" enctype="multipart/form-data">
+                        <div class="menu_title">
+                            <span>Оставить заявку</span>
                         </div>
 
-                        <div class="job_title">
-                            <span>Менеджер по набору недвижимости</span>
+                        <div class="row row-cols-2">
+                            <div class="col">
+                                <div class="contact_block">
+                                    <p>Имя *</p>
+                                    <input name="name" type="text" placeholder="Имя" required>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="contact_block">
+                                    <p>Телефон *</p>
+                                    <input name="phone" type="tel" placeholder="+7" required>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="job_salary">
-                            <span>от 40 000 ₽</span>
+                        <div class="row">
+                            <div class="container contact_section">
+                                <p>Электронная почта</p>
+                                <input name="email" type="email" id="email" placeholder="name@gmail.com" required>
+                            </div>
+
                         </div>
+
+                        <div class="row">
+                            <div class="container contact_section">
+                                <p>Желаемая вакансия</p>
+                                <select name="jobs" id="job-select" required>
+                                    <option value="" disabled selected>Не указано</option>
+                                    {% for vac in vacancies %}
+                                        <option value="{{ vac.title }}"> {{ vac.title }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="noselect contact_section">
+                            <label for="file-upload" class="custom-file-upload">
+                                <img src="{% static 'img/upload.svg' %}" alt="">
+                                <span>Загрузить свое резюме</span>
+                            </label>
+                            <input name="resume" id="file-upload" type="file" accept=".doc,.docx,.pdf"/>
+                        </div>
+
+                        <input class="upload_cv noselect" type="submit" value="Откликнуться"/>
 
                         <hr>
 
-                        <div class="descroption_header">
-                            <span>Описание:</span>
+                        <div class="row approval_block">
+                            <span><input type="checkbox" name="checkbox" required>
+                                <span class="text_muted">Я согласен(-а) с условиями </span>
+                                <a href="#">пользовательского соглашения</a>
+                            </span>
                         </div>
-
-                        <div class="description_contnent">
-                            <span>В наш кoллeктив «Рosutоchnо Оnеdаy» тpебуeтся специaлиcт пo нaбору oбъeктoв!</span>
-                        </div>
-
-                        <div class="job_duties_header">
-                            <span>Обязанности:</span>
-                        </div>
-
-                        <div class="job_duties_content">
-                            <li>Заключeниe дoговоpов на cубapенду</li>
-                            <li>Работa c ПK (авитo, циан)</li>
-                        </div>
-
-                        <div class="row row-cols-1 row-cols-md-2 additional_line">
-                            <div class="col">
-                                <div class="additional_block_header">
-                                    Условия:
-                                </div>
-
-                                <div class="job_req_content">
-                                    <p>
-                                        <span class="badge bg-light text-dark fw-bold fs-6">1</span>
-                                        Свободный график
-                                    </p>
-
-                                    <p>
-                                        <span class="badge bg-light text-dark fw-bold fs-6">2</span>
-                                        Частота выплат дважды в месяц + премии
-                                    </p>
-
-                                    <p>
-                                        <span class="badge bg-light text-dark fw-bold fs-6">3</span>
-                                        Трудоустройство по ТК РФ
-                                    </p>
-
-                                    <p>
-                                        <span class="badge bg-light text-dark fw-bold fs-6">4</span>
-                                        Оплачиваемая мобильная связь, дорога
-                                    </p>
-
-                                    <p>
-                                        <span class="badge bg-light text-dark fw-bold fs-6">5</span>
-                                        Бонусы и скидки в компании
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="col">
-                                <div class="additional_block_header">
-                                    Требования:
-                                </div>
-
-                                <div class="job_req_content">
-                                    <p>
-                                        <span class="badge bg-light text-dark fw-bold fs-6">1</span>
-                                        Опыт работы более 1 года
-                                    </p>
-
-                                    <p>
-                                        <span class="badge bg-light text-dark fw-bold fs-6">2</span>
-                                        Пунктуальность, грамотное общение
-                                    </p>
-
-                                    <p>
-                                        <span class="badge bg-light text-dark fw-bold fs-6">3</span>
-                                        Умение вести переговоры
-                                    </p>
-
-                                    <p>
-                                        <span class="badge bg-light text-dark fw-bold fs-6">4</span>
-                                        Мобильность
-                                    </p>
-
-                                    <p>
-                                        <span class="badge bg-light text-dark fw-bold fs-6">5</span>
-                                        Наличие мобильного телефона
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-                </div>
-
-                <div class="col col-md-4 order-md-last order-first">
-                    <div class="container menu_tile">
-                        <form action="">
-                            <div class="menu_title">
-                                <span>Оставить заявку</span>
-                            </div>
-
-                            <div class="row row-cols-2">
-                                <div class="col">
-                                    <div class="contact_block">
-                                        <p>Имя *</p>
-                                        <input type="text" placeholder="Имя" required>
-                                    </div>
-                                </div>
-
-                                <div class="col">
-                                    <div class="contact_block">
-                                        <p>Телефон *</p>
-                                        <input type="tel" placeholder="+7" required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="container contact_section">
-                                    <p>Электронная почта</p>
-                                    <input type="email" id="email" placeholder="name@gmail.com" required>
-                                </div>
-
-                            </div>
-
-                            <div class="row">
-                                <div class="container contact_section">
-                                    <p>Желаемая вакансия</p>
-                                    <select name="jobs" id="job-select" required>
-                                        <option value="" disabled selected>Не указано</option>
-                                        <option value="1">Менеджер</option>
-                                        <option value="2">Администратор</option>
-                                        <option value="3">Уборщица</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="noselect contact_section">
-                                <label for="file-upload" class="custom-file-upload">
-                                    <img src="{% static 'img/upload.svg' %}" alt="">
-                                    <span>Загрузить свое резюме</span>
-                                </label>
-                                <input id="file-upload" type="file" accept=".doc,.docx,.pdf"/>
-                            </div>
-
-                            <input class="upload_cv noselect" type="submit" value="Откликнуться" />
-
-                            <hr>
-
-                            <div class="row approval_block">
-                                <span><input type="checkbox" name="checkbox" required>
-                                    <span class="text_muted">Я согласен(-а) с условиями </span>
-                                    <a href="#">пользовательского соглашения</a>
-                                </span>
-                            </div>
-                        </form>
-
-
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
+</main>
 
-    {% include "common/footer.html" %}
+{% include "common/footer.html" %}
 
-    <!-- Необязательный JavaScript; выберите один из двух! -->
+<!-- Необязательный JavaScript; выберите один из двух! -->
 
-    <!-- Вариант 1: пакет Bootstrap с Popper -->
-    <script src="{% static 'scripts/bootstrap_pooper/bootstrap.bundle.min.js' %}"
+<!-- Вариант 1: пакет Bootstrap с Popper -->
+<script src="{% static 'scripts/bootstrap_pooper/bootstrap.bundle.min.js' %}"
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
         crossorigin="anonymous">
-    </script>
+</script>
 </body>
 
 </html>

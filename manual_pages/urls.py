@@ -13,10 +13,3 @@ manual_pages = [
 main_page_urlpatterns = [
     path('', MainPageView.as_view(), name='main_page'),
 ]
-
-attractions_pages = [
-    path('krasnodar/', KrasnodarView.as_view(), name='krasnodar'),
-    path('rostov/', RostovView.as_view(), name='rostov'),
-    path('sochi/', SochiView.as_view(), name='sochi'),
-    path('taganrog/', TaganrogView.as_view(), name='taganrog')
-]

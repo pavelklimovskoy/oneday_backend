@@ -1,26 +1,27 @@
 let selectedCity = undefined;
 
 const cities = [
-    'Краснодар',
-    'Сочи',
-    'Ростов-на-Дону',
-    'Таганрог'
+    ['Краснодар', '17'],
+    ['Сочи', '27'],
+    ['Ростов-на-Дону', '5'],
+    ['Таганрог', '87']
 ];
 
 const changeCity = city => {
-    selectedCity = city;
-    $('#citiesDropdown').html(city);
+    selectedCity = city[1];
+    $('#citiesDropdown').html(city[0]);
 }
 
 const fillCities = () => {
     cities.forEach(city => {
-        const cityTag = $(`<div class="dropdown-item city-dropdown-item">${city}</div>`);
+        let city_verbouse_name = city[0];
+        const cityTag = $(`<div class="dropdown-item city-dropdown-item">${city_verbouse_name}</div>`);
         cityTag.on('click', () => changeCity(city));
         $('#city-dropdown-menu').append(cityTag);
     });
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
     fillCities();
     initOnClickEvents();
 });
@@ -43,3 +44,82 @@ function initOnClickEvents() {
         }
     });
 }
+
+function get_arrival_date() {
+    let arrival_date = document.getElementById('arrival_date').value;
+
+    if (arrival_date === 'Дата заезда') {
+        return undefined
+    }
+
+    return arrival_date
+}
+
+function get_deportation_date() {
+    let arrival_date = document.getElementById('deportation_date').value;
+
+    if (arrival_date === 'Дата выезда') {
+        return undefined
+    }
+
+    return arrival_date
+}
+
+function search_apartments() {
+    let city = selectedCity;
+    let arrival = get_arrival_date()
+    let departure = get_deportation_date()
+    let guests_counts = 1;
+    let children_count = 1;
+    let with_pets = false;
+
+    window.location = `appartments/list/?city=${city}&arrival=${arrival}&departure=${departure}&guests_counts=${guests_counts}`;
+}
+
+$(function () {
+    $('input[name="arrival_date"]').daterangepicker({
+        autoUpdateInput: false,
+        locale: {
+            applyLabel: "Сохранить",
+            cancelLabel: 'Очистить',
+            "daysOfWeek": [
+                "Вс",
+                "Пн",
+                "Вт",
+                "Ср",
+                "Чт",
+                "Пт",
+                "Сб"
+            ],
+            "monthNames": [
+                "Январь",
+                "Февраль",
+                "Март",
+                "Апрель",
+                "Май",
+                "Июнь",
+                "Июль",
+                "Август",
+                "Сентябрь",
+                "Октябрь",
+                "Ноябрь",
+                "Декабрь"
+            ],
+            firstDay: 1
+        },
+        opens: 'right' // Открытие календаря слева от поля ввода
+    });
+
+    $('input[name="arrival_date"]').on('apply.daterangepicker', function (ev, picker) {
+        $(this).val(picker.startDate.format('DD.MM.YYYY'));
+        $('input[name="deportation_date"]').val(picker.endDate.format('DD.MM.YYYY'));
+    });
+
+    $('input[name="arrival_date"]').on('click', function () {
+        $(this).data('daterangepicker').show();
+    });
+
+    $('input[name="deportation_date"]').on('click', function () {
+        $('input[name="arrival_date"]').data('daterangepicker').show();
+    });
+});

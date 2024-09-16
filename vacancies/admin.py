@@ -5,24 +5,21 @@ from vacancies.models import Vacancy, Responsibility, Conditions, Requirements
 
 @admin.register(Vacancy)
 class VacancyAdmin(admin.ModelAdmin):
-    class Meta:
-        verbose_name = 'Вакансия'
+    pass
 
 
 @admin.register(Responsibility)
 class ResponsibilityAdmin(admin.ModelAdmin):
-    class Meta:
-        verbose_name = 'Обязанность'
+    pass
 
 
 @admin.register(Conditions)
 class ConditionsAdmin(admin.ModelAdmin):
-    class Meta:
-        verbose_name = 'Условия работы'
+    pass
 
 
 @admin.register(Requirements)
 class RequirementsAdmin(admin.ModelAdmin):
-    class Meta:
-        verbose_name = 'Требования'
+    pass
+
 

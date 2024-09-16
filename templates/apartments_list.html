@@ -1,0 +1,353 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="stylesheet" href="{% static '/styles/bootstrap/bootstrap.min.css' %}"/>
+    <link href="{% static '/styles/nouislider.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static '/styles/normalize.css' %}">
+    <link rel="stylesheet" href="{% static '/styles/style.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+{% include 'common/header.html' %}
+<body class="body">
+<section class="main">
+    <div class="main__list">
+        <div class="main__search">
+            <div class="main__search__city">
+                <div class="main__search__text">
+                    <span class="main__search__text__small">Город</span>
+                    <span class="main__search__text__bold">Ростов-на-Дону</span>
+                </div>
+            </div>
+            <div class="main__search__start_date">
+                <div class="main__search__text">
+                    <span class="main__search__text__small">Заезд</span>
+                    <span class="main__search__text__bold">24 фев, cб</span>
+                </div>
+            </div>
+            <div class="main__search__end_date">
+                <div class="main__search__text">
+                    <span class="main__search__text__small">Выезд</span>
+                    <span class="main__search__text__bold">2 мар, сб</span>
+                </div>
+            </div>
+            <div class="main__search__btn">
+                <div class="main__search__guests">
+                    <div class="main__search__text">
+                        <span class="main__search__text__small">Гости</span>
+                        <span class="main__search__text__bold">1 гость, без детей, питомец</span>
+                    </div>
+                </div>
+                <button class="button main__search__btn__search button__icon">Найти</button>
+            </div>
+            <button class="button main__search__btn__search__mobile">
+                Найти
+            </button>
+        </div>
+
+        <div class="main__aparts">
+            <div class="main__aparts__filter__wrap">
+                    <span class="main__aparts__filter__header">
+                        <h3 class="main__aparts__filter__header__text">Фильтры</h3>
+                        <button class="main__aparts__filter__header__reset">Сбросить</button>
+                    </span>
+                <div class="main__aparts__filter">
+
+                    <!-- FILTER -->
+                    <div class="main__aparts__filter__price">
+                        <h3 class="main__aparts__filter__price__text">Цена (₽)</h3>
+                        <div class="main__aparts__filter__input__container">
+                            <input class="main__aparts__filter__input" id="option__input_lower"
+                                   placeholder="от {{ min_apartment_price }}"/>
+                            <span class="main__aparts__filter__input__icon"></span>
+                            <input class="main__aparts__filter__input" id="option__input_upper"
+                                   placeholder="до {{ max_apartment_price }}"/>
+                        </div>
+
+                        <div style="width: 100%;">
+                            <div id="slider"></div>
+                        </div>
+                    </div>
+
+                    <div class="main__aparts__filter__rooms">
+                        <h3 class="main__aparts__filter__rooms__text">Комнаты</h3>
+                        <div class="main__aparts__filter__rooms__container">
+                            <label class="input__checkbox__container">1 комната
+                                <input type="checkbox" class="input__checkbox" checked="checked">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="input__checkbox__container">2 комнаты
+                                <input type="checkbox" class="input__checkbox" checked="checked">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="input__checkbox__container">3 комнаты
+                                <input type="checkbox" class="input__checkbox" checked="checked">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="main__aparts__filter__beds">
+                        <h3 class="main__aparts__filter__beds__text">Спальные места</h3>
+                        <div class="main__aparts__filter__beds__container">
+                            <label class="input__checkbox__container">1+1
+                                <input type="checkbox" class="input__checkbox" checked="checked">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="input__checkbox__container">2+2
+                                <input type="checkbox" class="input__checkbox" checked="checked">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="input__checkbox__container">2+2+2
+                                <input type="checkbox" class="input__checkbox" checked="checked">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="main__aparts__filter__inside">
+                        <div class="main__aparts__filter__inside__header">
+                            <h3 class="main__aparts__filter__header__text">В квартире</h3>
+                            <button class="main__aparts__filter__header__select">Выбрать все</button>
+                        </div>
+                        <div class="main__aparts__filter__inside__container">
+                            <label class="input__checkbox__container">Кухня
+                                <input type="checkbox" class="input__checkbox" checked="checked">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="input__checkbox__container">Кондиционер
+                                <input type="checkbox" class="input__checkbox" checked="checked">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="input__checkbox__container">Телевизор
+                                <input type="checkbox" class="input__checkbox" checked="checked">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="input__checkbox__container">Стиральная машина
+                                <input type="checkbox" class="input__checkbox" checked="checked">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="input__checkbox__container">Микроволновка
+                                <input type="checkbox" class="input__checkbox" checked="checked">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="input__checkbox__container">Посудомоечная машина
+                                <input type="checkbox" class="input__checkbox" checked="checked">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="input__checkbox__container">Мультиварка
+                                <input type="checkbox" class="input__checkbox" checked="checked">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="main__aparts__filter__button button button__text primary">Подтвердить</button>
+
+                </div>
+            </div>
+            <div class="main__aparts__cards">
+
+                {% for apartment in apartments %}
+                    <div class="main__aparts__cards__item">
+                        <div class="main__aparts__cards__item__top">
+                            <div id="carouselExampleIndicators{{ forloop.counter }}" class="carousel slide"
+                                 data-bs-ride="carousel">
+                                <div class="carousel-indicators">
+                                    {% for photo in apartment.photos.all %}
+                                        <button type="button"
+                                            data-bs-target="#carouselExampleIndicator{{ forloop.parentloop.counter }}"
+                                            data-bs-slide-to="{{ forloop.counter0 }}" class="slide-button active" aria-current="true"
+                                            aria-label="Slide {{ forloop.counter }}">
+                                    </button>
+                                    {% endfor %}
+                                </div>
+                                <div class="carousel-inner">
+                                    {% for photo in apartment.photos.all %}
+                                        {% if forloop.first %}
+                                            <div class="carousel-item active">
+                                                <img src="{{ photo.photo_url }}"
+                                                     class="d-block w-100 img-car"
+                                                     alt="...">
+                                            </div>
+                                        {% else %}
+                                            <div class="carousel-item">
+                                                <img src="{{ photo.photo_url }}"
+                                                     class="d-block w-100 img-car" alt="...">
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <button class="carousel-control-prev" type="button"
+                                        data-bs-target="#carouselExampleIndicators{{ forloop.counter }}"
+                                        data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon-new" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                        data-bs-target="#carouselExampleIndicators{{ forloop.counter }}"
+                                        data-bs-slide="next">
+                                    <span class="carousel-control-next-icon-new" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                                <div class="favorite">
+                                    <img class="icon" src="{% static '/img/heart_primary.png' %}"/>
+                                </div>
+                            </div>
+                            <div class="apartment__card__info">
+                                <div class="apartment__card__text">
+                                    <p class="apartment__card__title">{{ apartment.address }}</p>
+                                    <div class="apartment__card__desc">
+                                        <div class="apartment__card__tags">
+                                            <span class="apartment__card__tag">Комнат: {{ apartment.rooms }}</span>
+                                            <span class="apartment__card__tag">Кровати: {{ apartment.sleeps }}</span>
+                                            {% if apartment.area %}
+                                            	<span class="apartment__card__tag">Площадь: 84м²</span>
+                                            {% endif %}
+                                            <span class="apartment__card__tag">Этаж: {{ apartment.floor }}</span>
+
+                                        </div>
+                                        <div class="apartment__card__icons">
+                                            <img class="apartment__card__icon" src="{% static '/icons/Washing.svg' %}"/>
+                                            <img class="apartment__card__icon" src="{% static '/icons/Washing.svg' %}"/>
+                                            <img class="apartment__card__icon" src="{% static '/icons/Washing.svg' %}"/>
+                                            <img class="apartment__card__icon" src="{% static '/icons/Washing.svg' %}"/>
+                                            <img class="apartment__card__icon" src="{% static '/icons/Washing.svg' %}"/>
+                                            <img class="apartment__card__icon" src="{% static '/icons/Washing.svg' %}"/>
+                                            <img class="apartment__card__icon" src="{% static '/icons/Washing.svg' %}"/>
+                                            <img class="apartment__card__icon" src="{% static '/icons/Washing.svg' %}"/>
+                                            <img class="apartment__card__icon" src="{% static '/icons/Washing.svg' %}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="apartment__card__price">
+                                    <div class="apartment__card__price__text">
+                                        <span class="apartment__card__price__text_price">1500 ₽</span>
+                                        <span class="apartment__card__price__time">в сутки</span></span>
+                                    </div>
+                                    <button class="apartment__card__price__button button button__text primary"
+                                            onclick="go_to_booking({{ apartment.id }})">
+                                        Забронировать
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apartment__card__price__bottom">
+                            <div class="apartment__card__price__text">
+                                <span class="apartment__card__price__text_price">{{ apartment.price }} ₽</span>
+                                <span class="apartment__card__price__time">в сутки</span></span>
+                            </div>
+                            <button class="apartment__card__price__button button button__text primary"
+                                    onclick="go_to_booking({{ apartment.id }})">
+                                Забронировать
+                            </button>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+    <div class="main__map">
+        <div id="map" class="map" style="height: 100%; width: 100%; padding-right: 0px !important;"></div>
+    </div>
+</section>
+</body>
+{% include 'common/footer.html' %}
+
+
+<!-- SIDE MENU -->
+<script>
+    function openNav() {
+        let width = document.body.offsetWidth;
+        console.log(width)
+        let navWidth = "30%";
+        if (width < 480) navWidth = "100%";
+        else if (width < 780) navWidth = "50%";
+        document.getElementById("mySidenavText").style.transition = 'opacity 0.5s 0.5s ease-out';
+        document.getElementById("mySidenavText").style.opacity = '1';
+        setTimeout(document.getElementById("mySidenav").style.width = navWidth, 0);
+        setTimeout(document.getElementById("mySidenavTop").style.width = navWidth, 0);
+        setTimeout(document.getElementById("mySidenavBody").style.width = navWidth, 0);
+        setTimeout(document.getElementById("mySidenavBody").style.display = 'flex', 0);
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenavText").style.transition = 'none';
+        document.getElementById("mySidenavText").style.opacity = '0';
+        setTimeout(document.getElementById("mySidenav").style.width = "0", 0);
+        setTimeout(document.getElementById("mySidenavTop").style.width = "0", 0);
+        setTimeout(document.getElementById("mySidenavBody").style.width = "0", 0);
+        setTimeout(document.getElementById("mySidenavBody").style.display = 'none', 0);
+    }
+</script>
+
+<!-- NOUISLIDER -->
+<script src="{% static '/scripts/nouislider.min.js' %}"></script>
+<script>
+    var html5Slider = document.getElementById('slider');
+
+    noUiSlider.create(html5Slider, {
+        start: [{{ min_apartment_price }}, {{ max_apartment_price }}],
+        connect: true,
+        range: {
+            'min': {{ min_apartment_price }},
+            {#'100%': [{{ max_apartment_price }}, {{ min_apartment_price }}],#}
+            {#'50%': [10000, 1000],#}
+            'max': {{ max_apartment_price }}
+        }
+    });
+    var inputDown = document.getElementById('option__input_lower');
+    var inputUp = document.getElementById('option__input_upper');
+
+    html5Slider.noUiSlider.on('update', function (values, handle) {
+
+        var value = values[handle];
+
+        if (handle) {
+            inputUp.value = Math.round(value);
+        } else {
+            inputDown.value = Math.round(value);
+        }
+    });
+
+    inputDown.addEventListener('input', function () {
+        html5Slider.noUiSlider.set([this.value, null]);
+    });
+
+    inputUp.addEventListener('input', function () {
+        html5Slider.noUiSlider.set([null, this.value]);
+    });
+</script>
+
+<!-- BOOTSTRAP -->
+<script src="{% static '/scripts/bootstrap/bootstrap.min.js' %}"></script>
+
+<!-- 2GIS -->
+<script src="{% static '/scripts/2gis.min.js' %}"></script>
+<script type="text/javascript">
+    DG.then(function () {
+            let map = DG.map('map', {
+                center: [{{ city_longitude }}, {{ city_latitude }}],
+                zoom: {{ map_view_zoom }},
+                heigth: 'auto'
+            });
+
+            //DG.marker([54.98, 82.89], {
+            //   label: 'Я подсказка!'
+            //}).addTo(map).bindPopup(
+            //     '<center>Блядушник на пушкинской <br>' +
+            //   '<img src="{% static 'images/attraction_krasnodar_logo.jpg' %}" alt="" width="120px"></center>'
+            // );
+        }
+    );
+
+    function go_to_booking(apartment_id) {
+        window.location = `${location.protocol}//${window.location.host}/appartments/${apartment_id}/`
+    }
+</script>
+
+</html>

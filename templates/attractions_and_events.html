@@ -1,0 +1,210 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    {% load static %}
+    <!-- Обязательные метатеги -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"/>
+
+
+    <link rel="stylesheet" href="{% static 'styles/attractions_krasnodar.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/common_styles.css' %}">
+
+    <style>
+        body {
+            font-family: 'Vela Sans' !important;
+            font-size: medium;
+        }
+
+        @media (min-width: 768px) {
+            .navbar-brand.abs {
+                position: absolute;
+                width: auto;
+                left: 50%;
+                transform: translateX(-50%);
+                text-align: center;
+            }
+        }
+    </style>
+
+    <title>Достопримечательности и события</title>
+</head>
+
+<body>
+{% include "common/header.html" %}
+
+<main>
+    <div class="container navigation black">
+        <a href="/" сlass="primary">Главная</a> > Достопримечательности и события
+    </div>
+
+    <div class="container">
+        <p class="title">Достопримечательности и события</p>
+    </div>
+
+    <div class="container">
+
+        {% for attraction in attractions %}
+            {% if attraction.is_visible %}
+                {% if forloop.counter|divisibleby:2 %}
+                    <div class="row row-cols-1 row-cols-md-2 mb-5 ">
+                        <div class="col col-md-7 h-100 order-last order-md-first">
+                            <div class="container tile">
+                                <div class="address">
+                                    <p>
+                                        {% if attraction.map_link %}
+                                            <a href="{{ attraction.map_link }}">
+                                                <img src="{% static 'img/map_marker.svg' %}" alt="">
+                                                {{ attraction.city_address_name }}
+                                            </a>
+                                        {% else %}
+                                            <img src="{% static 'img/map_marker.svg' %}" alt="">
+                                            {{ attraction.city_address_name }}
+                                        {% endif %}
+                                    </p>
+                                </div>
+                                <div>
+                                    <p class="place_name">{{ attraction.title }}</p>
+                                </div>
+
+                                <div class="description">
+                                    {{ attraction.description|safe }}
+                                </div>
+
+
+                                <div class="row align-items-end">
+                                    <div class="col">
+                                        <div class="time_info">
+                                            <p><img class="clock" src="{% static 'img/clock.svg' %}"
+                                                    alt="">{{ attraction.time_start }}–{{ attraction.time_end }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col float-end text-end">
+                                        {% if attraction.attraction_cite %}
+                                            <a href="{{ attraction.attraction_cite }}">
+                                                Перейти на сайт
+                                            </a>
+                                        {% else %}
+                                            Перейти на сайт
+                                        {% endif %}
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col col-md-5 order-first order-md-last">
+                            <div class="container bg-image bg_theme"
+                                 style="background-image: url('{{ attraction.attraction_logo.url }}') !important;"></div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="row row-cols-1 row-cols-md-2 mb-5 ">
+                        <div class="col col-md-5 order-first">
+                            <div class="container bg-image bg_theme"
+                                 style="background-image: url('{{ attraction.attraction_logo.url }}') !important;"></div>
+                        </div>
+                        <div class="col col-md-7 h-100 order-last order-md-first">
+                            <div class="container tile">
+                                <div class="address">
+                                    <p>
+                                        {% if attraction.map_link %}
+                                            <a href="{{ attraction.map_link }}">
+                                                <img src="{% static 'img/map_marker.svg' %}" alt="">
+                                                {{ attraction.city_address_name }}
+                                            </a>
+                                        {% else %}
+                                            <img src="{% static 'img/map_marker.svg' %}" alt="">
+                                            {{ attraction.city_address_name }}
+                                        {% endif %}
+                                    </p>
+                                </div>
+                                <div>
+                                    <p class="place_name">{{ attraction.title }}</p>
+                                </div>
+
+                                <div class="description">
+                                    {{ attraction.description|safe }}
+                                </div>
+
+
+                                <div class="row align-items-end">
+                                    <div class="col">
+                                        <div class="time_info">
+                                            <p><img class="clock" src="{% static 'img/clock.svg' %}"
+                                                    alt="">{{ attraction.time_start }}–{{ attraction.time_end }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col float-end text-end">
+                                        {% if attraction.attraction_cite %}
+                                            <a href="{{ attraction.attraction_cite }}">
+                                                Перейти на сайт
+                                            </a>
+                                        {% else %}
+                                            Перейти на сайт
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+            {% endif %}
+        {% endfor %}
+
+
+
+
+        <div class="row mb-5">
+            <div class="col">
+
+                <div class="container final_tile">
+                    <div class="row row-cols-1 row-cols-md-2">
+                        <div class="col">
+                            <div class="ask">
+                                <p>Понравился город? Ждём вас в гости!</p>
+                                <span>Забронируйте квартиру в Краснодаре уже сейчас</span>
+                                <div class="watch_flats  mb_40 noselect">
+                                    <img src="{% static 'img/find.svg' %}" alt="">
+                                    <span>Смотреть варианты</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col" style="position: relative;">
+                            <img class="img_center" src="{% static 'img/attraction_frame.png' %}" alt="">
+
+                            <img class="pillow" src="{% static 'img/pillow_cut.png' %}" alt="">
+
+                            <img class="ellipse el_1" src="{% static 'img/ellipse/Ellipse 13.png' %}" alt="">
+                            <img class="ellipse el_2" src="{% static 'img/ellipse/Ellipse 14.png' %}" alt="">
+
+                            <img class="photo_ghost_l" src="{% static 'img/photo_ghost.png' %}" alt="">
+                            <img class="photo_ghost_r" src="{% static 'img/photo_ghost_r.png' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% include 'common/footer.html' %}
+
+
+<!-- Необязательный JavaScript; выберите один из двух! -->
+
+<!-- Вариант 1: пакет Bootstrap с Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous">
+</script>
+</body>
+
+</html>

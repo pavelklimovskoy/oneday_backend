@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Оставлена заявка на вакансию {{ vacancies_name }}</title>
+</head>
+<body>
+{#{{ message }}#}
+<div>
+    <p>С сайта <i>posutochno oneday.ru</i> была оставлена заявка на вакансию <b>{{ vacancies_name }}</b></p>
+    <br>
+    <p><i>{{ user_name }}</i> оставил заявку на вакансию {{ vacancy_title }}</p>
+    <br>
+    <p><b>Контакты кандитата на вакансию {{ vacancies_name }}</b></p>
+    <p>&emsp;Контактный телефон: <i>{{ phone }}</i></p>
+    <p>&emsp;Электронная почта: <i>{{ contact_email }}</i></p>
+    <br>
+    <p><b>Информация о вакансии:</b></p>
+    <p>&emsp;<b>Зарплата:</b> {{ vacancy_salary }}</p>
+    <p>&emsp;<b>Адрес:</b> {{ vacancy_address }}</p>
+    <p>&emsp;<b>Описание вакансии:</b> {{ vacancy_description|safe }}</p>
+</div>
+</body>
+</html>

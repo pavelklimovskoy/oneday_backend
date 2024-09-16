@@ -71,7 +71,7 @@
     margin-bottom: 60px;
 
 
-    >.available_store {
+    > .available_store {
         margin-right: 10px;
         /* width: 150px !important; */
         height: 43px;
@@ -94,6 +94,7 @@
     margin-top: 60px;
     margin-bottom: 40px;
 }
+
 @media (max-width: 768px) {
     .app_download_text {
         width: 100%;
@@ -115,6 +116,7 @@
     top: -41px;
     left: -200px;
 }
+
 @media (max-width: 768px) {
     .iphone_pic {
         visibility: hidden;
@@ -129,11 +131,13 @@
     background-color: var(--primary);
     border-radius: 10px;
 }
+
 @media (max-width: 768px) {
     .qr_section {
         visibility: hidden;
     }
-    .buttons{
+
+    .buttons {
         visibility: hidden;
     }
 }
@@ -145,10 +149,11 @@
 
     top: 30%;
     left: 50%;
-    
-    
+
+
     align-items: center;
 }
+
 @media (max-width: 768px) {
     .qr_pic_div {
         visibility: hidden;
@@ -180,8 +185,6 @@
 
     width: 96px;
 }
-
-
 
 .diff_1 {
     margin-top: 160px;

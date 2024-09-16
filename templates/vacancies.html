@@ -399,73 +399,75 @@
             <div class="col col-md-8">
 
                 {% for vac in vacancies %}
-                    <div class="container job_tile">
+                    {% if vac.is_visible %}
+                        <div class="container job_tile">
 
-                        <div class="address_line">
-                            <span>{{ vac.address }}</span>
-                        </div>
-
-                        <div class="job_title">
-                            <span>{{ vac.title }}</span>
-                        </div>
-
-                        <div class="job_salary">
-                            <span>от {{ vac.salary }}  ₽</span>
-                        </div>
-
-                        <hr>
-
-                        <div class="descroption_header">
-                            <span>Описание:</span>
-                        </div>
-
-                        <div class="description_contnent">
-                            <span> {{ vac.description }}</span>
-                        </div>
-
-                        <div class="job_duties_header">
-                            <span>Обязанности:</span>
-                        </div>
-
-                        <div class="job_duties_content">
-                            {% for res in vac.responsibilities.all %}
-                                <li>{{ res.title }}</li>
-                            {% endfor %}
-                        </div>
-
-                        <div class="row row-cols-1 row-cols-md-2 additional_line">
-                            <div class="col">
-                                <div class="additional_block_header">
-                                    Условия:
-                                </div>
-
-                                <div class="job_req_content">
-
-                                    {% for cond in vac.conditions.all %}
-                                        <p>
-                                            <span class="badge bg-light text-dark fw-bold fs-6">{{ forloop.counter }}</span>
-                                            {{ cond.title }}
-                                        </p>
-                                    {% endfor %}
-                                </div>
+                            <div class="address_line">
+                                <span>{{ vac.address }}</span>
                             </div>
 
-                            <div class="col">
-                                <div class="additional_block_header">
-                                    Требования:
+                            <div class="job_title">
+                                <span>{{ vac.title }}</span>
+                            </div>
+
+                            <div class="job_salary">
+                                <span>от {{ vac.salary }}  ₽</span>
+                            </div>
+
+                            <hr>
+
+                            <div class="descroption_header">
+                                <span>Описание:</span>
+                            </div>
+
+                            <div class="description_contnent">
+                                <span> {{ vac.description|safe }}</span>
+                            </div>
+
+                            <div class="job_duties_header">
+                                <span>Обязанности:</span>
+                            </div>
+
+                            <div class="job_duties_content">
+                                {% for res in vac.responsibilities.all %}
+                                    <li>{{ res.title }}</li>
+                                {% endfor %}
+                            </div>
+
+                            <div class="row row-cols-1 row-cols-md-2 additional_line">
+                                <div class="col">
+                                    <div class="additional_block_header">
+                                        Условия:
+                                    </div>
+
+                                    <div class="job_req_content">
+
+                                        {% for cond in vac.conditions.all %}
+                                            <p>
+                                                <span class="badge bg-light text-dark fw-bold fs-6">{{ forloop.counter }}</span>
+                                                {{ cond.title }}
+                                            </p>
+                                        {% endfor %}
+                                    </div>
                                 </div>
 
-                                <div class="job_req_content">
-                                    {% for req in vac.requirements.all %}
-                                        <p>
-                                            <span class="badge bg-light text-dark fw-bold fs-6">{{ forloop.counter }}</span>
-                                            {{ req.title }}
-                                        </p>
-                                    {% endfor %}
+                                <div class="col">
+                                    <div class="additional_block_header">
+                                        Требования:
+                                    </div>
+
+                                    <div class="job_req_content">
+                                        {% for req in vac.requirements.all %}
+                                            <p>
+                                                <span class="badge bg-light text-dark fw-bold fs-6">{{ forloop.counter }}</span>
+                                                {{ req.title }}
+                                            </p>
+                                        {% endfor %}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    {% endif %}
                 {% endfor %}
             </div>
 

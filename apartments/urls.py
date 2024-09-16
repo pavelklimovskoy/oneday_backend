@@ -1,7 +1,8 @@
 from django.urls import path
 
-from manual_pages.views import MainPageView
+from apartments.views import SearchApartmentsView, ApartmentView
 
 apartments_pages = [
-    path('', MainPageView.as_view(), name='search_apartments'),
+    path('list/', SearchApartmentsView.as_view(), name='search_page'),
+    path('<int:apartment_id>/', ApartmentView.as_view(), name='apartment_page'),
 ]

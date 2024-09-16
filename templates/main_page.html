@@ -12,14 +12,16 @@
     <link href="{% static 'styles/bootstrap/bootstrap.min.css' %}" rel="stylesheet" crossorigin="anonymous"/>
 
     <!-- DateRangePicker -->
-    <script type="text/javascript" src="{% static 'scripts/jquery.min.js'%}"></script>
-    <script type="text/javascript" src="{% static 'scripts/moment.min.js'%}"></script>
-    <script type="text/javascript" src="{% static 'scripts/daterangepicker.min.js'%}"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/daterangepicker.css'%}"/>
+    <script type="text/javascript" src="{% static 'scripts/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'scripts/moment.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'scripts/daterangepicker.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/daterangepicker.css' %}"/>
 
+        <link rel="stylesheet" href="{% static '/styles/normalize.css' %}">
+    <link rel="stylesheet" href="{% static '/styles/style.css' %}">
 
-    <link rel="stylesheet" href="{% static 'styles/common_styles.css'%}">
-    <link rel="stylesheet" href="{% static 'styles/main_page.css'%}">
+    <link rel="stylesheet" href="{% static 'styles/common_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/main_page.css' %}">
 
     <style>
         body {
@@ -113,14 +115,14 @@
                 height: 24px;
                 margin-right: 8px;
             }
+        }
 
-            :hover {
-                background-color: #076086;
-            }
+        .search_button:hover {
+            background-color: #076086;
+        }
 
-            :active {
-                background-color: #0D5676;
-            }
+        .search_button:active {
+            background-color: #0D5676;
         }
 
         @media (max-width: 768px) {
@@ -210,14 +212,7 @@
         .select__head {
             width: 100%;
             max-width: 100%;
-            /* box-shadow: 0 0 4px rgba(0, 0, 0, 0.2); */
             border-radius: 10px;
-            /* padding: 14px 15px; */
-
-            /* margin-left: 40px; */
-
-            /* padding-left: 20px; */
-            /* padding-top: 20px; */
             font-size: 14px;
             line-height: 18px;
             color: rgba(66, 67, 72, 0.8);
@@ -439,7 +434,6 @@
             height: 34px;
         }
 
-        /* Hide the checkbox input */
         .toggle input {
             display: none;
         }
@@ -457,11 +451,8 @@
             border-style: solid;
             border-color: #E8E9EF;
             border-width: 2px;
-
         }
 
-        /* Describe the white ball's location
-            and appearance in the slider. */
         .slider:before {
             position: absolute;
             top: 2px;
@@ -476,14 +467,10 @@
             border-radius: 50%;
         }
 
-        /* Modify the slider's background color to
-            green once the checkbox has been selected. */
         input:checked + .slider {
             background-color: #117399;
         }
 
-        /* When the checkbox is checked, shift the
-            white ball towards the right within the slider. */
         input:checked + .slider:before {
             transform: translateX(24px);
         }
@@ -553,7 +540,7 @@
                 </p>
             </div>
 
-            <div class="container booking_form">
+            <div class="container booking_form noselect">
                 <form class="row row-cols-1 row-cols-md-5 align-items-center search-row">
                     <div class="col form_col">
                         <div class="col-content">
@@ -571,14 +558,14 @@
                     <div class="col form_col">
                         <div class="col-content">
                             <div>Заезд</div>
-                            <input type="text" name="arrival_date" value="Дата заезда"/>
+                            <input type="text" id="arrival_date" name="arrival_date" value="Дата заезда"/>
                         </div>
                     </div>
 
                     <div class="col form_col">
                         <div class="col-content">
                             <div>Выезд</div>
-                            <input type="text" name="deportation_date" value="Дата выезда"/>
+                            <input type="text" id="deportation_date" name="deportation_date" value="Дата выезда"/>
                         </div>
                     </div>
 
@@ -637,7 +624,7 @@
                         </div>
                     </div>
 
-                    <div class="col form_col">
+                    <div class="col form_col" onclick="search_apartments()">
                         <div class="search_button">
                             <img src="{% static 'img/icon-search.svg' %}">
                             <span>Найти</span>
@@ -721,7 +708,7 @@
 
         <div class="row row-cols-1 row-cols-md-4">
             <div class="col">
-                <a href="/attractions/krasnodar/">
+                <a href="/attractions/17/">
                     <div class="attraction_card">
                         <img src="{% static 'img/atraction_krasnodar_logo.jpg' %}" alt="">
                         <p class="card_title">Краснодар</p>
@@ -734,7 +721,7 @@
 
 
             <div class="col">
-                <a href="/attractions/sochi/">
+                <a href="/attractions/27/">
                     <div class="attraction_card">
                         <img src="{% static 'img/attraction_sochi_logo.jpg' %}" alt="">
                         <p class="card_title">Сочи</p>
@@ -746,7 +733,7 @@
             </div>
 
             <div class="col">
-                <a href="/attractions/rostov/">
+                <a href="/attractions/5/">
                     <div class="attraction_card">
                         <img src="{% static 'img/attraction_rostov_logo.jpg' %}" alt="">
                         <p class="card_title">Ростов-на-Дону</p>
@@ -758,7 +745,7 @@
             </div>
 
             <div class="col">
-                <a href="/attractions/taganrog/">
+                <a href="/attractions/87/">
                     <div class="attraction_card">
                         <img src="{% static 'img/attraction_taganrog_logo.jpg' %}" alt="">
                         <p class="card_title">Таганрог</p>
@@ -843,60 +830,10 @@
 {% include "common/footer.html" %}
 
 <!-- Вариант 1: пакет Bootstrap с Popper -->
-<script src="{% static 'scripts/bootstrap_pooper/bootstrap.bundle.min.js'%}" crossorigin="anonymous">
+<script src="{% static 'scripts/bootstrap_pooper/bootstrap.bundle.min.js' %}" crossorigin="anonymous">
 </script>
 
-<script src="{% static 'scripts/main.js'%}" crossorigin="anonymous">
-</script>
-
-<script type="text/javascript">
-    $(function () {
-        $('input[name="arrival_date"]').daterangepicker({
-            autoUpdateInput: false,
-            locale: {
-                applyLabel: "Сохранить",
-                cancelLabel: 'Очистить',
-                "daysOfWeek": [
-                    "Вс",
-                    "Пн",
-                    "Вт",
-                    "Ср",
-                    "Чт",
-                    "Пт",
-                    "Сб"
-                ],
-                "monthNames": [
-                    "Январь",
-                    "Февраль",
-                    "Март",
-                    "Апрель",
-                    "Май",
-                    "Июнь",
-                    "Июль",
-                    "Август",
-                    "Сентябрь",
-                    "Октябрь",
-                    "Ноябрь",
-                    "Декабрь"
-                ],
-                firstDay: 1
-            },
-            opens: 'right' // Открытие календаря слева от поля ввода
-        });
-
-        $('input[name="arrival_date"]').on('apply.daterangepicker', function (ev, picker) {
-            $(this).val(picker.startDate.format('DD.MM.YYYY'));
-            $('input[name="deportation_date"]').val(picker.endDate.format('DD.MM.YYYY'));
-        });
-
-        $('input[name="arrival_date"]').on('click', function () {
-            $(this).data('daterangepicker').show();
-        });
-
-        $('input[name="deportation_date"]').on('click', function () {
-            $('input[name="arrival_date"]').data('daterangepicker').show();
-        });
-    });
+<script src="{% static 'scripts/main.js' %}" crossorigin="anonymous">
 </script>
 
 </body>

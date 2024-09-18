@@ -1,72 +1,216 @@
 {% load static %}
+<style>
+    .login__block {
+        background-color: var(--white);
+        width: 400px;
+        border-radius: 15px;
+        padding: 20px;
+        margin: 0 auto;
+        border: solid 2px var(--primary);
+    }
+
+    @media (min-width: 768px) {
+        .login__block-brand.abs {
+            width: 100%;
+        }
+    }
+
+    .login_button {
+        margin: 0 auto !important;
+    }
+
+    .login_header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        margin-bottom: 20px;
+        margin-top: 20px;
+
+        > p {
+            color: var(--primary);
+            font-size: 36px;
+        }
+    }
+
+    .input__label {
+        display: block;
+
+        font-size: 16px;
+        font-family: "Vela Sans";
+    }
+
+    input {
+        display: block;
+        width: 100%;
+    }
+
+    .login_container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+    }
+
+    .username__input, .password__input {
+        font-family: "Vela Sans";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 150%;
+
+        background: var(--white);
+        border-radius: 10px;
+        border: 2px solid var(--dark-grey);
+        padding: 12px 12px 12px 12px;
+        width: 100%;
+
+        :active {
+            border: 2px solid var(--primary);
+        }
+    }
+
+
+    label[for='id_username'], label[for='id_password'] {
+        margin-bottom: 4px;
+
+        font-family: "Vela Sans";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 150%;
+    }
+
+    .login__button {
+        width: 100%;
+
+        margin-top: 40px;
+
+        padding-top: 12px;
+        padding-bottom: 12px;
+
+        border-radius: 10px;
+        border: solid 2px var(--primary);
+
+        background-color: var(--white);
+
+        color: var(--primary);
+        font-weight: bold;
+    }
+
+    .login__button:hover {
+        background-color: var(--primary);
+        color: var(--white);
+    }
+</style>
 <header>
-    <nav class="navbar navbar-light navbar-expand-md bg-white">
-        <div class="container">
-            <a class="navbar-brand abs" href="{% url 'main_page' %}">
-                <img src="{% static 'img/logotip 1.png' %}" width="69px" height="48px" class="rounded float-left"/>
-            </a>
-            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse" id="collapseNavbar">
-                <ul class="navbar-nav">
-{#                    <li class="nav-item me-4">#}
-{#                        <a href="#" class="nav-link text-dark">#}
-{#                            Акции#}
-{#                        </a>#}
-{#                    </li>#}
+    <div class="header__wrap">
+        <div class="header__tabs">
+            {#            <a href="" class="header__tabs__promo">Акции</a>#}
+            <a href="/common/contacts/" class="header__tabs__contacts">Контакты</a>
+            <a href="/common/faq/" class="header__tabs__questions">Вопросы</a>
+            <a href="/common/rules/" class="header__tabs__rules">Правила проживания</a>
+        </div>
+        <a href="/">
+            <span class="header__logo"></span>
+        </a>
+        <div class="header__btns">
+            <div class="header__btns__phone">
+                <span class="header__btns__phone__number">+7 938 296-64-62</span>
+                <span class="header__btns__phone__text">Отдел бронирования</span>
+            </div>
+            <div class="header__btns__time">
+                <span class="header__btns__time__info">с 9:00 до 22:30</span>
+                <span class="header__btns__time__text">Без выходных</span>
+            </div>
+            {% if user.is_authenticated %}
+                <button class="button header__btns__login button__text secondary"
+                        onclick="location.href='/profile/edit/'">
+                    <img class="button__icon__home"/>
+                    Профиль
+                </button>
+            {% else %}
+                <button id="call_login_form_button" class="button header__btns__login button__text secondary">
+                    <img class="button__icon__home"/>
+                    Войти
+                </button>
+            {% endif %}
 
-                    <li class="nav-item me-4">
-                        <a href="{% url 'contacts' %}" class="nav-link text-dark">
-                            Контакты
-                        </a>
-                    </li>
+            <span class="header__btns__menu" onclick="openNav()"></span>
+        </div>
+    </div>
 
-                    <li class="nav-item me-4">
-                        <a href="{% url 'faq' %}" class="nav-link text-dark">Вопросы</a>
-                    </li>
-
-                    <li class="nav-item me-4">
-                        <a href="{% url 'rules' %}" class="nav-link text-dark">Правила проживания</a>
-                    </li>
-
-                    <li class="nav-item me-4">
-                        <a href="{% url 'cleaning_checklist' %}" class="nav-link text-dark">Чек-лист уборки</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ms-auto mt-3">
-                    <li class="nav-item me-5">
-                        <div class="nav-link">
-                            <p class="text-dark">
-                                <a class="text-decoration-none" href="tel:+79382966462">
-                                    <b class="text-dark">+7 938 296-64-62</b>
-                                </a>
-                                <br>
-                                Отдел бронирования
-                            </p>
-                        </div>
-                    </li>
-
-                    <li class="nav-item me-4">
-                        <div class="nav-link">
-                            <p class="text-dark">
-                                <b class="text-dark">c 9:00 до 22:30</b>
-                                <br>
-                                Без выходных
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="{% url 'edit_profile' %}">
-                            <div class="seccondary_btn home noselect">
-                                <img src="{% static 'img/home_primary.svg' %}" alt="">
-                                <span>Войти</span>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
+    <div id="mySidenav" class="side-menu">
+        <div class="side-menu-top" id="mySidenavTop">
+            <span class="side-menu-close" onClick="closeNav()"></span>
+            <span id="mySidenavText" class="side-menu-title">Меню</span>
+        </div>
+        <div class="side-menu-body" id="mySidenavBody">
+            <div class="sidenav__header__tabs">
+                {#                <a href="" id="mySidenavText" class="header__tabs__promo">Акции</a>#}
+                <a href="/common/contacts/" class="header__tabs__contacts">Контакты</a>
+                <a href="/common/faq/" class="header__tabs__questions">Вопросы</a>
+                <a href="/common/rules/" class="header__tabs__rules">Правила проживания</a>
+                {% if user.is_authenticated %}
+                    <a href="#" onclick="document.getElementById('logout-form').submit();"
+                       class="header__tabs__rules">Выход</a>
+                {% endif %}
             </div>
         </div>
-    </nav>
+    </div>
+
+    {% if user.is_authenticated %}
+        <form id="logout-form" action="/profile/logout/" method="post" style="display:none;">
+            {% csrf_token %}
+        </form>
+    {% endif %}
 </header>
+
+{% if not user.is_authenticated %}
+    <div class="container login_container" id="login_popup_form" {{ messages|yesno:",hidden" }}>
+        <div class="login__block">
+            <div class="login_header">
+                <p>Авторизация</p>
+            </div>
+
+            <form method="post" action="/profile/login/">
+                {% csrf_token %}
+                <input type="hidden" name="redirect_url" value="" id="id_redirect_url" required>
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <p>
+                    <label for="id_username">Имя пользователя</label>
+                    <input type="text" name="username" class="username__input" required="" id="id_username">
+                </p>
+                <p>
+                    <label for="id_password">Пароль</label>
+                    <input type="password" name="password" class="password__input" required="" id="id_password">
+                </p>
+                <button class="login__button" type="submit">Войти</button>
+            </form>
+        </div>
+    </div>
+{% endif %}
+
+{% if not user.is_authenticated %}
+    <script>
+        document.getElementById('call_login_form_button').addEventListener('click', function () {
+            document.getElementById('login_popup_form').hidden = false;
+        });
+
+        document.getElementById('id_redirect_url').value = window.location;
+
+        document.addEventListener('click', function (event) {
+            if (!popup.contains(event.target) && event.target !== openPopupBtn) {
+                document.getElementById('login_popup_form').hidden = false;
+            }
+        });
+    </script>
+{% endif %}
+

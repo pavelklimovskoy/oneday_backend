@@ -1,549 +1,28 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
-    <!-- Обязательные метатеги -->
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <!-- Bootstrap CSS -->
-    <link href="{% static 'styles/bootstrap/bootstrap.min.css' %}" rel="stylesheet" crossorigin="anonymous"/>
-
-    <!-- DateRangePicker -->
-    <script type="text/javascript" src="{% static 'scripts/jquery.min.js'%}"></script>
-    <script type="text/javascript" src="{% static 'scripts/moment.min.js'%}"></script>
-    <script type="text/javascript" src="{% static 'scripts/daterangepicker.min.js'%}"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/daterangepicker.css'%}"/>
-
-
-    <link rel="stylesheet" href="{% static 'styles/common_styles.css'%}">
-    <link rel="stylesheet" href="{% static 'styles/main_page.css'%}">
-
-    <style>
-        body {
-            font-family: 'Vela Sans' !important;
-            font-size: medium;
-
-            background-color: var(--dark-gray);
-        }
-
-        @media (min-width: 768px) {
-            .navbar-brand.abs {
-                position: absolute;
-                width: auto;
-                left: 50%;
-                transform: translateX(-50%);
-                text-align: center;
-            }
-        }
-
-        .booking_form {
-            /* margin: 0 auto; */
-            margin-top: 40px;
-
-            input,
-            select {
-                border: none;
-                padding-left: 0px;
-            }
-
-            .booking_control {
-                display: block;
-                width: 100%;
-            }
-
-            select {
-                padding: 0px;
-                margin: 0px;
-            }
-        }
-
-        .form_col {
-            background-color: white;
-
-            padding: 0;
-
-            align-content: center;
-            height: 88px;
-
-            > div {
-                display: block;
-
-                color: var(--Dark-Gray, #C0C1C7);
-                /* Small/Small-medium */
-                font-family: "Vela Sans";
-                font-size: 14px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: 17px;
-                /* 16.8px */
-            }
-        }
-
-        .form_col:last-child {
-            padding: 20px;
-        }
-
-        .search_button {
-            float: right;
-            background-color: #117399;
-            border-radius: 10px;
-            border-width: 0;
-
-            width: max-content;
-            padding: 12px 24px;
-
-            cursor: pointer;
-            user-select: none;
-
-            > span {
-                color: var(--White, #FFF);
-                font-kerning: none;
-                font-family: "Vela Sans";
-                font-size: 16px;
-                font-style: normal;
-                font-weight: 700;
-                line-height: 150%;
-            }
-
-            > img {
-                width: 24px;
-                height: 24px;
-                margin-right: 8px;
-            }
-
-            :hover {
-                background-color: #076086;
-            }
-
-            :active {
-                background-color: #0D5676;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .search_button {
-                width: 100%;
-                text-align: center;
-            }
-        }
-
-        .search-placeholder {
-            font-size: 16px;
-            line-height: 24px;
-            font-weight: 600;
-            font-family: "Vela Sans";
-        }
-
-        .city-dropdown-toggle {
-            color: black;
-            cursor: pointer;
-        }
-
-        .guests-dropdown-toggle {
-            color: black;
-            cursor: pointer;
-        }
-
-        .city-dropdown-item {
-            font-size: 16px;
-            line-height: 24px;
-            padding: 8px;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-
-        .city-dropdown-menu {
-            padding: 12px;
-            border-radius: 10px;
-        }
-
-        .col-content {
-            padding: 0 20px;
-        }
-
-        .form_col .dropdown-menu {
-            top: 30px !important;
-            min-width: 16.6666666%;
-            left: -20px !important;
-        }
-
-        @media (min-width: 768px) {
-            .row-cols-md-5 .form_col .dropdown-menu {
-                min-width: 16.6666666%;;
-            }
-
-
-            .form_col:first-child {
-                border-radius: 10px 0 0 10px;
-            }
-
-            .form_col:last-child {
-                border-radius: 0 10px 10px 0;
-            }
-        }
-
-        @media (max-width: 767px) {
-            .form_col .dropdown-menu {
-                width: 90%;
-            }
-
-            .form_col:first-child {
-                border-radius: 10px 10px 0 0;
-            }
-
-            .form_col:last-child {
-                border-radius: 0 0 10px 10px;
-            }
-        }
-
-        .select {
-            /* position: relative; */
-            display: block;
-            min-width: 280px;
-            width: max-content;
-            max-width: 400px;
-        }
-
-        .select__head {
-            width: 100%;
-            max-width: 100%;
-            /* box-shadow: 0 0 4px rgba(0, 0, 0, 0.2); */
-            border-radius: 10px;
-            /* padding: 14px 15px; */
-
-            /* margin-left: 40px; */
-
-            /* padding-left: 20px; */
-            /* padding-top: 20px; */
-            font-size: 14px;
-            line-height: 18px;
-            color: rgba(66, 67, 72, 0.8);
-            cursor: pointer;
-        }
-
-        .select__list {
-            background: #fff;
-            box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-            overflow-x: hidden;
-            overflow-y: auto;
-            z-index: 100;
-            margin: 0;
-            padding: 10px;
-            font-size: 14px;
-            color: #424348;
-            scrollbar-color: dark;
-            scrollbar-width: thin;
-
-            width: 280px;
-
-            margin-top: 27px;
-            margin-left: -20px;
-        }
-
-        .select__list::-webkit-scrollbar {
-            width: 7px;
-            background-color: #F8F9FA;
-            padding: 5px;
-        }
-
-        .select__list::-webkit-scrollbar-thumb {
-            border-radius: 10px;
-            background-color: #D9D9D9;
-        }
-
-        .select__list .select__item {
-            overflow-x: hidden !important;
-            overflow-y: auto !important;
-            z-index: 90 !important;
-            padding: 10px 0px 10px 15px;
-            cursor: pointer;
-        }
-
-        .select__list .select__item:hover {
-            background-color: rgba(224, 229, 231, 0.5);
-        }
-
-        .daterangepicker {
-            margin-top: 27px;
-        }
-
-        .head_div {
-            width: 763px;
-            align-items: center;
-            text-align: center;
-            margin: 0 auto;
-
-            margin-top: 100px;
-
-            > p {
-                font-size: 60px;
-                line-height: 66px;
-
-                font-family: 'Atyp Regular';
-                color: var(--primary);
-            }
-
-            > p ~ p {
-                margin-top: 20px;
-                font-size: 18px;
-                line-height: 25.2px;
-                font-family: 'Vela Sans';
-                color: var(--black);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .head_div {
-                width: 100%;
-            }
-        }
-
-        .attraction_card {
-            background-color: white;
-            border-radius: 10px;
-
-            width: 310px;
-
-            padding-bottom: 40px;
-
-            > img {
-                border-radius: 10px;
-                width: 100%;
-                height: 240px;
-            }
-
-            > .card_title {
-                color: var(--primary);
-                line-height: 120%;
-
-                font-size: 24px;
-
-                margin-top: 40px;
-                margin-left: 20px;
-            }
-
-            > .card_text {
-                color: var(--black);
-
-
-                margin-top: 16px;
-                margin-left: 20px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .attraction_card {
-                width: 100%;
-                margin-bottom: 20px;
-            }
-        }
-
-
-        .sofa_container {
-            margin-top: 66px;
-
-            background-image: url("{% static 'img/sofa.png'%}");
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center center;
-
-
-            height: 400px;
-        }
-
-        .select___item {
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-            align-items: center;
-            padding: 10px 0;
-        }
-
-        .select__item__title {
-            flex: 1;
-        }
-
-        .select__title_main {
-            overflow: hidden;
-            color: var(--Black, #061F28);
-            font-variant-numeric: lining-nums proportional-nums;
-            font-feature-settings: 'case' on;
-            text-overflow: ellipsis;
-            /* Body/B1-medium */
-            font-family: "Vela Sans";
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 500;
-            margin: 0;
-        }
-
-        .select__title_hint {
-            overflow: hidden;
-            color: var(--Dark-Gray, #C0C1C7);
-            text-overflow: ellipsis;
-            /* Small/Small-medium */
-            font-family: "Vela Sans";
-            font-size: 14px;
-            font-style: normal;
-            font-weight: 500;
-            margin: 0;
-        }
-
-        .select__item__count {
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .select__count__btn {
-            width: 32px;
-            height: 32px;
-            border-radius: 100%;
-            background: #117399;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .select__count {
-            margin: 0;
-            -webkit-appearance: none;
-            -moz-appearance: textfield;
-            width: 3rem;
-
-            text-align: center;
-        }
-
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        .divider_own {
-            margin: 0;
-        }
-
-        .toggle {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-
-        /* Hide the checkbox input */
-        .toggle input {
-            display: none;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: white;
-            transition: .4s;
-            border-radius: 34px;
-            border-style: solid;
-            border-color: #E8E9EF;
-            border-width: 2px;
-
-        }
-
-        /* Describe the white ball's location
-            and appearance in the slider. */
-        .slider:before {
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: #E8E9EF;
-            transition: .4s;
-            border-radius: 50%;
-        }
-
-        /* Modify the slider's background color to
-            green once the checkbox has been selected. */
-        input:checked + .slider {
-            background-color: #117399;
-        }
-
-        /* When the checkbox is checked, shift the
-            white ball towards the right within the slider. */
-        input:checked + .slider:before {
-            transform: translateX(24px);
-        }
-
-        .watch_flats {
-            text-align: center;
-            display: flex;
-            align-items: center;
-
-            background-color: var(--primary);
-            width: 100%;
-
-            border-radius: 10px;
-            padding: 12px 24px;
-
-            > img {
-                width: 16px;
-                height: 16px;
-                margin-right: 12px;
-            }
-
-            > span {
-                width: 100%;
-                color: var(--white);
-                font-kerning: none;
-
-                font-family: "Vela Sans";
-                font-size: 16px;
-                font-style: normal;
-                font-weight: bold;
-                line-height: 150%;
-            }
-        }
-
-        .watch_flats:hover {
-            cursor: pointer;
-            background-color: var(--hover);
-        }
-
-        .watch_flats:active {
-            cursor: pointer;
-            background-color: var(--pressed);
-        }
-
-
-        /* .first_col {
-            background-color: white;
-            border-radius: 10px, 10px, 10px, 10px !important;
-        } */
-    </style>
+    <script type="text/javascript" src="{% static 'scripts/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'scripts/moment.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'scripts/daterangepicker.min.js' %}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/daterangepicker.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static '/styles/normalize.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/common_styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/styles/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/main_page.css' %}">
 
     <title>Посуточная аренда квартир</title>
 </head>
 
 <body>
-
 {% include "common/header.html" %}
-
 <main>
-    <div class="row">
+    <div class="row" style="padding-top: 100px">
         <div class="container">
             <div class="head_div">
                 <p>Аренда квартир посуточно на юге России</p>
@@ -553,7 +32,7 @@
                 </p>
             </div>
 
-            <div class="container booking_form">
+            <div class="container booking_form noselect">
                 <form class="row row-cols-1 row-cols-md-5 align-items-center search-row">
                     <div class="col form_col">
                         <div class="col-content">
@@ -571,14 +50,14 @@
                     <div class="col form_col">
                         <div class="col-content">
                             <div>Заезд</div>
-                            <input type="text" name="arrival_date" value="Дата заезда"/>
+                            <input type="text" id="arrival_date" name="arrival_date" value="Дата заезда"/>
                         </div>
                     </div>
 
                     <div class="col form_col">
                         <div class="col-content">
                             <div>Выезд</div>
-                            <input type="text" name="deportation_date" value="Дата выезда"/>
+                            <input type="text" id="deportation_date" name="deportation_date" value="Дата выезда"/>
                         </div>
                     </div>
 
@@ -599,7 +78,7 @@
                                         <div class="select__item__count">
                                             <div class="select__count__btn" id="dec-adult-guests">-</div>
                                             <input class="select__count" type="number" name="adult-guests"
-                                                   id="adult-guests" value="1" min="1" max="10">
+                                                   id="adult-guests" value="1" min="1" max="4">
                                             <div class="select__count__btn" id="inc-adult-guests">+</div>
                                         </div>
                                     </div>
@@ -637,7 +116,7 @@
                         </div>
                     </div>
 
-                    <div class="col form_col">
+                    <div class="col form_col" onclick="search_apartments()">
                         <div class="search_button">
                             <img src="{% static 'img/icon-search.svg' %}">
                             <span>Найти</span>
@@ -721,7 +200,7 @@
 
         <div class="row row-cols-1 row-cols-md-4">
             <div class="col">
-                <a href="/attractions/krasnodar/">
+                <a href="/attractions/17/">
                     <div class="attraction_card">
                         <img src="{% static 'img/atraction_krasnodar_logo.jpg' %}" alt="">
                         <p class="card_title">Краснодар</p>
@@ -734,7 +213,7 @@
 
 
             <div class="col">
-                <a href="/attractions/sochi/">
+                <a href="/attractions/27/">
                     <div class="attraction_card">
                         <img src="{% static 'img/attraction_sochi_logo.jpg' %}" alt="">
                         <p class="card_title">Сочи</p>
@@ -746,7 +225,7 @@
             </div>
 
             <div class="col">
-                <a href="/attractions/rostov/">
+                <a href="/attractions/5/">
                     <div class="attraction_card">
                         <img src="{% static 'img/attraction_rostov_logo.jpg' %}" alt="">
                         <p class="card_title">Ростов-на-Дону</p>
@@ -758,7 +237,7 @@
             </div>
 
             <div class="col">
-                <a href="/attractions/taganrog/">
+                <a href="/attractions/87/">
                     <div class="attraction_card">
                         <img src="{% static 'img/attraction_taganrog_logo.jpg' %}" alt="">
                         <p class="card_title">Таганрог</p>
@@ -839,66 +318,13 @@
         <br>
     </div>
 </main>
-
 {% include "common/footer.html" %}
 
-<!-- Вариант 1: пакет Bootstrap с Popper -->
-<script src="{% static 'scripts/bootstrap_pooper/bootstrap.bundle.min.js'%}" crossorigin="anonymous">
+<script src="{% static 'scripts/bootstrap_pooper/bootstrap.bundle.min.js' %}">
 </script>
 
-<script src="{% static 'scripts/main.js'%}" crossorigin="anonymous">
-</script>
-
-<script type="text/javascript">
-    $(function () {
-        $('input[name="arrival_date"]').daterangepicker({
-            autoUpdateInput: false,
-            locale: {
-                applyLabel: "Сохранить",
-                cancelLabel: 'Очистить',
-                "daysOfWeek": [
-                    "Вс",
-                    "Пн",
-                    "Вт",
-                    "Ср",
-                    "Чт",
-                    "Пт",
-                    "Сб"
-                ],
-                "monthNames": [
-                    "Январь",
-                    "Февраль",
-                    "Март",
-                    "Апрель",
-                    "Май",
-                    "Июнь",
-                    "Июль",
-                    "Август",
-                    "Сентябрь",
-                    "Октябрь",
-                    "Ноябрь",
-                    "Декабрь"
-                ],
-                firstDay: 1
-            },
-            opens: 'right' // Открытие календаря слева от поля ввода
-        });
-
-        $('input[name="arrival_date"]').on('apply.daterangepicker', function (ev, picker) {
-            $(this).val(picker.startDate.format('DD.MM.YYYY'));
-            $('input[name="deportation_date"]').val(picker.endDate.format('DD.MM.YYYY'));
-        });
-
-        $('input[name="arrival_date"]').on('click', function () {
-            $(this).data('daterangepicker').show();
-        });
-
-        $('input[name="deportation_date"]').on('click', function () {
-            $('input[name="arrival_date"]').data('daterangepicker').show();
-        });
-    });
+<script src="{% static 'scripts/main.js' %}" crossorigin="anonymous">
 </script>
 
 </body>
-
 </html>

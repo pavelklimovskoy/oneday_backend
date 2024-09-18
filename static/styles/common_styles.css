@@ -1,33 +1,27 @@
-{% load static %}
-
 @import url(reset.css);
 
 @font-face {
     font-family: 'Atyp Regular';
     font-style: normal;
     font-weight: normal;
-    src: url('../fonts/atyp/AtypText-Regular.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/atyp/AtypText-Regular.eot');
     src: local('Atyp Regular'),
-         url('../fonts/atyp/AtypText-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-         url('../fonts/atyp/AtypText-Regular.woff2') format('woff2'), /* Super modern browsers */
-         url('../fonts/atyp/AtypText-Regular.woff') format('woff'), /* Modern browsers */
-         url('../fonts/atyp/AtypText-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
+    url('../fonts/atyp/AtypText-Regular.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/atyp/AtypText-Regular.woff2') format('woff2'),
+    url('../fonts/atyp/AtypText-Regular.woff') format('woff'),
+    url('../fonts/atyp/AtypText-Regular.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'Vela Sans';
     font-style: normal;
     font-weight: normal;
-    src: url('../fonts/vela_sans/VelaSans-Regular.eot'); /* IE9 Compat Modes */
     src: local('Vela Sans'),
-         url('../fonts/vela_sans/VelaSans-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-         url('/fonts/vela_sans/VelaSans-Regular.woff2') format('woff2'), /* Super modern browsers */
-         url('/assets/fonts/vela_sans/VelaSans-Regular.woff') format('woff'), /* Modern browsers */
-         url('/assets/fonts/vela_sans/VelaSans-Regular.ttf') format('truetype'), /* Safari, Android, iOS */
-         url('/assets/fonts/vela_sans/VelaSans-Regular.otf') format('opentype'); /* Older browsers */
+    url('../fonts/vela_sans/VelaSans-Regular.woff2') format('woff2'),
+    url('../fonts/vela_sans/VelaSans-Regular.woff') format('woff'),
+    url('../fonts/vela_sans/VelaSans-Regular.ttf') format('truetype'),
+    url('../fonts/vela_sans/VelaSans-Regular.otf') format('opentype');
 }
-
-
 
 :root {
     --primary: rgb(17, 115, 153);
@@ -55,7 +49,7 @@
 }
 
 .black {
-    color: var(--black)
+    color: var(--black);
 }
 
 .body_text {
@@ -63,7 +57,7 @@
 }
 
 .red {
-    color: var(--red)
+    color: var(--red);
 }
 
 .dark_grey {
@@ -96,110 +90,151 @@ h2 {
     line-height: 120%;
 }
 
-a {
+a, a:link, a:visited, a:focus, a:hover, a:active {
     color: var(--primary);
 }
 
-a:link {
-    color: var(--primary);
-}
-
-a:visited {
-    color: var(--primary);
-}
-
-a:focus {
-    color: var(--primary);
-}
-
-a:hover {
-    color: var(--primary);
-}
-
-a:active {
-    color: var(--primary);
+.available_store, .watch_flats, .seccondary_btn {
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    background-color: var(--white);
+    width: max-content;
+    padding: 12px 24px;
+    cursor: pointer;
 }
 
 .available_store {
-    border-radius: 10px;
-    border: 1px solid var(--Gray, #E8E9EF);
-    background-color: var(--white);
-
-    display: flex;
-    width: max-content;
+    border: 1px solid var(--dividers);
     padding: 8px 12px;
-    align-items: center;
+}
 
-    cursor: pointer;
+.available_store > img, .watch_flats > img, .seccondary_btn > img {
+    margin-right: 12px;
+}
 
-    >img {
-        width: 22px;
-        height: 24px;
-        margin-right: 10px;
-    }
+.available_store > img {
+    width: 22px;
+    height: 24px;
+}
 
-    >div {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
+.watch_flats > img, .seccondary_btn > img {
+    width: 24px;
+    height: 24px;
+}
 
-    >div>span,
-    >div>span~span {
-        color: var(--Black, #061F28);
-        font-family: "Vela Sans";
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
-    }
+.available_store > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
 
-    >div>span {
-        font-size: 10px;
-    }
+.available_store > div > span, .available_store > div > span ~ span {
+    color: var(--black);
+    font-family: "Vela Sans";
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
 
-    >div>span~span {
-        font-size: 14px;
-    }
+.available_store > div > span {
+    font-size: 10px;
+}
+
+.available_store > div > span ~ span {
+    font-size: 14px;
 }
 
 .watch_flats {
-    display: flex;
-    align-items: center;
-
     background-color: var(--primary);
-    width: max-content;
+}
 
-    border-radius: 10px;
-    padding: 12px 24px;
+.watch_flats > span, .seccondary_btn > span {
+    font-kerning: none;
+    font-family: "Vela Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 150%;
+}
 
-    >img {
-        width: 16px;
-        height: 16px;
-        margin-right: 12px;
-    }
+.watch_flats > span {
+    color: var(--white);
+}
 
-    >span {
-        color: var(--white);
-        font-kerning: none;
-
-        font-family: "Vela Sans";
-        font-size: 16px;
-        font-style: normal;
-        font-weight: bold;
-        line-height: 150%;
-    }
+.seccondary_btn > span {
+    color: var(--primary);
 }
 
 .watch_flats:hover {
-    cursor: pointer;
     background-color: var(--hover);
 }
 
 .watch_flats:active {
-    cursor: pointer;
     background-color: var(--pressed);
 }
 
+.seccondary_btn {
+    border: 2px solid var(--primary);
+}
+
+.seccondary_btn:hover {
+    background-color: var(--primary);
+}
+
+.seccondary_btn:hover > span {
+    color: var(--white);
+}
+
+.seccondary_btn:active {
+    background-color: var(--pressed);
+}
+
+.home:hover > img, .profile:hover > img, .favourites:hover > img {
+    content: url("../img/home_white.svg");
+}
+
+.profile:hover > img {
+    content: url("../img/profile_white.svg");
+}
+
+.favourites:hover > img {
+    content: url("../img/heart_white.png");
+}
+
+.share {
+    padding: 12px;
+}
+
+.share > img {
+    margin-right: 0;
+}
+
+.upload:hover > img {
+    color: red;
+}
+
+.upload:hover {
+    color: red;
+}
+
+.text_muted {
+    color: var(--dark-grey);
+}
+
+body::-webkit-scrollbar {
+    width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+    background: var(--dividers);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border-radius: 20px;
+    border: 3px solid var(--primary);
+}
 
 .noselect {
     -webkit-touch-callout: none;
@@ -208,100 +243,4 @@ a:active {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-}
-
-.seccondary_btn {
-    margin-top: 2px;
-
-    display: flex;
-    align-items: center;
-
-    background-color: var(--white);
-    width: max-content;
-
-    border: 2px solid var(--primary);
-
-    border-radius: 10px;
-    padding: 12px 24px;
-
-    >img {
-        width: 24px;
-        height: 24px;
-        margin-right: 12px;
-    }
-
-    >span {
-        color: var(--primary);
-        font-kerning: none;
-
-        font-family: "Vela Sans";
-        font-size: 16px;
-        font-style: normal;
-        font-weight: bold;
-        line-height: 150%;
-    }
-}
-
-.seccondary_btn:hover {
-    cursor: pointer;
-    background-color: var(--primary);
-
-    >span {
-        color: var(--white);
-    }
-}
-
-.seccondary_btn:active {
-    background-color: var(--pressed);
-}
-
-.home:hover {
-    >img {
-        content: url("/assets/img/home_white.svg");
-    }
-}
-
-.profile:hover {
-    >img {
-        content: url("/assets/img/profile_white.svg");
-    }
-}
-
-.favourites:hover {
-    >img {
-        content: url("/assets/img/heart_white.png");
-    }
-}
-
-.share {
-    padding: 12px 12px;
-
-    >img {
-        margin-right: 0px;
-    }
-}
-
-.upload:hover {
-    >img {
-        /* content: url("/assets/img/heart_white.png");
-         */
-        color: red;
-    }
-
-    color: red;
-}
-
-.text_muted {
-    color: var(--dark-grey);
-}
-body::-webkit-scrollbar {
-    width: 12px;
-}
-body::-webkit-scrollbar-track {
-    background: var(--dividers);
-}
-body::-webkit-scrollbar-thumb {
-    background-color: var(--primary);
-    border-radius: 20px;
-    border: 3px solid var(--primary);
 }

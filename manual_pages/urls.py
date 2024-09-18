@@ -1,7 +1,6 @@
 from django.urls import path
 
-from manual_pages.views import RulesView, CleaningChecklistView, MainPageView, FAQView, KrasnodarView, SochiView, \
-    RostovView, TaganrogView, ContactsView
+from manual_pages.views import RulesView, CleaningChecklistView, MainPageView, FAQView, ContactsView
 
 manual_pages = [
     path('cleaning_checklist/', CleaningChecklistView.as_view(), name='cleaning_checklist'),
@@ -12,11 +11,4 @@ manual_pages = [
 
 main_page_urlpatterns = [
     path('', MainPageView.as_view(), name='main_page'),
-]
-
-attractions_pages = [
-    path('krasnodar/', KrasnodarView.as_view(), name='krasnodar'),
-    path('rostov/', RostovView.as_view(), name='rostov'),
-    path('sochi/', SochiView.as_view(), name='sochi'),
-    path('taganrog/', TaganrogView.as_view(), name='taganrog')
 ]

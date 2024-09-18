@@ -1,536 +1,606 @@
 body {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 24px;
-  background-color: #f2f3f9;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    background-color: #f2f3f9;
 }
 
 h3 {
-  font-family: "Atyp-Regular-Variable";
-  font-size: 24px;
-  line-height: 28.8px;
+    font-family: "Atyp-Regular-Variable";
+    font-size: 24px;
+    line-height: 28.8px;
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
+
 /* хлебные крошки */
 .navigation {
-  margin-top: 60px;
-  margin-bottom: 10px;
+    margin-top: 60px;
+    margin-bottom: 10px;
 }
 
 .phone-primary {
-  display: none;
+    display: none;
 }
 
 .navigation > a {
-  text-decoration: none;
-  color: #117399;
+    text-decoration: none;
+    color: #117399;
 }
+
 /* Центральный блок */
 .white-block {
-  background-color: #fff;
-  padding: 12px;
-  border-radius: 10px;
-  margin-bottom: 20px;
+    background-color: #fff;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
 
 .apart_info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  /* background-color: #fff;
-    padding: 12px;
-    border-radius: 10px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    /* background-color: #fff;
+      padding: 12px;
+      border-radius: 10px; */
 }
 
 .favourites {
-  font-family: "VelaSans-Bold";
-  font-size: 18px;
-  line-height: 24.3px;
-  color: #061f28;
+    font-family: "VelaSans-Bold";
+    font-size: 18px;
+    line-height: 24.3px;
+    color: #061f28;
 }
 
 .apart_info > div {
-  display: flex;
+    display: flex;
 }
+
 .central_block {
-  /* background-color: rgb(179, 179, 212); */
-  height: 200px;
+    /* background-color: rgb(179, 179, 212); */
+    height: 200px;
 }
 
 .favorite_btn,
 .share_btn {
-  background-color: transparent;
-  border: 2px solid #117399;
-  border-radius: 10px;
-  height: 48px;
+    background-color: transparent;
+    border: 2px solid #117399;
+    border-radius: 10px;
+    height: 48px;
 }
 
 .favorite_btn {
-  font-family: "VelaSans-Bold";
-  font-size: 16px;
-  line-height: 24px;
-  padding: 12px 24px;
-  color: #117399;
+    font-family: "VelaSans-Bold";
+    font-size: 16px;
+    line-height: 24px;
+    padding: 12px 24px;
+    color: #117399;
 }
 
 .favorite_btn > img {
-  margin-right: 10px;
-  width: 18px;
-  height: 16px;
+    margin-right: 10px;
+    width: 18px;
+    height: 16px;
 }
+
 .share_btn {
-  width: 48px;
+    width: 48px;
 }
 
 .central_block {
-  width: 860px;
+    width: 860px;
 }
+
 /* Карусель */
 
 .carousel-img {
-  /* width: 860px; */
-  max-height: 480px;
-  min-height: 220px;
-  border-radius: 10px;
+    /* width: 860px; */
+    max-height: 480px;
+    min-height: 220px;
+    border-radius: 10px;
 }
+
 .button-left {
-  background-image: url(/frontend/assets/img/chevron-left.svg);
+    background-image: url(../img/chevron-left.svg);
 }
+
 .button-right {
-  background-image: url(/frontend/assets/img/chevron-right.svg);
+    background-image: url(../img/chevron-right.svg);
 }
+
 .button-left,
 .button-right {
-  width: 40px;
-  height: 40px;
-  border-radius: 1000px;
-  background-color: #ffffff;
+    width: 40px;
+    height: 40px;
+    border-radius: 1000px;
+    background-color: #ffffff;
 }
 
 .switching-slides {
-  padding: 15px 0;
+    padding: 15px 0;
 }
 
 .slides {
-  width: 200px;
-  height: 120px;
-  border-radius: 10px;
+    width: 200px;
+    height: 120px;
+    border-radius: 10px;
 }
 
 /* Краткая информация */
 
 .brief-information {
-  /* height: 230px; */
+    /* height: 230px; */
 }
+
 .description-apartment {
-  display: flex;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
 }
+
 .description-apartment > div {
-  display: flex;
-  font-family: "VelaSans-Medium";
-  font-size: 16px;
-  line-height: 24px;
-  background-color: #f2f3f9;
-  border-radius: 10px;
-  margin: 8px;
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
-  margin-left: 0;
-  height: 40px;
+    display: flex;
+    font-family: "VelaSans-Medium";
+    font-size: 16px;
+    line-height: 24px;
+    background-color: #f2f3f9;
+    border-radius: 10px;
+    margin: 8px;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    margin-left: 0;
+    height: 40px;
 }
 
 .description-apartment > div > img {
-  width: 24px;
-  height: 24px;
+    width: 24px;
+    height: 24px;
 }
 
 .description-apartment > div > p {
-  padding: 5px;
-  margin: 0;
+    padding: 5px;
+    margin: 0;
 }
 
 .furniture {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 .furniture > div {
-  display: flex;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 24px;
-  font-family: "VelaSans-Medium";
-  height: 80px;
-  border: 2px solid #f2f3f9;
-  border-radius: 10px;
-  margin: 2px;
-  align-items: center;
+    display: flex;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    font-family: "VelaSans-Medium";
+    height: 80px;
+    border: 2px solid #f2f3f9;
+    border-radius: 10px;
+    margin: 2px;
+    align-items: center;
 }
 
 .furniture > div > p {
-  align-items: center;
-  margin: 0;
+    align-items: center;
+    margin: 0;
 }
 
 .furniture-span {
-  font-size: 14px;
-  line-height: 16.8px;
-  color: #c0c1c7;
+    font-size: 14px;
+    line-height: 16.8px;
+    color: #c0c1c7;
 }
 
 .furniture > div > img {
-  background-color: #f2f3f9;
-  width: 48px;
-  height: 48px;
-  border-radius: 10px;
-  padding: 12px;
-  margin: 10px;
+    background-color: #f2f3f9;
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    padding: 12px;
+    margin: 10px;
 }
 
 /* Удобства квартиры */
 
 .point-conveniences {
-  display: flex;
-  padding: 10px 0;
+    display: flex;
+    padding: 10px 0;
 }
 
 .point-conveniences > p {
-  margin: 0;
-  padding-left: 10px;
-  font-family: "VelaSans-Medium";
-  font-size: 14px;
-  line-height: 16.8px;
+    margin: 0;
+    padding-left: 10px;
+    font-family: "VelaSans-Medium";
+    font-size: 14px;
+    line-height: 16.8px;
 }
 
 .open-text {
-  /* прозрачный цвет кнопки */
-  background-color: transparent;
-  border: none;
-  color: #117399;
-  font-family: "VelaSans-Medium";
-  font-size: 16px;
-  line-height: 24px;
+    /* прозрачный цвет кнопки */
+    background-color: transparent;
+    border: none;
+    color: #117399;
+    font-family: "VelaSans-Medium";
+    font-size: 16px;
+    line-height: 24px;
 }
 
 /* Правила заселения */
 
 .check-in-rules > ol {
-  counter-reset: count;
+    counter-reset: count;
 }
 
 .check-in-rules > ol li {
-  list-style-type: none;
-  position: relative;
-  padding-bottom: 10px;
-  font-family: "VelaSans-Medium";
-  font-size: 16px;
+    list-style-type: none;
+    position: relative;
+    padding-bottom: 10px;
+    font-family: "VelaSans-Medium";
+    font-size: 16px;
 }
 
 .check-in-rules > ol li:before {
-  counter-increment: count;
-  content: counter(count) " ";
-  margin-right: 0.5em;
-  display: inline-block;
-  text-align: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 5px;
-  color: #061f28;
-  background: var(--c, #f2f3f9);
+    counter-increment: count;
+    content: counter(count) " ";
+    margin-right: 0.5em;
+    display: inline-block;
+    text-align: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+    color: #061f28;
+    background: var(--c, #f2f3f9);
 }
 
 .point-li-span {
-  display: inline-block;
-  border-radius: 5px;
-  width: 24px;
-  height: 24px;
-  text-align: center;
-  background-color: #f2f3f9;
+    display: inline-block;
+    border-radius: 5px;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    background-color: #f2f3f9;
 }
 
 .point-li {
-  padding-top: 10px;
+    padding-top: 10px;
 }
 
 /* Ограничения */
 
 .limitations-list {
-  list-style-type: none;
-  padding: 0;
-  /* list-style-image: url(/frontend/assets/img/limitations.svg); */
+    list-style-type: none;
+    padding: 0;
+    /* list-style-image: url(/frontend/assets/img/limitations.svg); */
 }
 
 .limitations-list > li > img {
-  padding-right: 10px;
+    padding-right: 10px;
 }
 
 .limitations-list > li {
-  font-family: "VelaSans-Medium";
-  font-size: 16px;
-  padding: 6px;
+    font-family: "VelaSans-Medium";
+    font-size: 16px;
+    padding: 6px;
 }
 
 /* Блок с картой  */
 
 .notation-map-title {
-  font-family: "VelaSans-SemiBold";
-  font-size: 16px;
-  color: #117399;
+    font-family: "VelaSans-SemiBold";
+    font-size: 16px;
+    color: #117399;
 }
 
 .notation-map {
-  display: flex;
-  align-items: start;
+    display: flex;
+    align-items: start;
 }
 
 .font-map {
-  font-family: "VelaSans-Medium";
-  font-size: 16px;
+    font-family: "VelaSans-Medium";
+    font-size: 16px;
 }
 
 .notation-map-img {
-  padding-right: 10px;
+    padding-right: 10px;
 }
 
 .up-button {
-  display: flex;
-  background-color: transparent;
-  border: 2px solid #117399;
-  color: #117399;
-  width: 107px;
-  height: 48px;
-  border-radius: 10px;
-  font-family: "VelaSans-Bold";
-  font-size: 16px;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
+    display: flex;
+    background-color: transparent;
+    border: 2px solid #117399;
+    color: #117399;
+    width: 107px;
+    height: 48px;
+    border-radius: 10px;
+    font-family: "VelaSans-Bold";
+    font-size: 16px;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
 
 .up {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 /* Форма бронирования */
 
 .booking_form {
-  width: 420px;
-  padding: 20px;
+    width: 420px;
+    padding: 20px;
 }
 
 .booking-title {
-  font-family: "Atyp-Regular-Variable";
-  font-size: 24px;
-  line-height: 28.8px;
-  display: flex;
-  justify-content: center;
+    font-family: "Atyp-Regular-Variable";
+    font-size: 24px;
+    line-height: 28.8px;
+    display: flex;
+    justify-content: center;
 }
 
 .block-date {
-  border: 2px solid #e8e9ef;
-  border-radius: 10px;
-  max-width: 174px;
-  margin: auto;
+    border: 2px solid #e8e9ef;
+    border-radius: 10px;
+    max-width: 174px;
+    margin: auto;
 }
 
 .note {
-  color: #c0c1c7;
-  font-size: 14px;
-  line-height: 16.8px;
-  font-family: "VelaSans-Medium";
+    color: #c0c1c7;
+    font-size: 14px;
+    line-height: 16.8px;
+    font-family: "VelaSans-Medium";
 }
 
 .select-date {
-  border: none;
-  font-family: "VelaSans-Medium";
+    border: none;
+    font-family: "VelaSans-Medium";
 }
 
 .booking-title-min {
-  font-family: "VelaSans-SemiBold";
-  font-size: 18px;
-  margin: 10px 0;
+    font-family: "VelaSans-SemiBold";
+    font-size: 18px;
+    margin: 10px 0;
 }
 
 .phone,
 .name,
 .email {
-  border: 2px solid #e8e9ef;
-  border-radius: 10px;
-  height: 48px;
-  margin: 10px 0;
-  /* font-family: 'VelaSans-Medium'; */
+    border: 2px solid #e8e9ef;
+    border-radius: 10px;
+    height: 48px;
+    margin: 10px 0;
+    /* font-family: 'VelaSans-Medium'; */
 }
 
 .email {
-  width: 100%;
+    width: 100%;
 }
 
 .user-data {
-  font-family: "VelaSans-Medium";
-  font-size: 16px;
+    font-family: "VelaSans-Medium";
+    font-size: 16px;
 }
 
 .number-guests {
-  height: 32px;
-  width: 32px;
-  border-radius: 25px;
-  border-color: #e8e9ef;
-  background-color: #fff;
-  margin: 0 7px;
+    height: 32px;
+    width: 32px;
+    border-radius: 25px;
+    border-color: #e8e9ef;
+    background-color: #fff;
+    margin: 0 7px;
 }
 
 .details-guests,
 .details-children {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: "VelaSans-Medium";
-  font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "VelaSans-Medium";
+    font-size: 16px;
 }
+
 .switch {
-  border: 2px solid #c0c1c7;
-  width: 60px;
-  height: 32px;
-  border-radius: 20px;
-  padding: 2px;
+    border: 2px solid #c0c1c7;
+    width: 60px;
+    height: 32px;
+    border-radius: 20px;
+    padding: 2px;
 }
 
 .switch > input {
-  width: 24px;
-  height: 24px;
-  accent-color: #117399;
+    width: 24px;
+    height: 24px;
+    accent-color: #117399;
 }
 
 .pets {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 
 .price > p {
-  font-family: "VelaSans-Medium";
-  font-size: 14px;
-  color: #c0c1c7;
-  display: flex;
-  justify-content: space-between;
+    font-family: "VelaSans-Medium";
+    font-size: 14px;
+    color: #c0c1c7;
+    display: flex;
+    justify-content: space-between;
 }
 
 .price > p > span {
-  color: #061f28;
+    color: #061f28;
 }
 
 .prepayment {
-  font-family: "VelaSans-Medium";
-  font-size: 14px;
-  color: #c0c1c7;
+    font-family: "VelaSans-Medium";
+    font-size: 14px;
+    color: #c0c1c7;
 }
 
 .prepayment > span {
-  color: #061f28;
+    color: #061f28;
 }
 
 .agreement {
-  display: flex;
-  align-items: flex-start;
+    display: flex;
+    align-items: flex-start;
 }
 
 .agreement-label {
-  font-family: "VelaSans-Medium";
-  font-size: 14px;
-  color: #c0c1c7;
-  margin-left: 10px;
+    font-family: "VelaSans-Medium";
+    font-size: 14px;
+    color: #c0c1c7;
+    margin-left: 10px;
 }
 
 .agreement-label > span {
-  color: #117399;
+    color: #117399;
 }
 
 #total,
 #total > span {
-  color: #117399;
-  font-size: 18px;
+    color: #117399;
+    font-size: 18px;
 }
 
 .book-button {
-  width: 100%;
-  border-radius: 10px;
-  color: #ffffff;
-  background-color: #117399;
-  border: none;
-  font-family: "VelaSans-Bold";
-  font-size: 16px;
-  height: 48px;
+    width: 100%;
+    border-radius: 10px;
+    color: #ffffff;
+    background-color: #117399;
+    border: none;
+    font-family: "VelaSans-Bold";
+    font-size: 16px;
+    height: 48px;
 }
 
 .display-none {
-  display: none;
+    display: none;
 }
 
 .show-on-the-map {
-  text-decoration: none;
-  font-family: "VelaSans-SemiBold";
-  font-size: 16px;
-  color: #117399;
+    text-decoration: none;
+    font-family: "VelaSans-SemiBold";
+    font-size: 16px;
+    color: #117399;
 }
+
 .favorite_btn-two {
-  background-color: #117399;
-  border-radius: 10px;
-  border: none;
-  color: #fff;
-  font-family: "VelaSans-Bold";
-  font-size: 16px;
-  line-height: 24px;
-  padding: 12px 24px;
+    background-color: #117399;
+    border-radius: 10px;
+    border: none;
+    color: #fff;
+    font-family: "VelaSans-Bold";
+    font-size: 16px;
+    line-height: 24px;
+    padding: 12px 24px;
 }
 
 .img-heart {
-  background-color: #fff;
+    background-color: #fff;
 }
+
 .share_btn-two {
-  background-color: transparent;
-  border: 2px solid #117399;
-  border-radius: 10px;
-  height: 48px;
-  width: 48px;
+    background-color: transparent;
+    border: 2px solid #117399;
+    border-radius: 10px;
+    height: 48px;
+    width: 48px;
 }
 
 @media (max-width: 1420px) {
-  .booking_form {
-    display: none;
-  }
+    .booking_form {
+        display: none;
+    }
 
-  .switching-slides {
-    display: none;
-  }
+    .switching-slides {
+        display: none;
+    }
 
-  .display-none {
-    display: block;
-  }
+    .display-none {
+        display: block;
+    }
 }
 
 @media (max-width: 1020px) {
-  .phone-primary {
-    display: block;
-  }
+    .phone-primary {
+        display: block;
+    }
 
-  .navigation-display-none {
-    display: none;
-  }
+    .navigation-display-none {
+        display: none;
+    }
 
-  .apart_info-display-none {
-    display: none;
-  }
+    .apart_info-display-none {
+        display: none;
+    }
 
-  .point-conveniences-display-none {
-    display: none;
-  }
+    .point-conveniences-display-none {
+        display: none;
+    }
 
-  .indentation-list {
-    padding-left: 5px;
-  }
+    .indentation-list {
+        padding-left: 5px;
+    }
 }
+
+.select__count {
+    margin: 0;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    width: 3rem;
+
+    text-align: center;
+}
+
+.select__count__btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    background: #117399;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+}
+
+.toggle {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Hide the checkbox input */
+.toggle input {
+    display: none;
+}
+
+.slider:before {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #E8E9EF;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #117399;
+}
+
+input:checked + .slider:before {
+    transform: translateX(24px);
+}
+

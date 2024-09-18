@@ -1,171 +1,234 @@
 {% load static %}
-<footer>
-    <div class="container-fluid bg-white">
-        <div class="container pt-5">
-            <div class="row row-cols-1  row-cols-md-3 pb-4">
-                <div class="col">
-                    <div class="float-md-start">
-                        <img src="{% static 'img/logo.png' %}" width="60px"/>
-                    </div>
-                </div>
-
-                <div class="col">
-
-                </div>
-
-                <div class="col">
-{#                    <div class="float-md-end">#}
-{#                        <a href="#" class="nav-link px-2 link-secondary">Обучение сотрудников</a>#}
-{#                    </div>#}
-                    <div class="float-md-end">
-                        <a href="/vacancies/" class="nav-link px-2 link-secondary">Вакансии</a>
-                    </div>
-                </div>
+<footer class="footer">
+    <div class="footer__wrap">
+        <div class="footer__top">
+            <span class="footer__top__logo"></span>
+            <div class="footer__top__text">
+                <span class="footer__top__text__item">
+                    <a href="/vacancies/">Вакансии</a>
+                </span>
+{#                <span class="footer__top__text__item">#}
+{#                    Обучение сотрудников#}
+{#                </span>#}
             </div>
-
-
-            <hr class="featurette-divider">
-
-            <div class="row row-cols-1 row-cols-md-5 pt-4">
-                <div class="col mb-3">
-                    <div class="row">
-                        <p class="text-secondary">
-                            <a class="text-decoration-none" href="tel:+79382966462">
-                                <b class="text-dark">+7 938 296-64-62</b>
-                            </a>
-                            <br>
+        </div>
+        <div class="footer__mid">
+            <div class="footer__mid__contacts">
+                <div class="footer__mid__contacts__text">
+                    <div class="footer__mid__phone">
+                        <span class="footer__text__item__main">
+                            +7 938 296-64-62
+                        </span>
+                        <span class="footer__text__item__secondary">
                             Отдел бронирования
-                        </p>
+                        </span>
                     </div>
 
-                    <div class="row">
-                        <p class="text-secondary">
-                            <b class="text-dark">с 9:00 до 22:30</b>
-                            <br>
+                    <div class="footer__mid__time">
+                        <span class="footer__text__item__main">
+                            с 9:00 до 22:30
+                        </span>
+                        <span class="footer__text__item__secondary">
                             Без выходных
-                        </p>
-                    </div>
-
-                    <div class="form-inline">
-                        <a class="text-decoration-none" href="https://vk.com/" target="_blank">
-                            <img width="48" height="48" src="{% static 'img/btn.svg' %}">
-                        </a>
-
-                        <a class="text-decoration-none" href="https://web.telegram.org/a/" target="_blank">
-                            <img width="48" height="48" src="{% static 'img/telegram_btn.svg' %}">
-                        </a>
-
-                        <a class="text-decoration-none" href="https://youtube.com" target="_blank">
-                            <img width="48" height="48" src="{% static 'img/youtube_btn.svg' %}">
-                        </a>
+                        </span>
                     </div>
                 </div>
-
-                <div class="col">
-                    <h5>Навигация</h5>
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2">
-                            <a href="#" class="nav-link p-0 text-muted">О нас</a>
-                        </li>
-                        <li class="nav-item mb-2">
-                            <a href="#" class="nav-link p-0 text-muted">Контакты</a>
-                        </li>
-                        <li class="nav-item mb-2">
-                            <a href="#" class="nav-link p-0 text-muted">Вопросы</a>
-                        </li>
-                        <li class="nav-item mb-2">
-                            <a href="#" class="nav-link p-0 text-muted">Акции</a>
-                        </li>
-                        <li class="nav-item mb-2">
-                            <a href="#" class="nav-link p-0 text-muted">Правила проживания</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="col">
-                    <p class="h5 text-secondary">Города</p>
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2">
-                            <a href="#" class="nav-link p-0 fw-bold text-dark">Сочи</a>
-                        </li>
-                        <li class="nav-item mb-2">
-                            <a href="#" class="nav-link p-0 text-muted">Краснодар</a>
-                        </li>
-                        <li class="nav-item mb-2">
-                            <a href="#" class="nav-link p-0 text-muted">Ростов-на-Дону</a>
-                        </li>
-                        <li class="nav-item mb-2">
-                            <a href="#" class="nav-link p-0 text-muted">Таганрог</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="col">
-                    <div class="float-md-end">
-                        <div class="row">
-                            <a class="text-decoration-none" href="">
-                                <img class="mb-1" src="{% static 'img/GooglePlay_btn.svg'%}" width="137px" alt="">
-                            </a>
-                        </div>
-
-                        <div class="row">
-                            <a class="text-decoration-none" href="">
-                                <img class="mb-1" src="{% static 'img/AppGallery_btn.svg' %}" width="137px" alt="">
-                            </a>
-                        </div>
-
-                        <div class="row">
-                            <a class="text-decoration-none" href="">
-                                <img class="mb-1" src="{% static 'img/RuMarket_btn.svg' %}" width="137px" alt="">
-                            </a>
-                        </div>
-
-                        <div class="row">
-                            <a class="text-decoration-none" href="">
-                                <img class="mb-1" src="{% static 'img/Rustore_btn.svg' %}" width="137px" alt="">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col">
-                    <div class="float-md-end">
-                        <img src="{% static 'img/qr.png' %}" width="128px" height="128px" alt="">
-                        <p class="text-dark">
-                            Сканируйте QR-код
-                        </p>
-                    </div>
+                <div class="footer_mid__contacts__icons">
+                    <button class="button button__icon secondary">
+                        <img width="24" height="24" src="{% static '/icons/vkontakte.svg' %}">
+                    </button>
+                    <button class="button button__icon secondary">
+                        <img width="24" height="24" src="{% static '/icons/telegram.svg' %}">
+                    </button>
+                    <button class="button button__icon secondary">
+                        <img width="24" height="24" src="{% static '/icons/youtube.svg' %}">
+                    </button>
                 </div>
             </div>
-            <hr class="featurette-divider">
-
-            <!-- Сыылка на договор оферты, копирайт и политику конфиденциальности -->
-            <div class="row row-cols-1 row-cols-md-3 pt-4 pb-4">
-                <div class="col">
-                    <div class="float-md-start">
-                        <a class="text-decoration-none" href="#">
-                            <p class="text-secondary">Публичный договор оферты</p>
-                        </a>
-                    </div>
+            <div class="footer__mid__nav">
+                <div class="footer__mid__nav__title">
+                    Навигация
                 </div>
 
-                <div class="col text-md-center text-start">
-                    <a class="text-decoration-none" href="#">
-                        <p class="text-secondary">&copy 2024 Все права защищены</p>
+                <div class="footer__mid__nav__tabs">
+{#                    <a class="footer__mid__nav__tab">О нас</a>#}
+                    <a href="/common/contacts/" class="footer__mid__nav__tab">Контакты</a>
+                    <a href="/common/faq/" class="footer__mid__nav__tab">Вопросы</a>
+{#                    <a class="footer__mid__nav__tab">Акции</a>#}
+                    <a href="/common/rules/" class="footer__mid__nav__tab">Правила проживания</a>
+                </div>
+            </div>
+            <div class="footer__mid__nav">
+                <div class="footer__mid__nav__title">
+                    Города
+                </div>
+
+                <div class="footer__mid__nav__tabs">
+                    <a href="/appartments/list/?city=27"  class="footer__mid__nav__tab">Сочи</a>
+                    <a href="/appartments/list/?city=17"  class="footer__mid__nav__tab">Краснодар</a>
+                    <a href="/appartments/list/?city=5"  class="footer__mid__nav__tab">Ростов-на-Дону</a>
+                    <a href="/appartments/list/?city=87" class="footer__mid__nav__tab">Таганрог</a>
+                </div>
+            </div>
+            <div class="footer__mid__btns">
+                <div class="footer__mid__btns__download">
+                    <a class="text-decoration-none" href="">
+                        <img class="mb-1" src="{% static '/img/GooglePlay_btn.svg' %}" width="137px" alt="">
+                    </a>
+                    <a class="text-decoration-none" href="">
+                        <img class="mb-1" src="{% static '/img/AppGallery_btn.svg' %}" width="137px" alt="">
+                    </a>
+                    <a class="text-decoration-none" href="">
+                        <img class="mb-1" src="{% static '/img/RuMarket_btn.svg' %} " width="137px" alt="">
+                    </a>
+                    <a class="text-decoration-none" href="">
+                        <img class="mb-1" src="{% static '/img/Rustore_btn.svg' %}" width="137px" alt="">
                     </a>
                 </div>
-
-                <div class="col">
-                    <div class="float-md-end">
-                        <a class="text-decoration-none" href="#">
-                            <p class="text-secondary">Политика конфиденциальности</p>
-                            </p>
-                        </a>
-                    </div>
+                <div class="footer__mid__btns__qr">
+                    <img class="footer__mid__btns__qr__img" src="{% static '/img/bi_qr-code.svg' %}" alt="qr">
+                    <span class="footer__mid__btns__qr__text">Сканируйте<br> QR-код</span>
                 </div>
             </div>
-            <!---->
+        </div>
+        <div class="footer__bottom">
+            <span class="footer__bottom__text">
+                Публичный договор оферты
+            </span>
+            <span class="footer__bottom__text">
+                © 2024 Все права защищены
+            </span>
+            <span class="footer__bottom__text">
+                Политика конфидециальности
+            </span>
+        </div>
+    </div>
+
+    <div class="footer__wrap__mobile">
+        <div class="footer__top">
+            <span class="footer__top__logo"></span>
+            <div class="footer__top__text">
+                <div class="footer__mid__phone">
+                    <span class="footer__text__item__main">
+                        +7 938 296-64-62
+                    </span>
+                    <span class="footer__text__item__secondary">
+                        Отдел бронирования
+                    </span>
+                </div>
+                <div class="footer__mid__time">
+                    <span class="footer__text__item__main">
+                        с 9:00 до 22:30
+                    </span>
+                    <span class="footer__text__item__secondary">
+                        Без выходных
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="footer__mid">
+            <div class="footer__mid__contacts">
+                <div class="footer__mid__contacts__text">
+                    <div class="footer__mid__nav">
+                        <div class="footer__mid__nav__title">
+                            Навигация
+                        </div>
+
+                        <div class="footer__mid__nav__tabs">
+                            <a class="footer__mid__nav__tab">О нас</a>
+                            <a class="footer__mid__nav__tab">Контакты</a>
+                            <a href="/common/faq/" class="footer__mid__nav__tab">Вопросы</a>
+{#                            <a class="footer__mid__nav__tab">Акции</a>#}
+                            <a href="/common/rules/" class="footer__mid__nav__tab">Правила проживания</a>
+                        </div>
+                    </div>
+                    <div class="footer__mid__nav">
+                        <div class="footer__mid__nav__title">
+                            Города
+                        </div>
+
+                        <div class="footer__mid__nav__tabs">
+                            <a class="footer__mid__nav__tab">Сочи</a>
+                            <a class="footer__mid__nav__tab">Краснодар</a>
+                            <a class="footer__mid__nav__tab">Ростов-на-Дону</a>
+                            <a class="footer__mid__nav__tab">Таганрог</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer_mid__contacts__icons">
+                    <button class="button button__icon secondary">
+                        <img width="24" height="24" src="{% static '/icons/vkontakte.svg' %}">
+                    </button>
+                    <button class="button button__icon secondary">
+                        <img width="24" height="24" src="{% static '/icons/telegram.svg' %}">
+                    </button>
+                    <button class="button button__icon secondary">
+                        <img width="24" height="24" src="{% static '/icons/youtube.svg' %}">
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <div class="footer__mid__btns">
+                <div class="footer__mid__btns__download">
+                    <a class="text-decoration-none" href="">
+                        <img class="mb-1" src="{% static '/img/GooglePlay_btn.svg' %}" width="137px" alt="">
+                    </a>
+                    <a class="text-decoration-none" href="">
+                        <img class="mb-1" src="{% static '/img/AppGallery_btn.svg' %}" width="137px" alt="">
+                    </a>
+                </div>
+                <div class="footer__mid__btns__download">
+                    <a class="text-decoration-none" href="">
+                        <img class="mb-1" src="{% static '/img/RuMarket_btn.svg' %}" width="137px" alt="">
+                    </a>
+                    <a class="text-decoration-none" href="">
+                        <img class="mb-1" src="{% static '/img/Rustore_btn.svg' %}" width="137px" alt="">
+                    </a>
+                </div>
+            </div>
+            <span class="footer__bottom__text">
+                <a href="/vacancies/">Вакансии</a>
+            </span>
+            <span class="footer__bottom__text">
+                Обучение сотрудников
+            </span>
+            <span class="footer__bottom__text">
+                Публичный договор оферты
+            </span>
+            <span class="footer__bottom__text">
+                © 2024 Все права защищены
+            </span>
+            <span class="footer__bottom__text">
+                Политика конфидециальности
+            </span>
         </div>
     </div>
 </footer>
+
+
+<!-- SIDE MENU -->
+<script>
+    function openNav() {
+        let width = document.body.offsetWidth;
+        console.log(width)
+        let navWidth = "30%";
+        if (width < 480) navWidth = "100%";
+        else if (width < 780) navWidth = "50%";
+        document.getElementById("mySidenavText").style.transition = 'opacity 0.5s 0.5s ease-out';
+        document.getElementById("mySidenavText").style.opacity = '1';
+        setTimeout(document.getElementById("mySidenav").style.width = navWidth, 0);
+        setTimeout(document.getElementById("mySidenavTop").style.width = navWidth, 0);
+        setTimeout(document.getElementById("mySidenavBody").style.width = navWidth, 0);
+        setTimeout(document.getElementById("mySidenavBody").style.display = 'flex', 0);
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenavText").style.transition = 'none';
+        document.getElementById("mySidenavText").style.opacity = '0';
+        setTimeout(document.getElementById("mySidenav").style.width = "0", 0);
+        setTimeout(document.getElementById("mySidenavTop").style.width = "0", 0);
+        setTimeout(document.getElementById("mySidenavBody").style.width = "0", 0);
+        setTimeout(document.getElementById("mySidenavBody").style.display = 'none', 0);
+    }
+</script>

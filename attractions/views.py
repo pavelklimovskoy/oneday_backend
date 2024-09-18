@@ -3,6 +3,7 @@ from django.views.generic import TemplateView
 
 from apartments.models import City
 from attractions.models import Attraction
+from manual_pages.views import TemplateView
 
 
 class AttractionView(TemplateView):

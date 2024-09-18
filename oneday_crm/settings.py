@@ -26,6 +26,8 @@ DEBUG = os.environ.get('DEBUG', False)
 
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = ['https://c512-91-193-176-65.ngrok-free.app']
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -48,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -141,3 +143,5 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", None)
 REALTY_CALENDAR_CLIENT_JSON = '29f9b591c704f9a65bf43ecca4cb2093.json'
 REALTY_CALENDAR_HOST = 'https://realtycalendar.ru'
 
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

@@ -1,7 +1,6 @@
 from django.urls import path
 
-from manual_pages.views import RulesView, CleaningChecklistView, MainPageView, FAQView, KrasnodarView, SochiView, \
-    RostovView, TaganrogView, ContactsView
+from manual_pages.views import RulesView, CleaningChecklistView, MainPageView, FAQView, ContactsView
 
 manual_pages = [
     path('cleaning_checklist/', CleaningChecklistView.as_view(), name='cleaning_checklist'),

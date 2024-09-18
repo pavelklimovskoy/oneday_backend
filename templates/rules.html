@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -5,94 +6,73 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <!-- Bootstrap CSS -->
-    <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
-            crossorigin="anonymous"
-    />
+    <link rel="stylesheet" href="{% static '/styles/bootstrap/bootstrap.min.css' %}"/>
+    <link href="{% static '/styles/nouislider.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static '/styles/normalize.css' %}">
+    <link rel="stylesheet" href="{% static '/styles/style.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
-        body {
-            background-color: #F2F3F9 !important;
-            /* background-color: #e7e7e7!important; */
-        }
-
         .rules {
             border-radius: 10px;
+            padding-bottom: 10px;
         }
 
-        @media (min-width: 768px) {
-            .navbar-brand.abs {
-                position: absolute;
-                width: auto;
-                left: 50%;
-                transform: translateX(-50%);
-                text-align: center;
-            }
+        p.anchor {
+            display: block;
+            position: relative;
+            top: -250px;
+            visibility: hidden;
         }
 
-        /* .navbar-light .navbar-toggler-icon{
-            background-image: url(https://i.stack.imgur.com/mSXoO.png)!important;
-        } */
+        .rule_name {
+            color: var(--primary);
+        }
+
+        a {
+            color: var(--black);
+        }
     </style>
 
     <title>Правила проживания гостей</title>
 </head>
 <body>
 {% include "common/header.html" %}
+
 <br>
 <br>
 <br>
 
-<div class="container">
+<div class="container" style="margin-top: 117px">
     <div class="row row-cols-1 row-cols-md-2">
         <div class="col-md-4">
             <div class="container bg-white rules pb-2 mb-2">
                 <p class="h4 pt-3 text-center">Содержание</p>
                 <hr class="featurette-divider">
-                <p>Основные правила</p>
-                <p>Залог и условия возвращения</p>
-                <p>Дети и животные</p>
+                {% for rule in rules %}
+                    <p><a href="#rule_{{ forloop.counter }}">{{ rule.rules_name }}</a></p>
+                {% endfor %}
             </div>
         </div>
         <div class="col-md-8">
             <p class="h2">Правила проживания гостей</p>
             {% for rule in rules %}
                 <div class="container bg-white mt-3 rules pt-3">
-                    <p class="h4 mb-3">{{ rule.rules_name }}</p>
+                    <p class="h4 mb-3 rule_name" id="rule_{{ forloop.counter }}">{{ rule.rules_name|safe }}</p>
                     <p>
-                        {{ rule.rules_text }}
+                        {{ rule.rules_text|safe }}
                     </p>
                 </div>
             {% endfor %}
         </div>
     </div>
 </div>
-
 <br>
 <br>
-<br>
-
-
-<!-- Footer -->
 {% include 'common/footer.html' %}
-<!---->
 
-<!-- Необязательный JavaScript; выберите один из двух! -->
+<script src="{% static 'scripts/bootstrap_pooper/bootstrap.bundle.min.js' %}"></script>
 
-<!-- Вариант 1: пакет Bootstrap с Popper -->
-<script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-        crossorigin="anonymous"
-></script>
-
-<!-- Вариант 2: отдельные JS для Popper и Bootstrap -->
-<!--
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
--->
 </body>
 </html>

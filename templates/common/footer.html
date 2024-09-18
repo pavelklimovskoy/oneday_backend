@@ -5,11 +5,11 @@
             <span class="footer__top__logo"></span>
             <div class="footer__top__text">
                 <span class="footer__top__text__item">
-                    Вакансии
+                    <a href="/vacancies/">Вакансии</a>
                 </span>
-                <span class="footer__top__text__item">
-                    Обучение сотрудников
-                </span>
+{#                <span class="footer__top__text__item">#}
+{#                    Обучение сотрудников#}
+{#                </span>#}
             </div>
         </div>
         <div class="footer__mid">
@@ -51,11 +51,11 @@
                 </div>
 
                 <div class="footer__mid__nav__tabs">
-                    <a class="footer__mid__nav__tab">О нас</a>
-                    <a class="footer__mid__nav__tab">Контакты</a>
-                    <a class="footer__mid__nav__tab">Вопросы</a>
-                    <a class="footer__mid__nav__tab">Акции</a>
-                    <a class="footer__mid__nav__tab">Правила проживания</a>
+{#                    <a class="footer__mid__nav__tab">О нас</a>#}
+                    <a href="/common/contacts/" class="footer__mid__nav__tab">Контакты</a>
+                    <a href="/common/faq/" class="footer__mid__nav__tab">Вопросы</a>
+{#                    <a class="footer__mid__nav__tab">Акции</a>#}
+                    <a href="/common/rules/" class="footer__mid__nav__tab">Правила проживания</a>
                 </div>
             </div>
             <div class="footer__mid__nav">
@@ -64,10 +64,10 @@
                 </div>
 
                 <div class="footer__mid__nav__tabs">
-                    <a class="footer__mid__nav__tab">Сочи</a>
-                    <a class="footer__mid__nav__tab">Краснодар</a>
-                    <a class="footer__mid__nav__tab">Ростов-на-Дону</a>
-                    <a class="footer__mid__nav__tab">Таганрог</a>
+                    <a href="/appartments/list/?city=27"  class="footer__mid__nav__tab">Сочи</a>
+                    <a href="/appartments/list/?city=17"  class="footer__mid__nav__tab">Краснодар</a>
+                    <a href="/appartments/list/?city=5"  class="footer__mid__nav__tab">Ростов-на-Дону</a>
+                    <a href="/appartments/list/?city=87" class="footer__mid__nav__tab">Таганрог</a>
                 </div>
             </div>
             <div class="footer__mid__btns">
@@ -137,9 +137,9 @@
                         <div class="footer__mid__nav__tabs">
                             <a class="footer__mid__nav__tab">О нас</a>
                             <a class="footer__mid__nav__tab">Контакты</a>
-                            <a class="footer__mid__nav__tab">Вопросы</a>
-                            <a class="footer__mid__nav__tab">Акции</a>
-                            <a class="footer__mid__nav__tab">Правила проживания</a>
+                            <a href="/common/faq/" class="footer__mid__nav__tab">Вопросы</a>
+{#                            <a class="footer__mid__nav__tab">Акции</a>#}
+                            <a href="/common/rules/" class="footer__mid__nav__tab">Правила проживания</a>
                         </div>
                     </div>
                     <div class="footer__mid__nav">
@@ -180,15 +180,15 @@
                 </div>
                 <div class="footer__mid__btns__download">
                     <a class="text-decoration-none" href="">
-                        <img class="mb-1" src="{% static 'img/RuMarket_btn.svg' %}" width="137px" alt="">
+                        <img class="mb-1" src="{% static '/img/RuMarket_btn.svg' %}" width="137px" alt="">
                     </a>
                     <a class="text-decoration-none" href="">
-                        <img class="mb-1" src="{% static 'img/Rustore_btn.svg' %}" width="137px" alt="">
+                        <img class="mb-1" src="{% static '/img/Rustore_btn.svg' %}" width="137px" alt="">
                     </a>
                 </div>
             </div>
             <span class="footer__bottom__text">
-                Вакансии
+                <a href="/vacancies/">Вакансии</a>
             </span>
             <span class="footer__bottom__text">
                 Обучение сотрудников
@@ -205,3 +205,30 @@
         </div>
     </div>
 </footer>
+
+
+<!-- SIDE MENU -->
+<script>
+    function openNav() {
+        let width = document.body.offsetWidth;
+        console.log(width)
+        let navWidth = "30%";
+        if (width < 480) navWidth = "100%";
+        else if (width < 780) navWidth = "50%";
+        document.getElementById("mySidenavText").style.transition = 'opacity 0.5s 0.5s ease-out';
+        document.getElementById("mySidenavText").style.opacity = '1';
+        setTimeout(document.getElementById("mySidenav").style.width = navWidth, 0);
+        setTimeout(document.getElementById("mySidenavTop").style.width = navWidth, 0);
+        setTimeout(document.getElementById("mySidenavBody").style.width = navWidth, 0);
+        setTimeout(document.getElementById("mySidenavBody").style.display = 'flex', 0);
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenavText").style.transition = 'none';
+        document.getElementById("mySidenavText").style.opacity = '0';
+        setTimeout(document.getElementById("mySidenav").style.width = "0", 0);
+        setTimeout(document.getElementById("mySidenavTop").style.width = "0", 0);
+        setTimeout(document.getElementById("mySidenavBody").style.width = "0", 0);
+        setTimeout(document.getElementById("mySidenavBody").style.display = 'none', 0);
+    }
+</script>

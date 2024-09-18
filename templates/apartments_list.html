@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="{% static '/styles/style.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Поиск квартир</title>
 </head>
 {% include 'common/header.html' %}
 <body class="body">
@@ -159,10 +160,11 @@
                                 <div class="carousel-indicators">
                                     {% for photo in apartment.photos.all %}
                                         <button type="button"
-                                            data-bs-target="#carouselExampleIndicator{{ forloop.parentloop.counter }}"
-                                            data-bs-slide-to="{{ forloop.counter0 }}" class="slide-button active" aria-current="true"
-                                            aria-label="Slide {{ forloop.counter }}">
-                                    </button>
+                                                data-bs-target="#carouselExampleIndicator{{ forloop.parentloop.counter }}"
+                                                data-bs-slide-to="{{ forloop.counter0 }}" class="slide-button active"
+                                                aria-current="true"
+                                                aria-label="Slide {{ forloop.counter }}">
+                                        </button>
                                     {% endfor %}
                                 </div>
                                 <div class="carousel-inner">
@@ -193,9 +195,11 @@
                                     <span class="carousel-control-next-icon-new" aria-hidden="true"></span>
                                     <span class="visually-hidden">Next</span>
                                 </button>
-                                <div class="favorite">
-                                    <img class="icon" src="{% static '/img/heart_primary.png' %}"/>
-                                </div>
+                                {% if user.is_authenticated %}
+                                    <div class="favorite">
+                                        <img class="icon" src="{% static '/img/heart_primary.png' %}"/>
+                                    </div>
+                                {% endif %}
                             </div>
                             <div class="apartment__card__info">
                                 <div class="apartment__card__text">
@@ -205,7 +209,7 @@
                                             <span class="apartment__card__tag">Комнат: {{ apartment.rooms }}</span>
                                             <span class="apartment__card__tag">Кровати: {{ apartment.sleeps }}</span>
                                             {% if apartment.area %}
-                                            	<span class="apartment__card__tag">Площадь: 84м²</span>
+                                                <span class="apartment__card__tag">Площадь: 84м²</span>
                                             {% endif %}
                                             <span class="apartment__card__tag">Этаж: {{ apartment.floor }}</span>
 
@@ -257,33 +261,6 @@
 </section>
 </body>
 {% include 'common/footer.html' %}
-
-
-<!-- SIDE MENU -->
-<script>
-    function openNav() {
-        let width = document.body.offsetWidth;
-        console.log(width)
-        let navWidth = "30%";
-        if (width < 480) navWidth = "100%";
-        else if (width < 780) navWidth = "50%";
-        document.getElementById("mySidenavText").style.transition = 'opacity 0.5s 0.5s ease-out';
-        document.getElementById("mySidenavText").style.opacity = '1';
-        setTimeout(document.getElementById("mySidenav").style.width = navWidth, 0);
-        setTimeout(document.getElementById("mySidenavTop").style.width = navWidth, 0);
-        setTimeout(document.getElementById("mySidenavBody").style.width = navWidth, 0);
-        setTimeout(document.getElementById("mySidenavBody").style.display = 'flex', 0);
-    }
-
-    function closeNav() {
-        document.getElementById("mySidenavText").style.transition = 'none';
-        document.getElementById("mySidenavText").style.opacity = '0';
-        setTimeout(document.getElementById("mySidenav").style.width = "0", 0);
-        setTimeout(document.getElementById("mySidenavTop").style.width = "0", 0);
-        setTimeout(document.getElementById("mySidenavBody").style.width = "0", 0);
-        setTimeout(document.getElementById("mySidenavBody").style.display = 'none', 0);
-    }
-</script>
 
 <!-- NOUISLIDER -->
 <script src="{% static '/scripts/nouislider.min.js' %}"></script>

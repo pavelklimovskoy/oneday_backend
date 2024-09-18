@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <script type="text/javascript" src="{% static 'scripts/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'scripts/moment.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'scripts/daterangepicker.min.js' %}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap/bootstrap.min.css' %}"/>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/common_styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/styles/style.css' %}">
+
+    <style>
+        .login__block {
+            background-color: var(--white);
+            width: 400px;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .login__block-brand.abs {
+                width: 100%;
+            }
+        }
+
+        .login_button {
+            margin: 0 auto !important;
+        }
+
+        .login_header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            margin-bottom: 20px;
+            margin-top: 20px;
+
+            > p {
+                color: var(--primary);
+                font-size: 36px;
+            }
+        }
+
+        .input__label {
+            display: block;
+
+            font-size: 16px;
+            font-family: "Vela Sans";
+        }
+
+        input {
+            display: block;
+            width: 100%;
+        }
+
+        .login_container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+        }
+
+        .username__input, .password__input {
+            font-family: "Vela Sans";
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 150%;
+
+            background: var(--white);
+            border-radius: 10px;
+            border: 2px solid var(--dark-grey);
+            padding: 12px 12px 12px 12px;
+            width: 100%;
+
+            :active {
+                border: 2px solid var(--primary);
+            }
+        }
+
+
+        label[for='id_username'], label[for='id_password'] {
+            margin-bottom: 4px;
+
+            font-family: "Vela Sans";
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 150%;
+        }
+
+        .login__button {
+            width: 100%;
+
+            margin-top: 40px;
+
+            padding-top: 12px;
+            padding-bottom: 12px;
+
+            border-radius: 10px;
+            border: solid 2px var(--primary);
+
+            background-color: var(--white);
+
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .login__button:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+    </style>
+
+    <title>Посуточная аренда квартир</title>
+</head>
+
+<body>
+{% include "common/header.html" %}
+<main>
+    <div class="container login_container">
+        <div class="login__block">
+            <div class="login_header">
+                <p>Авторизация</p>
+            </div>
+
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="login__button" type="submit">Войти</button>
+            </form>
+        </div>
+    </div>
+</main>
+{% include "common/footer.html" %}
+
+<script src="{% static 'scripts/bootstrap_pooper/bootstrap.bundle.min.js' %}">
+</script>
+
+<script src="{% static 'scripts/main.js' %}" crossorigin="anonymous">
+</script>
+
+</body>
+</html>

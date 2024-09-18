@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Оставлена заявка на вакансию {{ vacancies_name }}</title>
 </head>
 <body>
-{#{{ message }}#}
+
 <div>
     <p>С сайта <i>posutochno oneday.ru</i> была оставлена заявка на вакансию <b>{{ vacancies_name }}</b></p>
     <br>
@@ -20,5 +20,6 @@
     <p>&emsp;<b>Адрес:</b> {{ vacancy_address }}</p>
     <p>&emsp;<b>Описание вакансии:</b> {{ vacancy_description|safe }}</p>
 </div>
+
 </body>
 </html>

@@ -2,11 +2,14 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
+from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
+from django.views.decorators.csrf import csrf_exempt
 
 from vacancies.models import Vacancy
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class VacanciesView(TemplateView):
     template_name = "vacancies.html"
 

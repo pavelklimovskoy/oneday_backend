@@ -4,6 +4,15 @@ from django.views.generic import TemplateView
 
 from apartments.models import Apartment, City
 from apartments.uttils import RealtyCalendar
+from manual_pages.views import TemplateView
+
+
+def get_min_price_from_apartments() -> int:
+    return Apartment.objects.order_by('price').first().price
+
+
+def get_max_price_from_apartments() -> int:
+    return Apartment.objects.order_by('-price').first().price
 
 
 def get_min_apartments_price_for_city(city_id: str) -> int:
@@ -25,6 +34,12 @@ class SearchApartmentsView(TemplateView):
         # RealtyCalendar.download_apartments_info()
 
         city_id = self.request.GET.get('city', 'undefined')
+        if city_id == 'undefined':
+            context["apartments"] = Apartment.objects.all()
+            context['min_apartment_price'] = get_min_price_from_apartments()
+            context['max_apartment_price'] = get_max_price_from_apartments()
+            return context
+
         city = get_object_or_404(City, pk=city_id)
 
         context["apartments"] = Apartment.objects.filter(city=city)

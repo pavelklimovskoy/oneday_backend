@@ -64,7 +64,6 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            z-index: 1000;
         }
 
         .username__input, .password__input {
@@ -123,7 +122,68 @@
 </head>
 
 <body>
-{% include "common/header.html" %}
+<header>
+    <div class="header__wrap">
+        <div class="header__tabs">
+            {#            <a href="" class="header__tabs__promo">Акции</a>#}
+            <a href="/common/contacts/" class="header__tabs__contacts">Контакты</a>
+            <a href="/common/faq/" class="header__tabs__questions">Вопросы</a>
+            <a href="/common/rules/" class="header__tabs__rules">Правила проживания</a>
+        </div>
+        <a href="/">
+            <span class="header__logo"></span>
+        </a>
+        <div class="header__btns">
+            <div class="header__btns__phone">
+                <span class="header__btns__phone__number">+7 938 296-64-62</span>
+                <span class="header__btns__phone__text">Отдел бронирования</span>
+            </div>
+            <div class="header__btns__time">
+                <span class="header__btns__time__info">с 9:00 до 22:30</span>
+                <span class="header__btns__time__text">Без выходных</span>
+            </div>
+            {% if user.is_authenticated %}
+                <button class="button header__btns__login button__text secondary"
+                        onclick="location.href='/profile/edit/'">
+                    <img class="button__icon__home"/>
+                    Профиль
+                </button>
+            {% else %}
+                <button id="call_login_form_button" class="button header__btns__login button__text secondary">
+                    <img class="button__icon__home"/>
+                    Войти
+                </button>
+            {% endif %}
+
+            <span class="header__btns__menu" onclick="openNav()"></span>
+        </div>
+    </div>
+
+    <div id="mySidenav" class="side-menu">
+        <div class="side-menu-top" id="mySidenavTop">
+            <span class="side-menu-close" onClick="closeNav()"></span>
+            <span id="mySidenavText" class="side-menu-title">Меню</span>
+        </div>
+        <div class="side-menu-body" id="mySidenavBody">
+            <div class="sidenav__header__tabs">
+                {#                <a href="" id="mySidenavText" class="header__tabs__promo">Акции</a>#}
+                <a href="/common/contacts/" class="header__tabs__contacts">Контакты</a>
+                <a href="/common/faq/" class="header__tabs__questions">Вопросы</a>
+                <a href="/common/rules/" class="header__tabs__rules">Правила проживания</a>
+                {% if user.is_authenticated %}
+                    <a href="#" onclick="document.getElementById('logout-form').submit();"
+                       class="header__tabs__rules">Выход</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% if user.is_authenticated %}
+        <form id="logout-form" action="/profile/logout/" method="post" style="display:none;">
+            {% csrf_token %}
+        </form>
+    {% endif %}
+</header>
 <main>
     <div class="container login_container">
         <div class="login__block">
@@ -133,12 +193,50 @@
 
             <form method="post">
                 {% csrf_token %}
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
                 {{ form.as_p }}
                 <button class="login__button" type="submit">Войти</button>
             </form>
         </div>
     </div>
 </main>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 {% include "common/footer.html" %}
 
 <script src="{% static 'scripts/bootstrap_pooper/bootstrap.bundle.min.js' %}">
@@ -146,6 +244,12 @@
 
 <script src="{% static 'scripts/main.js' %}" crossorigin="anonymous">
 </script>
+
+{% if not user.is_authenticated %}
+    <script>
+        document.getElementById('id_redirect_url').value = window.location;
+    </script>
+{% endif %}
 
 </body>
 </html>

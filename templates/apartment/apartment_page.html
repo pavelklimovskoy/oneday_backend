@@ -3,7 +3,7 @@
 <html lang="ru">
 <head>
     <link rel="stylesheet" href="{% static 'styles/nice-select2.css' %}">
-    <link rel="stylesheet" href="{% static 'styles/bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap/bootstrap.min.css' %}"/>
     <link rel="stylesheet" href="{% static 'styles/normalize.css' %}">
     <link rel="stylesheet" href="{% static 'styles/apartment_page_main_style.css' %}">
     <meta charset="UTF-8">
@@ -23,7 +23,7 @@
                     <div class="apart__header__name">
                         <span class="apart__header__name__icon"></span>
                         <span class="apart__header__name__text header__2">
-                                {{ apartment.address }}
+                                {{ apartment.city.title }}, {{ apartment.address }}
                             </span>
                     </div>
                     <div class="apart__header__btns">
@@ -31,13 +31,28 @@
                             Забронировать
                         </button>
 
-                        <button class="button button__icon secondary apart__header__btns__share">
-                            <img width="24px" src="{% static 'img/heart_primary.png' %}"/>
-                        </button>
+                        {% if user.is_authenticated %}
+                            {% if apartment in user.favorites_apartments.all %}
+                                <button class="button header__btns__login button__text secondary"
+                                        onclick="location.href='/profile/favorites/'">
+                                    Квартира в избранных
+                                </button>
+                            {% else %}
+                                <a href="add_to_favorite/">
+                                    <button class="button button__icon secondary apart__header__btns__share">
+                                        <img width="24px" src="{% static 'img/heart_primary.png' %}"/>
+                                    </button>
+                                </a>
+                            {% endif %}
+                        {% endif %}
 
-                        <button class="button button__icon secondary apart__header__btns__share">
-                            <img width="24px" src="{% static 'icons/share-fill.png' %}"/>
-                        </button>
+                        <a id="whatsapp_share" href=""
+                           data-action="share/whatsapp/share">
+                            <button class="button button__icon secondary apart__header__btns__share">
+                                <img width="24px" src="{% static 'icons/share-fill.png' %}"/>
+                            </button>
+                        </a>
+
 
                     </div>
                 </div>
@@ -110,79 +125,59 @@
                     <div class="apart__short__info__tips">
                         <div class="apart__short__info__tip">
                             <img src="{% static 'icons/room.svg' %}" alt="...">
-                            <span class="title__medium">Комнат: 2</span>
+                            <span class="title__medium">Комнат: {{ apartment.rooms }}</span>
                         </div>
                         <div class="apart__short__info__tip">
                             <img src="{% static 'icons/bed.svg' %}" alt="...">
-                            <span class="title__medium">Спальных мест: 2+2</span>
+                            <span class="title__medium">Спальных мест: {{ apartment.sleeps }}</span>
                         </div>
                         <div class="apart__short__info__tip">
                             <img src="{% static 'icons/floor.svg' %}" alt="...">
-                            <span class="title__medium">Этаж: 26</span>
+                            <span class="title__medium">Этаж: {{ apartment.floor }}</span>
                         </div>
-                        <div class="apart__short__info__tip">
-                            <img src="{% static 'icons/ruler.svg' %}" alt="...">
-                            <span class="title__medium">Площадь: 84м²</span>
-                        </div>
+                        {% if apartment.area %}
+                            <div class="apart__short__info__tip">
+                                <img src="{% static 'icons/ruler.svg' %}" alt="...">
+                                <span class="title__medium">Площадь: {{ apartment.area }}м²</span>
+                            </div>
+                        {% endif %}
                     </div>
                     <div class="apart__short__info__cards">
-                        <div class="apart__short__info__card">
-                                    <span class="apart__short__info__card__img">
-                                        <img src="{% static 'icons/bed.svg' %}" alt="...">
-                                    </span>
-                            <div class="apart__short__info__card__text">
-                                <span class="title__medium">Кровать</span>
-                                <span class="title__light">Двуспальная</span>
-                            </div>
-                        </div>
-                        <div class="apart__short__info__card">
-                                    <span class="apart__short__info__card__img">
-                                        <img src="{% static 'icons/bed.svg' %}" alt="...">
-                                    </span>
-                            <div class="apart__short__info__card__text">
-                                <span class="title__medium">Кровать</span>
-                                <span class="title__light">Односпальная</span>
-                            </div>
-                        </div>
-                        <div class="apart__short__info__card">
+                        {% for sleep_type in sleep_types %}
+                            {% if sleep_type == 1 %}
+                                <div class="apart__short__info__card">
                                     <span class="apart__short__info__card__img">
                                         <img src="{% static 'icons/sofa.svg' %}" alt="...">
                                     </span>
-                            <div class="apart__short__info__card__text">
-                                <span class="title__medium">Диван</span>
-                                <span class="title__light">Односпальный</span>
-                            </div>
-                        </div>
+                                    <div class="apart__short__info__card__text">
+                                        <span class="title__medium">Диван</span>
+                                        <span class="title__light">Односпальный</span>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="apart__short__info__card">
+                                    <span class="apart__short__info__card__img">
+                                        <img src="{% static 'icons/bed.svg' %}" alt="...">
+                                    </span>
+                                    <div class="apart__short__info__card__text">
+                                        <span class="title__medium">Кровать</span>
+                                        <span class="title__light">Двуспальная</span>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
 
                 <div class="apart__comforts main__block__element">
                     <span class="subtitle__1">Удобства в квартире</span>
                     <div class="apart__comforts__cards">
-                        <div class="apart__comforts__card">
-                            <img src="{% static 'icons/Wi-Fi.svg' %}" alt="...">
-                            <span class="title__medium">Интернет Wi-Fi</span>
-                        </div>
-                        <div class="apart__comforts__card">
-                            <img src="{% static 'icons/Condicioner.svg' %}" alt="...">
-                            <span class="title__medium">Кондиционер</span>
-                        </div>
-                        <div class="apart__comforts__card">
-                            <img src="{% static 'icons/child.svg' %}" alt="...">
-                            <span class="title__medium">Можно с детьми</span>
-                        </div>
-                        <div class="apart__comforts__card">
-                            <img src="{% static 'icons/Wi-Fi.svg' %}" alt="...">
-                            <span class="title__medium">Интернет Wi-Fi</span>
-                        </div>
-                        <div class="apart__comforts__card">
-                            <img src="{% static 'icons/Wi-Fi.svg' %}" alt="...">
-                            <span class="title__medium">Интернет Wi-Fi</span>
-                        </div>
-                        <div class="apart__comforts__card">
-                            <img src="{% static 'icons/Wi-Fi.svg' %}" alt="...">
-                            <span class="title__medium">Интернет Wi-Fi</span>
-                        </div>
+                        {% for service in apartment.services.all %}
+                            <div class="apart__comforts__card">
+                                <img src="{% static 'icons/'|add:service.service_name|add:'.svg' %}" width="24px" height="24px" alt="...">
+                                <span class="title__medium">{{ service.service_title }}</span>
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
 
@@ -260,6 +255,14 @@
                     </div>
                 </div>
 
+                <div class="apart__rules main__block__element">
+                    <span class="subtitle__1">Описание</span>
+                    <div>
+                        {{ description|safe }}
+                    </div>
+                </div>
+
+
                 <div class="apart__restrictions main__block__element">
                             <span class="subtitle__1">
                                 Ограничения
@@ -286,57 +289,58 @@
                     </div>
                 </div>
 
-                <div class="aparts__places main__block__element">
-                            <span class="subtitle__1">
-                                Места поблизости
-                            </span>
+                {#                <div class="aparts__places main__block__element">#}
+                {#                            <span class="subtitle__1">#}
+                {#                                Места поблизости#}
+                {#                            </span>#}
+                {##}
+                {#                    <div class="aparts__places__nearby">#}
+                {#                        <div class="aparts__places__header">#}
+                {#                            <img src="{% static 'icons/nearby.svg' %}" alt="">#}
+                {#                            <span class="aparts__places__header__text">#}
+                {#                                        Рядом с домом#}
+                {#                                    </span>#}
+                {#                        </div>#}
+                {#                        <ul class="aparts__places__grid">#}
+                {#                            <li class="aparts__places__grid__item text__medium">#}
+                {#                                Зона с мангалом и беседкой для барбекю за домом#}
+                {#                            </li>#}
+                {#                            <li class="aparts__places__grid__item text__medium">#}
+                {#                                Краевая Клиническая Больница#}
+                {#                            </li>#}
+                {#                            <li class="aparts__places__grid__item text__medium">#}
+                {#                                Центр грудной хирургии#}
+                {#                            </li>#}
+                {#                            <li class="aparts__places__grid__item text__medium">#}
+                {#                                Магазин «Магнит»#}
+                {#                            </li>#}
+                {#                        </ul>#}
+                {#                    </div>#}
+                {##}
+                {#                    <div class="aparts__places__landmark">#}
+                {#                        <div class="aparts__places__header">#}
+                {#                            <img src="{% static 'icons/landmark.svg' %}" alt="">#}
+                {#                            <span class="aparts__places__header__text">#}
+                {#                                        Места отдыха#}
+                {#                                    </span>#}
+                {#                        </div>#}
+                {#                        <ul class="aparts__places__grid">#}
+                {#                            <li class="aparts__places__grid__item text__medium">#}
+                {#                                Зона с мангалом и беседкой для барбекю за домом#}
+                {#                            </li>#}
+                {#                            <li class="aparts__places__grid__item text__medium">#}
+                {#                                Краевая Клиническая Больница#}
+                {#                            </li>#}
+                {#                            <li class="aparts__places__grid__item text__medium">#}
+                {#                                Центр грудной хирургии#}
+                {#                            </li>#}
+                {#                            <li class="aparts__places__grid__item text__medium">#}
+                {#                                Магазин «Магнит»#}
+                {#                            </li>#}
+                {#                        </ul>#}
+                {#                    </div>#}
+                {#                </div>#}
 
-                    <div class="aparts__places__nearby">
-                        <div class="aparts__places__header">
-                            <img src="{% static 'icons/nearby.svg' %}" alt="">
-                            <span class="aparts__places__header__text">
-                                        Рядом с домом
-                                    </span>
-                        </div>
-                        <ul class="aparts__places__grid">
-                            <li class="aparts__places__grid__item text__medium">
-                                Зона с мангалом и беседкой для барбекю за домом
-                            </li>
-                            <li class="aparts__places__grid__item text__medium">
-                                Краевая Клиническая Больница
-                            </li>
-                            <li class="aparts__places__grid__item text__medium">
-                                Центр грудной хирургии
-                            </li>
-                            <li class="aparts__places__grid__item text__medium">
-                                Магазин «Магнит»
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="aparts__places__landmark">
-                        <div class="aparts__places__header">
-                            <img src="{% static 'icons/landmark.svg' %}" alt="">
-                            <span class="aparts__places__header__text">
-                                        Места отдыха
-                                    </span>
-                        </div>
-                        <ul class="aparts__places__grid">
-                            <li class="aparts__places__grid__item text__medium">
-                                Зона с мангалом и беседкой для барбекю за домом
-                            </li>
-                            <li class="aparts__places__grid__item text__medium">
-                                Краевая Клиническая Больница
-                            </li>
-                            <li class="aparts__places__grid__item text__medium">
-                                Центр грудной хирургии
-                            </li>
-                            <li class="aparts__places__grid__item text__medium">
-                                Магазин «Магнит»
-                            </li>
-                        </ul>
-                    </div>
-                </div>
                 <div class="apart__button__up">
                     <button class="button button__text secondary" id="button__up">Наверх</button>
                 </div>
@@ -351,9 +355,8 @@
                                 <span class="title__light">
                                     Заезд
                                 </span>
-                            <span class="title__medium">
-                                    Выберите дату
-                                </span>
+                            <span class="title__medium">Выберите дату</span>
+                            <input type="date">
                         </div>
                         <div class="form__time">
                             <select class="selectize">
@@ -376,9 +379,8 @@
                                 <span class="title__light">
                                     Выезд
                                 </span>
-                            <span class="title__medium">
-                                    Выберите дату
-                                </span>
+                            <span class="title__medium">Выберите дату</span>
+                            <input type="date">
                         </div>
                         <div class="form__time">
                             <select class="selectize">
@@ -406,8 +408,10 @@
                                     Имя
                                 </span>
                             <input
-                                    placeholder='Сергей'
-                                    class="form__personal__data__contacts__name__input">
+                                    placeholder='Ваше имя'
+                                    class="form__personal__data__contacts__name__input"
+                                    value="{{ user.first_name }}"
+                            >
                         </div>
 
                         <div class="form__personal__data__contacts__phone">
@@ -416,7 +420,9 @@
                                 </span>
                             <input
                                     placeholder='+7'
-                                    class="form__personal__data__contacts__phone__input">
+                                    class="form__personal__data__contacts__phone__input"
+                                    value="{{ user.phone_number }}"
+                            >
                         </div>
                     </div>
 
@@ -425,7 +431,10 @@
                                 Электронная почта
                             </span>
                         <input
-                                placeholder='name@gmail.com' class="form__personal__data__email__input">
+                                placeholder='name@gmail.com'
+                                class="form__personal__data__email__input"
+                                value="{{ user.email }}"
+                        >
                     </div>
                 </div>
 
@@ -494,6 +503,8 @@
                             </div>
                         </div>
                     </div>
+                    
+                    
 
                     <div class="form__details__additional">
                             <span class="form__details__additional__header header__2">
@@ -501,92 +512,94 @@
                             </span>
                     </div>
                     <div class="form__details__additional__select">
-                            <span class="form__details__additional__select_title title__medium">
-                                Откуда узнали о нас?
-                            </span>
-                        <div class="form__details__additional__select_wrap">
-                            <select id="selectize-placeholder">
-                                <option value="1">Интернет</option>
-                                <option value="2">Соцсети</option>
-                            </select>
-                        </div>
-                    </div>
+                        {#                        # TODO: пока не нужная фича#}
+                        {#                            <span class="form__details__additional__select_title title__medium">#}
+                        {#                                Откуда узнали о нас?#}
+                        {#                            </span>#}
+                        {#                        <div class="form__details__additional__select_wrap">#}
+                        {#                            <select id="selectize-placeholder">#}
+                        {#                                <option value="1">Интернет</option>#}
+                        {#                                <option value="2">Соцсети</option>#}
+                        {#                            </select>#}
+                        {#                        </div>#}
+                        {#                    </div>#}
 
-                    <div class="form__details__additional__input">
+                        <div class="form__details__additional__input">
                             <span class="form__details__additional__input_title title__medium">
                                 Ваши пожелания
                             </span>
-                        <input class="form__details__additional__input_textarea"
-                               placeholder='Оставьте свои пожелания'></input>
+                            <input class="form__details__additional__input_textarea"
+                                   placeholder='Оставьте свои пожелания'></input>
+                        </div>
+
+                        {#                        # TODO: Пока без промокодов#}
+                        {#                    <div class="form__details__additional__promo">#}
+                        {#                            <span class="form__details__additional__promo_title title__medium">#}
+                        {#                                Промокод#}
+                        {#                            </span>#}
+                        {#                        <input class="form__details__additional__promo_input" placeholder='Введите промокод'></input>#}
+                        {#                    </div>#}
                     </div>
 
-                    <div class="form__details__additional__promo">
-                            <span class="form__details__additional__promo_title title__medium">
-                                Промокод
-                            </span>
-                        <input class="form__details__additional__promo_input" placeholder='Введите промокод'></input>
-                    </div>
-                </div>
-
-                <div class="form__payment">
-                    <div class="form__payment__details">
-                        <div class="form__payment__details__block">
+                    <div class="form__payment">
+                        <div class="form__payment__details">
+                            <div class="form__payment__details__block">
                                 <span class="form__payment__details__text title__light">
                                     Предоплата
                                 </span>
-                            <span class="form__payment__details__value title__medium number__small">
+                                <span class="form__payment__details__value title__medium number__small">
                                     450 ₽
                                 </span>
-                        </div>
-                        <div class="form__payment__details__block">
+                            </div>
+                            <div class="form__payment__details__block">
                                 <span class="form__payment__details__text title__light">
                                     Гости
                                 </span>
-                            <span class="form__payment__details__value title__medium number__small">
+                                <span class="form__payment__details__value title__medium number__small">
                                     400 ₽
                                 </span>
-                        </div>
-                        <div class="form__payment__details__block">
+                            </div>
+                            <div class="form__payment__details__block">
                                 <span class="form__payment__details__text title__light">
                                     Скидка
                                 </span>
-                            <span class="form__payment__details__value title__medium number__small">
+                                <span class="form__payment__details__value title__medium number__small">
                                     -100 ₽
                                 </span>
-                        </div>
-                        <div class="form__payment__details__block">
+                            </div>
+                            <div class="form__payment__details__block">
                                 <span class="form__payment__details__text header__2 color__primary">
                                     Итого:
                                 </span>
-                            <span class="form__payment__details__value title__medium number__large">
+                                <span class="form__payment__details__value title__medium number__large">
                                     4500 ₽
                                 </span>
+                            </div>
                         </div>
-                    </div>
 
-                    <button class="button form__payment__button button__primary" type="submit">
-                        Забронировать
-                    </button>
+                        <button class="button form__payment__button button__primary" type="submit">
+                            Забронировать
+                        </button>
 
-                    <span class="form__payment__text title__light">
+                        <span class="form__payment__text title__light">
                             Чтобы забронировать объект, нужно внести предоплату <span class='form__payment__text__bold'>450 ₽.</span> Оставшуюся сумму вы оплатите при заселении.
                         </span>
-                </div>
+                    </div>
 
-                <div class="form__checkbox">
-                    <label class="input__checkbox__container">
+                    <div class="form__checkbox">
+                        <label class="input__checkbox__container">
                         <span class="input__checkbox__text title__light">Я согласен(-а) с условиями  <a href=""
                                                                                                         class="input__checkbox__link">пользовательского соглашения</a> и <a
                                 href="" class="input__checkbox__link">оферты</a></span>
-                        <input type="checkbox" class="input__checkbox" checked="checked">
-                        <span class="checkmark"></span>
-                    </label>
+                            <input type="checkbox" class="input__checkbox" checked="checked">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+
+
                 </div>
-
-
             </div>
         </div>
-    </div>
 </section>
 </body>
 {% include 'common/footer.html' %}
@@ -675,6 +688,15 @@
 </script>
 
 <script>
+
+    const whatsapp_share_text = `whatsapp://send?text=${encodeURIComponent(`Посмотри какая красивая квартира!😍😍😍
+
+${window.location.href}
+
+Я нашёл её на posutochno oneday`)}`;
+
+    document.getElementById('whatsapp_share').href = whatsapp_share_text;
+
     document.getElementById('button__book').addEventListener('click', function () {
         const targetElement = document.getElementById('booking');
         const elementPosition = targetElement.getBoundingClientRect().top - window.pageYOffset;

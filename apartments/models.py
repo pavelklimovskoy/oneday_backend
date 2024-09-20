@@ -54,7 +54,7 @@ class Apartment(models.Model):
 
     city = models.ForeignKey(City, on_delete=models.DO_NOTHING)
 
-    services = models.ManyToManyField(ApartmentService)
+    services = models.ManyToManyField(ApartmentService, related_name='services')
 
     map_longitude = models.FloatField(null=True, blank=True, default=None)
     map_latitude = models.FloatField(null=True, blank=True, default=None)

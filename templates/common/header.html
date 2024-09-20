@@ -148,6 +148,9 @@
         </div>
         <div class="side-menu-body" id="mySidenavBody">
             <div class="sidenav__header__tabs">
+                {% if not user.is_authenticated %}
+                    <a href="/profile/login/" class="header__tabs__rules">Войти</a>
+                {% endif %}
                 {#                <a href="" id="mySidenavText" class="header__tabs__promo">Акции</a>#}
                 <a href="/common/contacts/" class="header__tabs__contacts">Контакты</a>
                 <a href="/common/faq/" class="header__tabs__questions">Вопросы</a>
@@ -207,8 +210,11 @@
         document.getElementById('id_redirect_url').value = window.location;
 
         document.addEventListener('click', function (event) {
+            let popup = document.getElementById('login_popup_form')
+            let openPopupBtn = document.getElementById('call_login_form_button')
+
             if (!popup.contains(event.target) && event.target !== openPopupBtn) {
-                document.getElementById('login_popup_form').hidden = false;
+                document.getElementById('login_popup_form').hidden = true;
             }
         });
     </script>

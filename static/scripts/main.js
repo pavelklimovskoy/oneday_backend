@@ -27,7 +27,8 @@ $(document).ready(function () {
 });
 
 function renderGuests() {
-    const guestsDescription = `${document.getElementById('adult-guests').value} взрослых, ${document.getElementById('children').value} детей` + (document.getElementById('pets').checked ? ' с животными' : '');
+    // const guestsDescription = `${document.getElementById('adult-guests').value} взрослых, ${document.getElementById('children').value} детей` + (document.getElementById('pets').checked ? ' с животными' : '');
+    const guestsDescription = `${document.getElementById('adult-guests').value} взрослых, ${document.getElementById('children').value} детей`;
     $('#guests-dropdown').html(guestsDescription);
 }
 
@@ -65,13 +66,19 @@ function get_deportation_date() {
     return arrival_date
 }
 
+function get_guests_count() {
+    let guest_count = document.getElementById('adult-guests').value;
+
+    return guest_count
+}
+
 function search_apartments() {
     let city = selectedCity;
     let arrival = get_arrival_date()
     let departure = get_deportation_date()
-    let guests_counts = 1;
+    let guests_counts = get_guests_count();
     let children_count = 1;
-    let with_pets = false;
+    // let with_pets = false;
 
     window.location = `appartments/list/?city=${city}&arrival=${arrival}&departure=${departure}&guests_counts=${guests_counts}`;
 }

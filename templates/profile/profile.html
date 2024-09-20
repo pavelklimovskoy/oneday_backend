@@ -1,0 +1,514 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link href="{% static 'styles/bootstrap/bootstrap.min.css' %}" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="{% static 'styles/common_styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/styles/style.css' %}">
+
+    <style>
+        @media (max-width: 768px) {
+            .edit_tile {
+                margin-top: 20px;
+            }
+        }
+
+        body {
+            font-family: 'Vela Sans' !important;
+            font-size: medium;
+        }
+
+        footer {
+            margin-top: 60px;
+        }
+
+        .profile_tile {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 20px 20px 20px 20px;
+
+            height: max-content;
+        }
+
+        .profile_header {
+            overflow: hidden;
+            color: var(--Black, #061F28);
+            text-align: center;
+            font-feature-settings: 'ss06' on;
+            text-overflow: ellipsis;
+            /* Subtitle/S1 */
+            font-family: "Atyp Regular";
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 75;
+            line-height: 120%;
+            /* 28.8px */
+        }
+
+        .avatar_icon {
+            width: 80px;
+            height: 80px;
+
+            display: inline !important;
+        }
+
+        .exit_btn {
+            display: block !important;
+            width: 100% !important;
+            align-items: center !important;
+            text-align: center !important;
+
+            margin-top: 28px;
+
+            > span {
+                text-align: center !important;
+                align-items: center !important;
+
+            }
+        }
+
+        .section_select {
+            padding: 8px 8px 8px 8px;
+            width: 100%;
+
+            background-color: var(--white);
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            > span {
+                overflow: hidden;
+                color: var(--Black, #061F28);
+                font-variant-numeric: lining-nums proportional-nums;
+                font-feature-settings: 'case' on;
+                text-overflow: ellipsis;
+                /* Body/B1-medium */
+                font-family: "Vela Sans";
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 150%;
+                /* 24px */
+            }
+        }
+
+        .section_select:hover {
+            background-color: var(--cream);
+        }
+
+        .nav_block {
+            margin-top: 20px;
+        }
+
+        .badged_present {
+            background-color: var(--cream);
+            padding: 4px 8px 4px 8px;
+            border-radius: 10px;
+
+            width: fit-content;
+
+            vertical-align: baseline;
+
+            > span {
+                color: var(--Primary, #117399);
+                /* Small/Small-medium */
+                font-family: "Vela Sans";
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 120%;
+                /* 16.8px */
+            }
+        }
+
+        .profile_name {
+            color: var(--Black, #061F28);
+            /* Subtitle/S3-semibold */
+            font-family: "Vela Sans";
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 135%;
+            /* 24.3px */
+        }
+
+        .container2 {
+            display: flex;
+            /* align-items: center; */
+            /* Vertically center the items */
+        }
+
+        .text-container {
+            margin-left: 12px;
+            /* Add some spacing between the image and text */
+        }
+
+        .edit_tile {
+            background-color: var(--white);
+            border-radius: 10px;
+
+            padding: 40px 40px 40px 40px;
+        }
+
+        .edit_photo {
+            margin-top: 0px !important;
+        }
+
+        .edit_header {
+            color: var(--Black, #061F28);
+            font-feature-settings: 'ss06' on;
+
+            /* Subtitle/S1 */
+            font-family: "Atyp Regular";
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 75;
+            line-height: 120%;
+            /* 28.8px */
+        }
+
+        .watch_flats {
+            margin-top: 20px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="tel"],
+        select {
+            background: var(--white);
+            border-radius: 10px;
+            border: 2px solid var(--dark-grey);
+
+            padding: 12px 12px 12px 12px;
+
+            width: 100%;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus {
+            border: 2px solid var(--primary);
+        }
+
+        p {
+            /* Body/B1-medium */
+            font-family: "Vela Sans";
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 150%;
+        }
+
+        .line {
+            margin-top: 12px;
+        }
+
+        .profile_avatar {
+            max-width: 80px;
+            height: auto;
+        }
+
+        .input-file {
+            position: relative;
+            display: inline-block;
+        }
+
+        .input-file span {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            outline: none;
+            text-decoration: none;
+            font-size: 14px;
+            vertical-align: middle;
+            color: rgb(255 255 255);
+            text-align: center;
+            border-radius: 4px;
+            background-color: var(--primary);
+            line-height: 22px;
+            height: 40px;
+            padding: 10px 20px;
+            box-sizing: border-box;
+            border: none;
+            margin: 0;
+            transition: background-color 0.2s;
+        }
+
+        .input-file input[type=file] {
+            position: absolute;
+            z-index: -1;
+            opacity: 0;
+            display: block;
+            width: 0;
+            height: 0;
+        }
+
+        .input-file input[type=file]:focus + span {
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+        }
+
+        .input-file:hover span {
+            background-color: var(--primary);
+        }
+
+        .input-file:active span {
+            background-color: var(--white);
+        }
+
+        .input-file input[type=file]:disabled + span {
+            background-color: #eee;
+        }
+    </style>
+
+    <title>Редактирование профиля</title>
+</head>
+
+<body>
+
+{% include "common/header.html" %}
+
+<main>
+    <div class="container navigation black" style="padding-top: 160px">
+        <a href="/static" сlass="primary">Главная</a> > Профиль > Настройки
+    </div>
+
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2">
+            <div class="col col-md-3 profile_tile">
+                <div class="row profile_header">
+                    <p>Профиль</p>
+                </div>
+
+                <div class="container2">
+                    {% if not user.profile_picture %}
+                        <img src="{% static 'img/profile_photo.svg' %}" alt="Image" width="80px" height="80px">
+                    {% else %}
+                        <img src="{{ user.profile_picture.url }}" class="profile_avatar" alt="Image"
+                             width="80px" height="80px">
+                    {% endif %}
+                    {#                    <img src="{% static 'img/profile_photo.svg' %}" alt="Image">#}
+                    <div class="text-container">
+                        <div style="display: block;" class="profile_name">
+                            <span>{{ user.first_name }} {{ user.last_name }}</span>
+                        </div>
+                        <div style="display: flex; margin-top: 12px;">
+                            <div style="display: inline;" class="badged_present">
+                                <img src="{% static 'img/user_points.svg' %}" width="16px" alt="">
+                                <span>{{ user.bonus_points }} баллов</span>
+                            </div>
+                            <img style="display: inline; margin-left: 8px;" src="{% static 'img/help_icon.svg' %}"
+                                 width="24px" alt="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav_block">
+                    <div class="row">
+                        <a href="{% url 'edit_profile' %}">
+                            <div class="section_select">
+                                <span>Редактировать профиль</span>
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="row">
+                        <a href="{% url 'history' %}">
+                            <div class="section_select">
+                                <span>История поездок</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="row">
+                        <a href="{% url 'favorites' %}">
+                            <div class="section_select">
+                                {% if user.user.favorites_apartments.count != 0 %}
+                                    <span>Избранное ({{ user.favorites_apartments.count }})</span>
+                                {% else %}
+                                    <span>Избранное</span>
+                                {% endif %}
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="row">
+                        <a href="#" onclick="document.getElementById('logout-form').submit();">
+                            <div class="noselect seccondary_btn exit_btn">
+                                <span>Выйти</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col col-md-9">
+                <div class="container edit_tile">
+                    <p class="edit_header">Редактировать профиль</p>
+                    <div class="container2">
+                        {% if not user.profile_picture %}
+                            <img src="{% static 'img/profile_photo.svg' %}" alt="Image" width="80px" height="80px">
+                        {% else %}
+                            <img src="{{ user.profile_picture.url }}" class="profile_avatar" alt="Image"
+                                 width="80px" height="80px">
+                        {% endif %}
+
+
+                        <div class="text-container">
+
+                            <div style="display: flex; margin-top: 12px">
+                                {% if user.profile_picture %}
+                                    <p>
+                                    <form id="upload_avatar_form" method="post" action="/profile/upload_avatar/"
+                                          enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <label class="input-file">
+                                            <input type="file" name="profile_picture" id="upload_avatar"
+                                                   accept=".jpg,.jpeg,.png">
+                                            <span>Изменить фото</span>
+                                        </label>
+                                    </form>
+                                    </p>
+                                    {#                                    <p>#}
+                                    {#                                        <a href="/profile/delete_avatar/">Удалить фото</a>#}
+                                    {#                                    </p>#}
+                                {% else %}
+                                    <form id="upload_avatar_form" method="post" action="/profile/upload_avatar/"
+                                          enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <label class="input-file">
+                                            <input type="file" name="profile_picture" id="upload_avatar"
+                                                   accept=".jpg,.jpeg,.png">
+                                            <span>Загрузите фото</span>
+                                        </label>
+                                    </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <form method="post" action="/profile/update_profile_info/" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row row-cols-2 line">
+                            <div class="col">
+                                <div class="contact_block">
+                                    <p>Телефон</p>
+                                    {% if not user.phone_number %}
+                                        <input type="tel" placeholder="+7" name="phone_number" required>
+                                    {% else %}
+                                        <input type="tel" placeholder="+7" value="{{ user.phone_number }}"
+                                               name="phone_number" required>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="contact_block">
+                                    <p>Почта</p>
+                                    <input type="email" placeholder="name@gmail.com" name="email"
+                                           value="{{ user.email }}" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p>Личные данные</p>
+                        <div class="row row-cols-2 line">
+                            <div class="col">
+                                <div class="contact_block">
+                                    <p>Имя</p>
+                                    <input type="text" placeholder="Имя" name="first_name" value="{{ user.first_name }}"
+                                           required>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="contact_block">
+                                    <p>Фамилия</p>
+                                    <input type="text" placeholder="Фамилия" name="last_name"
+                                           value="{{ user.last_name }}" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row row-cols-2 line">
+                            <div class="col">
+                                <div class="contact_block">
+                                    <p>Пол</p>
+                                    <select name="gender" id="gender-select" name="gender" required>
+                                        {% if user.gender == 'f' %}
+                                            <option value="n" disabled>Не указано</option>
+                                            <option value="m">Мужской</option>
+                                            <option value="f" selected>Женский</option>
+                                        {% elif user.gender == 'm' %}
+                                            <option value="n" disabled>Не указано</option>
+                                            <option value="m" selected>Мужской</option>
+                                            <option value="f">Женский</option>
+                                        {% else %}
+                                            <option value="n" disabled selected>Не указано</option>
+                                            <option value="m">Мужской</option>
+                                            <option value="f">Женский</option>
+                                        {% endif %}
+                                    </select>
+                                </div>
+                            </div>
+
+                            {#                            <div class="col">#}
+                            {#                                <div class="contact_block">#}
+                            {#                                    <p>Дата рождения</p>#}
+                            {#                                    <input type="date" value="{{ user.birth_date|date:"Y-m-d" }}" required/>#}
+                            {#                                </div>#}
+                            {#                            </div>#}
+                        </div>
+
+                        <div class="row row-cols-2 line">
+                            <div class="col">
+                                <div class="contact_block">
+                                    <p>Telegram</p>
+                                    {% if not  user.telegram_nickname %}
+                                        <input type="text" placeholder="Ваш телеграм логин" name="telegram_nickname">
+                                    {% else %}
+                                        <input type="text" placeholder="Ваш телеграм логин"
+                                               value="{{ user.telegram_nickname }}" name="telegram_nickname">
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="watch_flats noselect" onclick="this.closest('form').submit();return false;">
+                            <span>Сохранить изменения</span>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+{% include "common/footer.html" %}
+
+<!-- Необязательный JavaScript; выберите один из двух! -->
+
+<!-- Вариант 1: пакет Bootstrap с Popper -->
+<script src="{% static '/scripts/bootstrap_pooper/bootstrap.bundle.min.js' %}"></script>
+
+<script>
+    document.getElementById('upload_avatar').addEventListener('change', function () {
+        document.getElementById('upload_avatar_form').submit();
+    });
+</script>
+
+<!-- Вариант 2: отдельные JS для Popper и Bootstrap -->
+<!--
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+-->
+</body>
+
+</html>

@@ -1,12 +1,19 @@
 from typing import Final
 
-from django.conf import settings
-from django.contrib.sites import requests
 import requests
+from django.conf import settings
 from django.db import transaction
 from rest_framework.utils import json
 
 from apartments.models import Apartment, City, ApartmentService, ApartmentPhoto
+
+
+class RealCalendarConnectionException(Exception):
+    """Не удалось установить соединение с модулем бронирования"""
+
+
+class RealCalendarAPIException(Exception):
+    """Получен некорректный ответ от модуля бронирования"""
 
 
 class RealtyCalendar:
@@ -14,12 +21,17 @@ class RealtyCalendar:
         str] = f'{settings.REALTY_CALENDAR_HOST}/widgets/bookings/search/{settings.REALTY_CALENDAR_CLIENT_JSON}'
 
     @classmethod
-    def download_apartments_info(cls):
-        request_url = cls.ALL_APARTMENTS_URL
-        response_json = requests.get(request_url).json()
+    def __save_apartment_photos(cls, apartment: Apartment, apartment_json: dict) -> None:
+        for photo in apartment_json['photos']:
+            ApartmentPhoto.objects.create(
+                apartment=apartment,
+                photo_url=photo['file']
+            )
 
+    @classmethod
+    def __synchronize_apartments_by_real_calendar_json(cls, response_json: json) -> None:
         for apartment in response_json['apartments']:
-            if not Apartment.objects.filter(id=apartment['id']).exists():
+            if not Apartment.objects.filter(real_calendar_id=apartment['id']).exists():
                 print(f'{apartment["id"]} does not exist')
 
                 city_id = apartment['city']['id']
@@ -55,10 +67,44 @@ class RealtyCalendar:
                             service_record = ApartmentService.objects.get(service_name=service['name'])
                             apartment_record.services.add(service_record)
 
-                    for photo in apartment['photos']:
-                        ApartmentPhoto.objects.create(
-                            apartment=apartment_record,
-                            photo_url=photo['file']
-                        )
+                    cls.__save_apartment_photos(
+                        apartment=apartment_record,
+                        apartment_json=apartment
+                    )
 
+    @classmethod
+    def download_apartments_info(cls) -> None:
+        request_url = cls.ALL_APARTMENTS_URL
 
+        try:
+            response = requests.get(request_url)
+
+            if response.status_code == 200:
+                response_json = response.json()
+                cls.__synchronize_apartments_by_real_calendar_json(response_json)
+            else:
+                raise RealCalendarAPIException()
+        except (requests.exceptions.ConnectionError, RealCalendarAPIException) as exception_type:
+            match exception_type.__class__.__name__:
+                case RealCalendarConnectionException.__name__:
+                    print("Не удалось установить соединение с модулем бронирования")
+                case requests.exceptions.ConnectionError.__class__.__name__:
+                    print("Не удалось установить соединение")
+                case RealCalendarAPIException.__name__:
+                    print("Некорректный ответ от API")
+
+    @classmethod
+    def get_apartments_in_date_range(cls, begin_date, end_date, city_ids=None, humans=1):
+        request_url = f'{cls.ALL_APARTMENTS_URL}?begin_date={begin_date}&end_date={end_date}&humans={humans}&city_ids[]={city_ids}'
+
+        if city_ids is None:
+            request_url = f'{cls.ALL_APARTMENTS_URL}?begin_date={begin_date}&end_date={end_date}&humans={humans}'
+
+        response_json = requests.get(request_url).json()
+        cls.__synchronize_apartments_by_real_calendar_json(response_json)
+
+        apartments_ids = []
+        for apartment in response_json['apartments']:
+            apartments_ids.append(apartment['id'])
+
+        return apartments_ids

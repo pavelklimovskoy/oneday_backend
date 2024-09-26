@@ -179,20 +179,20 @@ a {
     }
 }
 
-.checkmark {
-    position: absolute;
-    left: 0;
-    display: block;
-    height: 16px;
-    width: 16px;
-    border: 2px solid var(--dividers);
-    border-radius: 4px;
-    cursor: pointer;
+/*.checkmark {*/
+/*    position: absolute;*/
+/*    left: 0;*/
+/*    display: block;*/
+/*    height: 16px;*/
+/*    width: 16px;*/
+/*    border: 2px solid var(--dividers);*/
+/*    border-radius: 4px;*/
+/*    cursor: pointer;*/
 
-    &:hover {
-        border: 2px solid var(--primary) !important;
-    }
-}
+/*    &:hover {*/
+/*        border: 2px solid var(--primary) !important;*/
+/*    }*/
+/*}*/
 
 .input__checkbox__container input:checked ~ .checkmark {
     background-color: var(--primary);

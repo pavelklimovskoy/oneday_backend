@@ -1376,3 +1376,9 @@ input[type="number"] {
 input[type="date"] {
     border: none !important;
 }
+
+.fix_checkbox {
+    display: inline;
+    width: 15px;
+    height: auto;
+}

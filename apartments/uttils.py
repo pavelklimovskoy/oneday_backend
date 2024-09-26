@@ -1,12 +1,19 @@
-from typing import Final
+from typing import Final, Optional
 
 import requests
 from django.conf import settings
+from django.core.handlers.wsgi import WSGIRequest
 from django.db import transaction
+from django.shortcuts import get_object_or_404
 from requests import Response
+from rest_framework.request import Request
 from rest_framework.utils import json
 
 from apartments.models import Apartment, City, ApartmentService, ApartmentPhoto
+
+
+class RealCalendarPriceException(Exception):
+    """Некорректный ответ от запроса ан получение цен"""
 
 
 class RealCalendarConnectionException(Exception):
@@ -20,6 +27,10 @@ class RealCalendarAPIException(Exception):
 class RealtyCalendar:
     ALL_APARTMENTS_URL: Final[
         str] = f'{settings.REALTY_CALENDAR_HOST}/widgets/bookings/search/{settings.REALTY_CALENDAR_CLIENT_JSON}'
+
+    @classmethod
+    def get_booking_form_data(cls, request: Request) -> dict:
+        return json.loads(request.body.decode('utf-8'))
 
     @classmethod
     def __save_apartment_photos(cls, apartment: Apartment, apartment_json: dict) -> None:
@@ -100,7 +111,8 @@ class RealtyCalendar:
 
     @classmethod
     def get_apartments_in_date_range(cls, begin_date, end_date, city_ids=None, humans=1):
-        request_url = f'{cls.ALL_APARTMENTS_URL}?begin_date={begin_date}&end_date={end_date}&humans={humans}&city_ids[]={city_ids}'
+        request_url: Final[
+            str] = f'{cls.ALL_APARTMENTS_URL}?begin_date={begin_date}&end_date={end_date}&humans={humans}&city_ids[]={city_ids}'
 
         if city_ids is None:
             request_url = f'{cls.ALL_APARTMENTS_URL}?begin_date={begin_date}&end_date={end_date}&humans={humans}'
@@ -138,4 +150,160 @@ class RealtyCalendar:
                 'status_code': response.status_code,
             }
 
+    @classmethod
+    def __get_redirect_url_for_pay(cls, calendar_event_id: int) -> str:
+        # TODO: Сделать страницу с благодарностями
+        # TODO: Сделать систему токенов для начисления бонусов после снятия квартиры
+        # TODO: подставить новую ссылку после диплоя
+        redirect_after_pay: Final[str] = 'https://posutochno-oneday.ru/'
+        url_for_redirect_link_prepare: Final[str] = (
+            f'https://realtycalendar.ru/widgets/bookings/moneta/event_calendars/{calendar_event_id}/payments/new'
+            f'?token={settings.REALTY_CALENDAR_TOKEN}'
+            f'&redirect_url={redirect_after_pay}'
+        )
 
+        response: Response = requests.get(url_for_redirect_link_prepare)
+        if response.status_code == 200:
+            response_data: dict = response.json()
+            return response_data.get('url', '/')
+        else:
+            return '/'
+
+    @classmethod
+    def get_price_by_date_range_and_guests(
+            cls, apartment_id: int, begin_date: str, end_date: str, humans: int
+    ) -> dict:
+        request_url: Final[str] = (
+            f'https://realtycalendar.ru/widgets/bookings/apartments/{apartment_id}/price.json'
+            f'?token={settings.REALTY_CALENDAR_TOKEN}'
+            f'&humans={humans}'
+            f'&begin_date={begin_date}'
+            f'&end_date={end_date}'
+        )
+
+        response: Response = requests.get(request_url)
+
+        if response.status_code == 200:
+            return response.json()
+        else:
+            raise RealCalendarPriceException()
+
+    @classmethod
+    def __convert_date_for_real_calendar(cls, date: str) -> str:
+        split_date: Final[list[str]] = date.split('-')
+        return f'{split_date[2]}.{split_date[1]}.{split_date[0]}'
+
+    @classmethod
+    def __create_note_for_event(cls, humans: int, notes: str, with_pets: Optional[bool]) -> str:
+        note_text: str = f"""
+        Гостей: {humans}
+        Пожелания: {notes}
+        С животными: 
+        """
+        if with_pets:
+            note_text += "Да"
+        else:
+            note_text += "Нет"
+
+        return note_text
+
+    @classmethod
+    def create_calendar_event(cls, booking_form_data: dict, apartment_id: int) -> int:
+        email = booking_form_data.get('email', 'Почта не указана')
+        phone = booking_form_data.get('phone', 'Номер не указан')
+        fio = booking_form_data.get('fio', 'ФИО не указано')
+
+        arrival_time = booking_form_data.get('arrival_time')
+        departure_time = booking_form_data.get('departure_time')
+        begin_date = booking_form_data.get('begin_date')
+        end_date = booking_form_data.get('end_date')
+        notes = booking_form_data.get('notes')
+        adult_guests = booking_form_data.get('adult_guests')
+        with_pets = booking_form_data.get("with_pets", None)
+        #
+        # print(fio, email, phone)
+        # print(arrival_time, departure_time)
+        # print(begin_date, end_date)
+        # print(notes)
+        # print(with_pets)
+
+        begin_date: str = cls.__convert_date_for_real_calendar(begin_date)
+        end_date: str = cls.__convert_date_for_real_calendar(end_date)
+
+        price_info: Final[dict] = cls.get_price_by_date_range_and_guests(
+            apartment_id=apartment_id,
+            begin_date=begin_date,
+            end_date=end_date,
+            humans=adult_guests
+        )
+
+        application_note: Final[str] = cls.__create_note_for_event(
+            humans=adult_guests,
+            notes=notes,
+            with_pets=with_pets
+        )
+
+        payload_data: Final[dict] = {
+            "event_calendar":
+                {
+                    "terms_of_service": "1",
+                    "arrival_time": arrival_time,
+                    "begin_date": begin_date,
+                    "end_date": end_date,
+                    "departure_time": departure_time,
+                    "amount": price_info['amount_for_dates_period'],
+                    "notes": application_note,
+                    "status": 2,
+                    "prepayment": price_info['amount_for_pay'],
+                },
+            "client":
+                {
+                    "email": email,
+                    "phone": phone,
+                    "fio": fio
+                }
+        }
+
+        response = requests.post(
+            url=f'https://realtycalendar.ru/widgets/bookings/apartments/{apartment_id}/event_calendars'
+                f'?token={settings.REALTY_CALENDAR_TOKEN}',
+            json=payload_data,
+            headers={
+                "Accept": "*/*"
+            }
+        )
+        response_data = response.json()
+
+        return response_data['id']
+
+    @classmethod
+    def get_redirect_url_by_event_id(cls, event_id: int) -> str:
+        redirect_url: str = cls.__get_redirect_url_for_pay(
+            calendar_event_id=event_id
+        )
+        return redirect_url
+
+    @classmethod
+    def create_booking_apartment_event(cls, apartment_id: int, booking_form_data: dict) -> int:
+        apartment_for_booking: Apartment = get_object_or_404(Apartment, pk=apartment_id)
+
+        real_calendar_id: int = apartment_for_booking.real_calendar_id
+        event_id: int = cls.create_calendar_event(booking_form_data, real_calendar_id)
+
+        return event_id
+
+
+def get_min_apartments_price(city_id: Optional[str] = None) -> int:
+    if not city_id:
+        return Apartment.objects.order_by('price').first().price
+
+    city: City = get_object_or_404(City, pk=city_id)
+    return Apartment.objects.filter(city=city).order_by('price').first().price
+
+
+def get_max_apartments_price(city_id: Optional[str] = None) -> int:
+    if not city_id:
+        return Apartment.objects.order_by('-price').first().price
+
+    city: City = get_object_or_404(City, pk=city_id)
+    return Apartment.objects.filter(city=city).order_by('-price').first().price

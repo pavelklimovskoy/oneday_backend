@@ -27,5 +27,5 @@ class BookingRecord(models.Model):
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'{self.user_profile} {self.apartment} {self.start_date} {self.end_date}'

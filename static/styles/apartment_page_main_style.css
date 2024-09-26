@@ -1373,9 +1373,9 @@ input[type="number"] {
     -moz-appearance: textfield;
 }
 
-input[type="date"] {
-    border: none !important;
-}
+/*input[type="date"] {*/
+/*    border: none !important;*/
+/*}*/
 
 .fix_checkbox {
     display: inline;

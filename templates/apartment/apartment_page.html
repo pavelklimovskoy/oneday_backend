@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <script type="text/javascript" src="{% static 'scripts/jquery.min.js' %}"></script>
     <link rel="stylesheet" href="{% static 'styles/nice-select2.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap/bootstrap.min.css' %}"/>
     <link rel="stylesheet" href="{% static 'styles/normalize.css' %}">
@@ -174,7 +175,8 @@
                     <div class="apart__comforts__cards">
                         {% for service in apartment.services.all %}
                             <div class="apart__comforts__card">
-                                <img src="{% static 'icons/'|add:service.service_name|add:'.svg' %}" width="24px" height="24px" alt="...">
+                                <img src="{% static 'icons/'|add:service.service_name|add:'.svg' %}" width="24px"
+                                     height="24px" alt="...">
                                 <span class="title__medium">{{ service.service_title }}</span>
                             </div>
                         {% endfor %}
@@ -197,7 +199,7 @@
                                         2
                                     </span>
                             <span class="apart__rules__text__rule__text title__medium">
-                                        Заезд после 14:00, выезд до 12:00
+                                        Заезд после 14:00, выезд до 12:00
                                     </span>
                         </div>
                         <div class="apart__rules__text__rule secondary">
@@ -346,259 +348,301 @@
                 </div>
 
             </div>
-
-            <div class="booking__form" id="booking">
-                <div class="form__header">Бронирование</div>
-                <div class="form__date__info">
-                    <div class="form__checkin">
-                        <div class="form__date">
+            <form action="booking/" method="post">
+                <div class="booking__form" id="booking">
+                    {% csrf_token %}
+                    <div class="form__header">Бронирование</div>
+                    <div class="form__date__info">
+                        <div class="form__checkin">
+                            <div class="form__date">
                                 <span class="title__light">
                                     Заезд
                                 </span>
-                            <span class="title__medium">Выберите дату</span>
-                            <input type="date">
+                                <span class="title__medium">Выберите дату</span>
+                                <input type="date" id="arrival_date" name="begin_date" required>
+                            </div>
+                            <div class="form__time">
+                                <select class="selectize" name="arrival_time" required>
+                                    <option data-display="Select">14:00</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="17:00">17:00</option>
+                                    <option value="18:00">18:00</option>
+                                    <option value="19:00">19:00</option>
+                                    <option value="20:00">20:00</option>
+                                    <option value="21:00">21:00</option>
+                                    <option value="22:00">22:00</option>
+                                    <option value="23:00">23:00</option>
+                                    <option value="23:30">23:30</option>
+                                </select>
+                            </div>
+                            <div id="booking_date_error_1" hidden>
+                                <span><img src="/static/icons/error.svg" alt="">На выбранные даты объект занят</span>
+                            </div>
                         </div>
-                        <div class="form__time">
-                            <select class="selectize">
-                                <option data-display="Select">8:00</option>
-                                <option value="1">8:30</option>
-                                <option value="2">9:00</option>
-                                <option value="3">9:30</option>
-                                <option value="4">10:30</option>
-                                <option value="5">11:00</option>
-                                <option value="6">11:30</option>
-                                <option value="7" disabled>12:00</option>
-                            </select>
-                        </div>
-                    </div>
-                    <span class="form__arrow">
+                        <span class="form__arrow">
                             <img src="{% static 'icons/arrow-right.svg' %}"/>
                         </span>
-                    <div class="form__departure">
-                        <div class="form__date">
+                        <div class="form__departure">
+                            <div class="form__date">
                                 <span class="title__light">
                                     Выезд
                                 </span>
-                            <span class="title__medium">Выберите дату</span>
-                            <input type="date">
-                        </div>
-                        <div class="form__time">
-                            <select class="selectize">
-                                <option data-display="Select">8:00</option>
-                                <option value="1">8:30</option>
-                                <option value="2">9:00</option>
-                                <option value="3">9:30</option>
-                                <option value="4">10:30</option>
-                                <option value="5">11:00</option>
-                                <option value="6">11:30</option>
-                                <option value="7" disabled>12:00</option>
-                            </select>
+                                <span class="title__medium">Выберите дату</span>
+                                <input type="date" id="departure_date" name="end_date" required>
+                            </div>
+                            <div class="form__time">
+                                <select class="selectize" name="departure_time" required>
+{#                                    <option data-display="Select">8:00</option>#}
+{#                                    <option value="8:30">8:30</option>#}
+{#                                    <option value="9:00">9:00</option>#}
+{#                                    <option value="9:30">9:30</option>#}
+{#                                    <option value="10:30">10:30</option>#}
+{#                                    <option value="11:00">11:00</option>#}
+                                    <option data-display value="12:00">12:00</option>
+                                </select>
+                            </div>
+                            <div id="booking_date_error_2" hidden>
+                                <span><img src="/static/icons/error.svg" alt="">На выбранные даты объект занят</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="form__personal__data">
+                    <div class="form__personal__data">
                         <span class="form__personal__data__header header__2">
                             Введите свои данные
                         </span>
 
-                    <div class="form__personal__data__contacts">
-                        <div class="form__personal__data__contacts__name">
+                        <div class="form__personal__data__contacts">
+                            <div class="form__personal__data__contacts__name">
                                 <span class="form__personal__data__contacts__title">
                                     Имя
                                 </span>
-                            <input
-                                    placeholder='Ваше имя'
-                                    class="form__personal__data__contacts__name__input"
-                                    value="{{ user.first_name }}"
-                            >
-                        </div>
+                                <input
+                                        placeholder='Ваше имя'
+                                        name="fio"
+                                        class="form__personal__data__contacts__name__input"
+                                        value="{{ user.first_name }}"
+                                        required
+                                >
+                            </div>
 
-                        <div class="form__personal__data__contacts__phone">
+                            <div class="form__personal__data__contacts__phone">
                                 <span class="form__personal__data__contacts__title">
                                     Телефон
                                 </span>
+                                <input
+                                        placeholder='+7'
+                                        name="phone"
+                                        class="form__personal__data__contacts__phone__input"
+                                        value="{{ user.phone_number }}"
+                                        required
+                                >
+                            </div>
+                        </div>
+
+                        <div class="form__personal__data__email">
+                            <span class="form__personal__data__email__header title__medium">
+                                Электронная почта
+                            </span>
                             <input
-                                    placeholder='+7'
-                                    class="form__personal__data__contacts__phone__input"
-                                    value="{{ user.phone_number }}"
+                                    placeholder='name@gmail.com'
+                                    name="email"
+                                    class="form__personal__data__email__input"
+                                    value="{{ user.email }}"
+                                    required
                             >
                         </div>
                     </div>
 
-                    <div class="form__personal__data__email">
-                            <span class="form__personal__data__email__header title__medium">
-                                Электронная почта
-                            </span>
-                        <input
-                                placeholder='name@gmail.com'
-                                class="form__personal__data__email__input"
-                                value="{{ user.email }}"
-                        >
-                    </div>
-                </div>
-
-                <div class="form__details">
+                    <div class="form__details">
                         <span class="form__details__header header__2">
                             Укажите детали
                         </span>
 
-                    <div class="form__details__guests">
-                        <div class="form__details__guests__text">
+                        <div class="form__details__guests">
+                            <div class="form__details__guests__text">
                                 <span class="form__details__guests__title title__medium">
                                     Гости
                                 </span>
-                            <span class="form__details__guests__subtitle title__light">
+                                <span class="form__details__guests__subtitle title__light">
                                     До 4-х человек
                                 </span>
-                        </div>
-                        <div class="form__details__guests__counter">
-                            <button class="form__details__counter__button minus">
-                                -
-                            </button>
-                            <span class="form__details__counter__value">
-                                    0
-                                </span>
-                            <button class="form__details__counter__button plus">
-                                +
-                            </button>
-                        </div>
-                    </div>
+                            </div>
+                            {#                        <div class="form__details__guests__counter">#}
+                            {#                            <button class="form__details__counter__button minus">-</button>#}
+                            {#                            <span class="form__details__counter__value" id="guests_counts">0</span>#}
+                            {#                            <button class="form__details__counter__button plus">+</button>#}
+                            {#                        </div>#}
 
-                    <div class="form__details__kids">
-                        <div class="form__details__kids__text">
-                                <span class="form__details__kids__title title__medium">
-                                    Дети
-                                </span>
-                            <span class="form__details__kids__subtitle title__light">
-                                    До 1 года
-                                </span>
-                        </div>
-                        <div class="form__details__kids__counter">
-                            <button class="form__details__counter__button minus">
-                                -
-                            </button>
-                            <span class="form__details__counter__value">
-                                    0
-                                </span>
-                            <button class="form__details__counter__button plus">
-                                +
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="form__details__pets">
-                        <div class="form__details__pets__text">
-                                <span class="form__details__pets__title title__medium">
-                                    Питомцы
-                                </span>
-                            <span class="form__details__pets__subtitle title__light">
-                                    Только собаки, за доп.плату
-                                </span>
-                        </div>
-                        <div class="form__details__pets__slider">
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" role="switch"
-                                       id="flexSwitchCheckDefault">
+                            <div class="select__item__count">
+                                <div class="select__count__btn" id="dec-adult-guests">-</div>
+                                <input class="select__count"
+                                       type="number"
+                                       name="adult-guests"
+                                       id="adult-guests"
+                                       value="1"
+                                       min="1"
+                                       max="4"
+                                       required
+                                >
+                                <div class="select__count__btn" id="inc-adult-guests">+</div>
                             </div>
                         </div>
-                    </div>
-                    
-                    
 
-                    <div class="form__details__additional">
-                            <span class="form__details__additional__header header__2">
-                                Дополнительная информация
-                            </span>
-                    </div>
-                    <div class="form__details__additional__select">
-                        {#                        # TODO: пока не нужная фича#}
-                        {#                            <span class="form__details__additional__select_title title__medium">#}
-                        {#                                Откуда узнали о нас?#}
-                        {#                            </span>#}
-                        {#                        <div class="form__details__additional__select_wrap">#}
-                        {#                            <select id="selectize-placeholder">#}
-                        {#                                <option value="1">Интернет</option>#}
-                        {#                                <option value="2">Соцсети</option>#}
-                        {#                            </select>#}
+                        {#                    <div class="form__details__kids">#}
+                        {#                        <div class="form__details__kids__text">#}
+                        {#                                <span class="form__details__kids__title title__medium">#}
+                        {#                                    Дети#}
+                        {#                                </span>#}
+                        {#                            <span class="form__details__kids__subtitle title__light">#}
+                        {#                                    До 1 года#}
+                        {#                                </span>#}
+                        {#                        </div>#}
+                        {#                        <div class="form__details__kids__counter">#}
+                        {#                            <button class="form__details__counter__button minus">#}
+                        {#                                -#}
+                        {#                            </button>#}
+                        {#                            <span class="form__details__counter__value">#}
+                        {#                                    0#}
+                        {#                                </span>#}
+                        {#                            <button class="form__details__counter__button plus">#}
+                        {#                                +#}
+                        {#                            </button>#}
                         {#                        </div>#}
                         {#                    </div>#}
 
-                        <div class="form__details__additional__input">
+                        <div class="form__details__pets">
+                            <div class="form__details__pets__text">
+                                <span class="form__details__pets__title title__medium">
+                                    Питомцы
+                                </span>
+                                <span class="form__details__pets__subtitle title__light">
+                                    Только собаки, за доп.плату
+                                </span>
+                            </div>
+                            <div class="form__details__pets__slider">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch"
+                                           id="flexSwitchCheckDefault">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="pets-warning" hidden>
+                            <p><img src="/static/icons/error.svg" alt=""> Плата за питомца будет согласована отдельно с
+                                администратором перед заселением</p>
+                        </div>
+
+                        <div class="form__details__additional">
+                            <span class="form__details__additional__header header__2">
+                                Дополнительная информация
+                            </span>
+                        </div>
+                        <div class="form__details__additional__select">
+                            {#                        # TODO: пока не нужная фича#}
+                            {#                            <span class="form__details__additional__select_title title__medium">#}
+                            {#                                Откуда узнали о нас?#}
+                            {#                            </span>#}
+                            {#                        <div class="form__details__additional__select_wrap">#}
+                            {#                            <select id="selectize-placeholder">#}
+                            {#                                <option value="1">Интернет</option>#}
+                            {#                                <option value="2">Соцсети</option>#}
+                            {#                            </select>#}
+                            {#                        </div>#}
+                            {#                    </div>#}
+
+                            <div class="form__details__additional__input">
                             <span class="form__details__additional__input_title title__medium">
                                 Ваши пожелания
                             </span>
-                            <input class="form__details__additional__input_textarea"
-                                   placeholder='Оставьте свои пожелания'></input>
+                                <input
+                                        class="form__details__additional__input_textarea"
+                                        placeholder='Оставьте свои пожелания'
+                                        name="notes"
+                                >
+                            </div>
+
+                            {#                        # TODO: Пока без промокодов#}
+                            {#                    <div class="form__details__additional__promo">#}
+                            {#                            <span class="form__details__additional__promo_title title__medium">#}
+                            {#                                Промокод#}
+                            {#                            </span>#}
+                            {#                        <input class="form__details__additional__promo_input" placeholder='Введите промокод'></input>#}
+                            {#                    </div>#}
                         </div>
 
-                        {#                        # TODO: Пока без промокодов#}
-                        {#                    <div class="form__details__additional__promo">#}
-                        {#                            <span class="form__details__additional__promo_title title__medium">#}
-                        {#                                Промокод#}
-                        {#                            </span>#}
-                        {#                        <input class="form__details__additional__promo_input" placeholder='Введите промокод'></input>#}
-                        {#                    </div>#}
-                    </div>
-
-                    <div class="form__payment">
-                        <div class="form__payment__details">
-                            <div class="form__payment__details__block">
+                        <div class="form__payment">
+                            <div class="form__payment__details" id="form__payment__details" hidden>
+                                <div class="form__payment__details__block">
                                 <span class="form__payment__details__text title__light">
                                     Предоплата
                                 </span>
-                                <span class="form__payment__details__value title__medium number__small">
-                                    450 ₽
+                                    <span class="form__payment__details__value title__medium number__small">
+                                    <span id="amount_for_pay_main">0</span> ₽
                                 </span>
-                            </div>
-                            <div class="form__payment__details__block">
+                                </div>
+                                <div class="form__payment__details__block">
                                 <span class="form__payment__details__text title__light">
-                                    Гости
+                                    + Комиссия
                                 </span>
-                                <span class="form__payment__details__value title__medium number__small">
-                                    400 ₽
+                                    <span class="form__payment__details__value title__medium number__small">
+                                     <span id="prepayment_comission">0</span> ₽
                                 </span>
-                            </div>
-                            <div class="form__payment__details__block">
-                                <span class="form__payment__details__text title__light">
-                                    Скидка
-                                </span>
-                                <span class="form__payment__details__value title__medium number__small">
-                                    -100 ₽
-                                </span>
-                            </div>
-                            <div class="form__payment__details__block">
+                                </div>
+                                {#                            <div class="form__payment__details__block">#}
+                                {#                                <span class="form__payment__details__text title__light">#}
+                                {#                                    Гости#}
+                                {#                                </span>#}
+                                {#                                <span class="form__payment__details__value title__medium number__small">#}
+                                {#                                    400 ₽#}
+                                {#                                </span>#}
+                                {#                            </div>#}
+                                {#                            TODO: скидку потом будем считать#}
+                                {#                            <div class="form__payment__details__block">#}
+                                {#                                <span class="form__payment__details__text title__light">#}
+                                {#                                    Скидка#}
+                                {#                                </span>#}
+                                {#                                <span class="form__payment__details__value title__medium number__small">#}
+                                {#                                    -100 ₽#}
+                                {#                                </span>#}
+                                {#                            </div>#}
+                                <div class="form__payment__details__block">
                                 <span class="form__payment__details__text header__2 color__primary">
                                     Итого:
                                 </span>
-                                <span class="form__payment__details__value title__medium number__large">
-                                    4500 ₽
+                                    <span class="form__payment__details__value title__medium number__large">
+                                    <span id="amount_for_dates_period">0</span> ₽
                                 </span>
+                                </div>
                             </div>
+
+                            <button class="button form__payment__button button__primary" type="submit">
+                                Забронировать
+                            </button>
+
+                            {#                            <input type="submit">#}
+
+                            <span class="form__payment__text title__light" id="form__payment__text_title__light" hidden>
+                            Чтобы забронировать объект, нужно внести предоплату <span class='form__payment__text__bold'><span
+                                    id="amount_for_pay_additional">0</span> ₽.</span> Оставшуюся сумму вы оплатите при заселении.
+                        </span>
                         </div>
 
-                        <button class="button form__payment__button button__primary" type="submit">
-                            Забронировать
-                        </button>
-
-                        <span class="form__payment__text title__light">
-                            Чтобы забронировать объект, нужно внести предоплату <span class='form__payment__text__bold'>450 ₽.</span> Оставшуюся сумму вы оплатите при заселении.
-                        </span>
+                        <div class="form__checkbox">
+                            <label class="input__checkbox__container">
+                        <span class="input__checkbox__text title__light">Я согласен(-а) с условиями
+                            <a href="" class="input__checkbox__link">
+                                пользовательского соглашения</a> и
+                            <a href="" class="input__checkbox__link">оферты</a></span>
+                                <input type="checkbox" class="input__checkbox" required>
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
                     </div>
-
-                    <div class="form__checkbox">
-                        <label class="input__checkbox__container">
-                        <span class="input__checkbox__text title__light">Я согласен(-а) с условиями  <a href=""
-                                                                                                        class="input__checkbox__link">пользовательского соглашения</a> и <a
-                                href="" class="input__checkbox__link">оферты</a></span>
-                            <input type="checkbox" class="input__checkbox" checked="checked">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-
-
                 </div>
-            </div>
+            </form>
         </div>
 </section>
 </body>
@@ -716,5 +760,189 @@ ${window.location.href}
             behavior: 'smooth'
         });
     });
+
+
+    document.getElementById('flexSwitchCheckDefault').addEventListener('change', (event) => {
+        if (event.currentTarget.checked) {
+            document.getElementById('pets-warning').hidden = false;
+        } else {
+            document.getElementById('pets-warning').hidden = true;
+        }
+    })
 </script>
+
+<script>
+    let arrival_date_input = document.getElementById('arrival_date');
+    let departure_date_input = document.getElementById('departure_date');
+    let adult_guests_input = document.getElementById('adult-guests');
+
+    adult_guests_input.addEventListener('change', (event) => {
+        console.log('change');
+    });
+
+    arrival_date_input.addEventListener('change', (event) => {
+        let arrival_date_input_value = event.target.value;
+        let departure_date_input_value = departure_date_input.value;
+
+        if (departure_date_input_value !== '' && arrival_date_input_value !== '') {
+            get_apartment_price_on_selected_dates(
+                arrival_date_input_value,
+                departure_date_input_value
+            );
+        }
+    });
+
+    departure_date_input.addEventListener('change', (event) => {
+        let arrival_date_input_value = arrival_date_input.value;
+        let departure_date_input_value = event.target.value;
+
+        if (arrival_date_input_value !== '' && departure_date_input_value !== '') {
+            get_apartment_price_on_selected_dates(
+                arrival_date_input_value,
+                departure_date_input_value
+            );
+        }
+    });
+
+    function change_guests_count() {
+        let arrival_date_input_value = arrival_date_input.value;
+        let departure_date_input_value = departure_date_input.value;
+
+        if (arrival_date_input_value !== '' && departure_date_input_value !== '') {
+            get_apartment_price_on_selected_dates(
+                arrival_date_input_value,
+                departure_date_input_value
+            );
+        }
+    }
+
+    function convert_date_format(date_string) {
+        let tmp_date = new Date(date_string);
+        return `${tmp_date.getDate()}.${tmp_date.getMonth() + 1}.${tmp_date.getFullYear()}`;
+    }
+
+    function set_price_data_to_placeholders(price_data) {
+        document.getElementById('prepayment_comission').innerHTML = price_data['prepayment_comission'];
+        document.getElementById('amount_for_dates_period').innerHTML = price_data['amount_for_dates_period'];
+        document.getElementById('amount_for_pay_main').innerHTML = price_data['amount_for_pay'];
+        document.getElementById('amount_for_pay_additional').innerHTML = price_data['amount_for_pay'];
+    }
+
+    function show_price_block() {
+        price_block_div = document.getElementById('form__payment__details');
+        info_block_div = document.getElementById('form__payment__text_title__light');
+        price_block_div.hidden = false;
+        info_block_div.hidden = false;
+    }
+
+    function hide_price_block() {
+        price_block_div = document.getElementById('form__payment__details');
+        info_block_div = document.getElementById('form__payment__text_title__light');
+        price_block_div.hidden = true;
+        info_block_div.hidden = true;
+    }
+
+    function check_apartment_available(arrival_date, departure_date) {
+        let request_url = 'https://realtycalendar.ru/widgets/bookings/apartments/{{ apartment.real_calendar_id }}/event_calendars/valid?token=29f9b591c704f9a65bf43ecca4cb2093';
+        let request_data = {
+            "event_calendar": {
+                "terms_of_service": "0",
+                "begin_date": arrival_date,
+                "end_date": departure_date,
+                "arrival_time": "14:00",
+                "departure_time": "12:00",
+                "amount": 0,
+                "notes": "",
+                "status": 0,
+                "prepayment": 0
+            },
+            "client": {
+                "email": "",
+                "phone": "",
+                "fio": ""
+            }
+        };
+
+        fetch(request_url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(request_data)
+        })
+            .then(response => {
+                if (response.status === 422) {
+                    // Обработка ответа с кодом 422
+                    return response.json().then(data => {
+                        console.log('Ошибка 422:', data);
+                        if (data.errors && data.errors.end_date) {
+                            document.getElementById('booking_date_error_1').hidden = false;
+                            document.getElementById('booking_date_error_2').hidden = false;
+                            hide_price_block();
+                        } else {
+                            document.getElementById('booking_date_error_1').hidden = true;
+                            document.getElementById('booking_date_error_2').hidden = true;
+                        }
+                    });
+                } else if (!response.ok) {
+                    // Обработка других ошибок
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+    }
+
+    function get_apartment_price_on_selected_dates(arrival_date, departure_date) {
+        arrival_date_string = convert_date_format(arrival_date);
+        departure_date_string = convert_date_format(departure_date);
+
+        check_apartment_available(
+            arrival_date_string,
+            departure_date_string
+        );
+
+        guest_count_value = document.getElementById('adult-guests').value;
+
+        let url = `https://realtycalendar.ru/widgets/bookings/apartments/{{ apartment.real_calendar_id }}/price.json?token=29f9b591c704f9a65bf43ecca4cb2093&humans=${guest_count_value}&begin_date=${arrival_date_string}&end_date=${departure_date_string}`;
+
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    hide_price_block();
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+
+                show_price_block();
+
+                set_price_data_to_placeholders(data);
+            })
+            .catch(error => {
+                    hide_price_block();
+                    console.error('There has been a problem with your fetch operation:', error);
+                }
+            );
+    }
+</script>
+
+<script>
+    $(document).ready(function () {
+        initOnClickEvents();
+    });
+
+    function initOnClickEvents() {
+        $('#inc-adult-guests').on('click', () => {
+            document.getElementById('adult-guests').stepUp(1);
+            change_guests_count();
+        });
+        $('#dec-adult-guests').on('click', () => {
+            document.getElementById('adult-guests').stepDown(1);
+            change_guests_count();
+        });
+    }
+</script>
+
 </html>

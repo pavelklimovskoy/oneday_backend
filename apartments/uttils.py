@@ -3,6 +3,7 @@ from typing import Final
 import requests
 from django.conf import settings
 from django.db import transaction
+from requests import Response
 from rest_framework.utils import json
 
 from apartments.models import Apartment, City, ApartmentService, ApartmentPhoto
@@ -29,10 +30,11 @@ class RealtyCalendar:
             )
 
     @classmethod
-    def __synchronize_apartments_by_real_calendar_json(cls, response_json: json) -> None:
+    def __synchronize_apartments_by_real_calendar_json(cls, response_json: json) -> list:
+        new_added_apartments = []
         for apartment in response_json['apartments']:
             if not Apartment.objects.filter(real_calendar_id=apartment['id']).exists():
-                print(f'{apartment["id"]} does not exist')
+                new_added_apartments.append(apartment["id"])
 
                 city_id = apartment['city']['id']
 
@@ -72,8 +74,10 @@ class RealtyCalendar:
                         apartment_json=apartment
                     )
 
+        return new_added_apartments
+
     @classmethod
-    def download_apartments_info(cls) -> None:
+    def download_apartments_info(cls) -> list[str]:
         request_url = cls.ALL_APARTMENTS_URL
 
         try:
@@ -81,7 +85,8 @@ class RealtyCalendar:
 
             if response.status_code == 200:
                 response_json = response.json()
-                cls.__synchronize_apartments_by_real_calendar_json(response_json)
+                new_added_apartments = cls.__synchronize_apartments_by_real_calendar_json(response_json)
+                return new_added_apartments
             else:
                 raise RealCalendarAPIException()
         except (requests.exceptions.ConnectionError, RealCalendarAPIException) as exception_type:
@@ -108,3 +113,29 @@ class RealtyCalendar:
             apartments_ids.append(apartment['id'])
 
         return apartments_ids
+
+    @classmethod
+    def get_price_for_apartment(cls, begin_date: str, end_date: str, apartment_id: int, humans: int = 0) -> dict:
+        GET_APARTMENTS_PRICE_URL: Final[str] = (
+            f'{settings.REALTY_CALENDAR_HOST}/'
+            f'widgets/bookings/apartments/{apartment_id}/'
+            f'price.json?token={settings.REALTY_CALENDAR_CLIENT_JSON}'
+        )
+
+        REQUEST_URL: Final[str] = (
+            f'{GET_APARTMENTS_PRICE_URL}'
+            f'&humans={humans}'
+            f'&begin_date={begin_date}'
+            f'&end_date={end_date}'
+            f'&apartment_id={apartment_id}'
+        )
+        response: Response = requests.get(REQUEST_URL)
+        if response.status_code == 200:
+            response_json = response.json()
+            return response_json
+        else:
+            return {
+                'status_code': response.status_code,
+            }
+
+
